@@ -87,3 +87,7 @@ main { display: block; }
   .progress-step::after { display: none !important; }
 }
 .nav-logo-name, .nav-logo-tagline { display: block; }
+
+.nav-links a.nav-portal { border: 1px solid var(--gold); color: var(--gold); padding: 8px 14px; white-space: nowrap; display: inline-block; }
+.nav-links a.nav-portal:hover { background: var(--gold); color: var(--dark); }
+@media (max-width: 960px) { .nav-links a.nav-portal { text-align: center; margin-top: 10px; } .nav-portal-li { border: 0 !important; } }
