@@ -1,2 +1,7 @@
 [build]
   command = "npm run build"
+
+# These two values are public by design (the anon key is safe in the browser; database rules protect the data).
+[build.environment]
+  NEXT_PUBLIC_SUPABASE_URL = "https://ngvhyynmacatfbrcctxi.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ndmh5eW5tYWNhdGZicmNjdHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE1MTc3NzQsImV4cCI6MjEwNzA5Mzc3NH0.3USelw0TL1cHP-Sqh-VAw3GNI8AwWckQYi5YtArCSZo"
