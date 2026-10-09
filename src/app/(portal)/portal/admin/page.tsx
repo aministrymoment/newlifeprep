@@ -37,7 +37,7 @@ function Admin() {
   async function enroll(userId: string, courseId: string) {
     if (!courseId) return;
     const { error } = await supabase().from('enrollments').upsert({ user_id: userId, course_id: courseId, status: 'active' });
-    setMsg(error ? `Could not enroll: ${error.message}` : 'Enrolled.'); load();
+    setMsg(error ? `Could not enroll: ${error.message}` : 'Enrolled. Open the course from the link under the student, or from the Dashboard.'); load();
   }
   async function grade(s: S, score: string, feedback: string) {
     const n = Number(score);
@@ -55,9 +55,33 @@ function Admin() {
       {subs.length === 0 && <p className="p-muted">Nothing waiting for review.</p>}
       {subs.map((s) => <Grader key={s.id} s={s} who={name(s.user_id)} title={titles[s.item_id] || ''} onGrade={grade} />)}
       <h2 className="p-h2">Students and staff ({people.length})</h2>
-      <p className="p-small">To add a student: Supabase, Authentication, Users, Add user. They appear here automatically. Then set their name and Student ID (NLPA-20XX-XXX) and enroll them.</p>
+      <AddStudent onDone={(m) => { setMsg(m); load(); }} />
       {people.map((p) => <Person key={p.id} p={p} courses={courses} enrolled={enr[p.id] || []} onSave={saveProfile} onEnroll={enroll} />)}
     </>
+  );
+}
+
+function AddStudent({ onDone }: { onDone: (m: string) => void }) {
+  const [f, setF] = useState({ name: '', email: '', password: '', studentId: '' });
+  const [busy, setBusy] = useState(false);
+  const [open, setOpen] = useState(false);
+  async function go() {
+    setBusy(true);
+    const { data } = await supabase().auth.getSession();
+    const r = await fetch('/api/admin/students', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${data.session?.access_token}` }, body: JSON.stringify(f) });
+    const j = await r.json().catch(() => ({}));
+    if (r.ok) { onDone(j.warning || `Student account created for ${f.name}. Share the email and temporary password with the student.`); setF({ name: '', email: '', password: '', studentId: '' }); }
+    else onDone(j.error || 'Could not create the account.');
+    setBusy(false);
+  }
+  if (!open) return <button className="p-btn" onClick={() => setOpen(true)}>Add a student</button>;
+  return (
+    <div className="p-card">
+      <h3>Add a student</h3>
+      <div className="p-row"><input placeholder="Full name" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} /><input placeholder="Email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} /></div>
+      <div className="p-row"><input placeholder="Temporary password (8 or more)" value={f.password} onChange={(e) => setF({ ...f, password: e.target.value })} /><input placeholder="Student ID NLPA-2026-001" value={f.studentId} onChange={(e) => setF({ ...f, studentId: e.target.value })} /></div>
+      <div className="p-row"><button className="p-btn" onClick={go} disabled={busy}>{busy ? 'Creating...' : 'Create Student'}</button><button className="p-link" onClick={() => setOpen(false)}>Cancel</button></div>
+    </div>
   );
 }
 
@@ -82,7 +106,7 @@ function Person({ p, courses, enrolled, onSave, onEnroll }: { p: P; courses: C[]
         <select value={c} onChange={(e) => setC(e.target.value)}><option value="">Enroll in a course</option>{courses.map((x) => <option key={x.id} value={x.id}>{x.title}</option>)}</select>
         <button className="p-btn" onClick={() => onEnroll(p.id, c)} disabled={!c}>Enroll</button>
       </div>
-      {enrolled.length > 0 && <p className="p-small">Enrolled: {enrolled.map((id) => courses.find((x) => x.id === id)?.title).filter(Boolean).join(', ')}</p>}
+      {enrolled.length > 0 && <p className="p-small">Enrolled: {enrolled.map((id) => courses.find((x) => x.id === id)).filter(Boolean).map((x) => <a key={x!.id} href={`/portal/courses/${x!.slug}`} style={{ marginRight: 12 }}>{x!.title}</a>)}</p>}
     </div>
   );
 }

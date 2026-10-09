@@ -44,7 +44,7 @@ One time database setup:
 4. Authentication, Sign In / Providers: turn OFF "Allow new users to sign up" so only the office can create students.
 5. Authentication, URL Configuration: set Site URL to your live address (later https://www.newlifeprep.org).
 
-Adding a student: Authentication, Users, Add user. Then sign in as admin, open /portal/admin, set the name and Student ID (NLPA-20XX-XXX) and enroll the student in courses.
+Adding a student: sign in as admin, open Administration, click Add a student (needs SUPABASE_SERVICE_ROLE_KEY in Netlify environment variables, kept secret, never in the code), then enroll the student in courses.
 
 Study help panel: add ANTHROPIC_API_KEY in Netlify environment variables. Optional: ANTHROPIC_MODEL.
 
