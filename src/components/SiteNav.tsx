@@ -13,7 +13,8 @@ const LINKS = [
 export default function SiteNav() {
   const path = usePathname();
   const [open, setOpen] = useState(false);
-  const [portal, setPortal] = useState<{ href: string; label: string }>({ href: '/portal/login', label: 'Student Login' });
+  const [portal, setPortal] = useState<string>('/portal/login');
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -23,7 +24,7 @@ export default function SiteNav() {
         const { data } = await sb.auth.getSession();
         if (!data.session) return;
         const { data: p } = await sb.from('profiles').select('role').eq('id', data.session.user.id).maybeSingle();
-        if (alive) setPortal(p?.role === 'admin' ? { href: '/portal/admin', label: 'Administration' } : { href: '/portal', label: 'My Portal' });
+        if (alive) { setPortal('/portal'); setAdmin(p?.role === 'admin'); }
       } catch { /* stay on the default link */ }
     })();
     return () => { alive = false; };
@@ -44,7 +45,8 @@ export default function SiteNav() {
         {LINKS.map(([href, label]) => (
           <li key={href}><Link href={href} className={path === href ? 'active' : ''} onClick={() => setOpen(false)}>{label}</Link></li>
         ))}
-        <li className="nav-portal-li"><Link href={portal.href} className="nav-portal" onClick={() => setOpen(false)}>{portal.label}</Link></li>
+        <li className="nav-portal-li"><Link href={portal} className="nav-portal" onClick={() => setOpen(false)}>Student Portal</Link></li>
+        {admin && <li className="nav-portal-li"><Link href="/portal/admin" className="nav-portal" onClick={() => setOpen(false)}>Administration</Link></li>}
         <li className="nav-cta-li"><Link href="/contact" className="nav-cta" onClick={() => setOpen(false)}>Apply Now</Link></li>
       </ul>
     </nav>
