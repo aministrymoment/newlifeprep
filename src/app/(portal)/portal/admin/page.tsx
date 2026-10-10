@@ -5,6 +5,7 @@ import PortalFrame from '@/components/portal/PortalFrame';
 
 type P = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level?: number | null; role: string };
 type C = { id: string; title: string; slug: string };
+type Q = { id: string; created_at: string; name: string; email: string; phone: string | null; program: string | null; message: string; status: string; emailed: boolean };
 type S = { id: string; body: string; created_at: string; user_id: string; item_id: string; score: number | null; feedback: string | null; status: string };
 
 function Admin() {
@@ -14,18 +15,21 @@ function Admin() {
   const [titles, setTitles] = useState<Record<string, string>>({});
   const [enr, setEnr] = useState<Record<string, string[]>>({});
   const [msg, setMsg] = useState('');
+  const [inq, setInq] = useState<Q[]>([]);
   const [locked, setLocked] = useState<{ user_id: string; item_id: string; best: number }[]>([]);
 
   const load = useCallback(async () => {
     const sb = supabase();
-    const [p, c, s, e, it, qa] = await Promise.all([
+    const [p, c, s, e, it, qa, iq] = await Promise.all([
       sb.from('profiles').select('*').order('created_at', { ascending: false }),
       sb.from('courses').select('id,title,slug').order('title'),
       sb.from('submissions').select('*').eq('status', 'submitted').order('created_at'),
       sb.from('enrollments').select('user_id, course_id').neq('status', 'withdrawn'),
       sb.from('course_items').select('id,title'),
       sb.from('quiz_attempts').select('user_id,item_id,score,passed').eq('voided', false),
+      sb.from('inquiries').select('*').order('created_at', { ascending: false }).limit(100),
     ]);
+    setInq((iq.data || []) as Q[]);
     const g: Record<string, { user_id: string; item_id: string; n: number; best: number; passed: boolean }> = {};
     (qa.data || []).forEach((r: any) => { const k = r.user_id + r.item_id; const x = (g[k] ||= { user_id: r.user_id, item_id: r.item_id, n: 0, best: 0, passed: false }); x.n++; x.best = Math.max(x.best, r.score); x.passed = x.passed || r.passed; });
     setLocked(Object.values(g).filter((x) => x.n >= 3 && !x.passed).map((x) => ({ user_id: x.user_id, item_id: x.item_id, best: x.best })));
@@ -63,6 +67,15 @@ function Admin() {
     const { error } = await supabase().from('courses').delete().eq('id', c.id);
     setMsg(error ? `Could not delete the course: ${error.message}` : `${c.title} was deleted.`); load();
   }
+  async function inquiryStatus(q: Q, status: string) {
+    const { error } = await supabase().from('inquiries').update({ status }).eq('id', q.id);
+    setMsg(error ? `Could not update: ${error.message}` : status === 'handled' ? 'Marked as handled.' : 'Marked as new.'); load();
+  }
+  async function inquiryDelete(q: Q) {
+    if (!window.confirm(`Delete the message from ${q.name}? This cannot be undone.`)) return;
+    const { error } = await supabase().from('inquiries').delete().eq('id', q.id);
+    setMsg(error ? `Could not delete: ${error.message}` : 'Message deleted.'); load();
+  }
   async function grade(s: S, score: string, feedback: string) {
     const n = Number(score);
     if (!Number.isFinite(n) || n < 0 || n > 100) { setMsg('Enter a score from 0 to 100.'); return; }
@@ -78,6 +91,18 @@ function Admin() {
       <h2 className="p-h2">Work to review ({subs.length})</h2>
       {subs.length === 0 && <p className="p-muted">Nothing waiting for review.</p>}
       {subs.map((s) => <Grader key={s.id} s={s} who={name(s.user_id)} title={titles[s.item_id] || ''} onGrade={grade} />)}
+      <h2 className="p-h2">Website messages ({inq.filter((q) => q.status === 'new').length} new)</h2>
+      {inq.length === 0 && <p className="p-muted">No website messages yet.</p>}
+      {inq.map((q) => (
+        <div key={q.id} className="p-card" style={q.status === 'handled' ? { opacity: 0.6 } : undefined}>
+          <p className="p-small"><b>{q.name}</b> · <a href={`mailto:${q.email}`}>{q.email}</a>{q.phone ? ` · ${q.phone}` : ''}{q.program ? ` · ${q.program}` : ''} · {new Date(q.created_at).toLocaleString()} · {q.status === 'new' ? 'New' : 'Handled'}{q.emailed ? '' : ' · Email did not send'}</p>
+          <p className="p-pre">{q.message}</p>
+          <div className="p-row">
+            {q.status === 'new' ? <button className="p-btn" onClick={() => inquiryStatus(q, 'handled')}>Mark handled</button> : <button className="p-btn" onClick={() => inquiryStatus(q, 'new')}>Mark as new</button>}
+            <button className="p-danger" onClick={() => inquiryDelete(q)}>Delete</button>
+          </div>
+        </div>
+      ))}
       <h2 className="p-h2">Quizzes locked after 3 attempts ({locked.length})</h2>
       {locked.length === 0 && <p className="p-muted">No student is locked out of a quiz.</p>}
       {locked.map((l) => (
