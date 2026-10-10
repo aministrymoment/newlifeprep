@@ -21,7 +21,7 @@ export default function Login() {
       if (error) { setMsg('That email or password did not work. Please try again or ask the office for help.'); setBusy(false); return; }
       router.replace('/portal');
     } else {
-      const { error } = await supabase().auth.resetPasswordForEmail(email.trim(), { redirectTo: `${window.location.origin}/portal/login` });
+      const { error } = await supabase().auth.resetPasswordForEmail(email.trim(), { redirectTo: `${window.location.origin}/portal/reset` });
       setMsg(error ? 'We could not send that email. Please contact the office.' : 'If that email has an account, a reset link is on its way.');
       setBusy(false);
     }

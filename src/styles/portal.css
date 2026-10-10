@@ -11,7 +11,7 @@ a { color: var(--navy); }
 .p-chip.big { padding: 8px 14px; } .p-chip.big img { height: 90px; }
 .p-nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .p-nav a, .p-link { color: #fff; font-family: Cinzel, serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; background: none; border: 0; cursor: pointer; }
-.p-main .p-link { color: var(--navy); }
+.p-main .p-link, .p-loginbox .p-link { color: var(--navy); text-decoration: underline; }
 .p-nav a:hover, .p-nav .p-link:hover { color: var(--gold); }
 .p-who { color: rgba(255,255,255,.65); font-size: 14px; }
 .p-main { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: 36px 24px 60px; }
