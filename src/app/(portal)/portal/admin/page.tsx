@@ -14,16 +14,21 @@ function Admin() {
   const [titles, setTitles] = useState<Record<string, string>>({});
   const [enr, setEnr] = useState<Record<string, string[]>>({});
   const [msg, setMsg] = useState('');
+  const [locked, setLocked] = useState<{ user_id: string; item_id: string; best: number }[]>([]);
 
   const load = useCallback(async () => {
     const sb = supabase();
-    const [p, c, s, e, it] = await Promise.all([
+    const [p, c, s, e, it, qa] = await Promise.all([
       sb.from('profiles').select('*').order('created_at', { ascending: false }),
       sb.from('courses').select('id,title,slug').order('title'),
       sb.from('submissions').select('*').eq('status', 'submitted').order('created_at'),
       sb.from('enrollments').select('user_id, course_id').neq('status', 'withdrawn'),
       sb.from('course_items').select('id,title'),
+      sb.from('quiz_attempts').select('user_id,item_id,score,passed').eq('voided', false),
     ]);
+    const g: Record<string, { user_id: string; item_id: string; n: number; best: number; passed: boolean }> = {};
+    (qa.data || []).forEach((r: any) => { const k = r.user_id + r.item_id; const x = (g[k] ||= { user_id: r.user_id, item_id: r.item_id, n: 0, best: 0, passed: false }); x.n++; x.best = Math.max(x.best, r.score); x.passed = x.passed || r.passed; });
+    setLocked(Object.values(g).filter((x) => x.n >= 3 && !x.passed).map((x) => ({ user_id: x.user_id, item_id: x.item_id, best: x.best })));
     setPeople((p.data || []) as P[]); setCourses((c.data || []) as C[]); setSubs((s.data || []) as S[]);
     const m: Record<string, string[]> = {}; (e.data || []).forEach((r: any) => { (m[r.user_id] ||= []).push(r.course_id); }); setEnr(m);
     const t: Record<string, string> = {}; (it.data || []).forEach((r: any) => { t[r.id] = r.title; }); setTitles(t);
@@ -38,6 +43,10 @@ function Admin() {
     if (!courseId) return;
     const { error } = await supabase().from('enrollments').upsert({ user_id: userId, course_id: courseId, status: 'active' });
     setMsg(error ? `Could not enroll: ${error.message}` : 'Enrolled. Open the course from the link under the student, or from the Dashboard.'); load();
+  }
+  async function unlock(userId: string, itemId: string) {
+    const { error } = await supabase().rpc('admin_reset_attempts', { p_user: userId, p_item: itemId });
+    setMsg(error ? `Could not reset: ${error.message}` : 'Three more attempts given.'); load();
   }
   async function grade(s: S, score: string, feedback: string) {
     const n = Number(score);
@@ -54,6 +63,14 @@ function Admin() {
       <h2 className="p-h2">Work to review ({subs.length})</h2>
       {subs.length === 0 && <p className="p-muted">Nothing waiting for review.</p>}
       {subs.map((s) => <Grader key={s.id} s={s} who={name(s.user_id)} title={titles[s.item_id] || ''} onGrade={grade} />)}
+      <h2 className="p-h2">Quizzes locked after 3 attempts ({locked.length})</h2>
+      {locked.length === 0 && <p className="p-muted">No student is locked out of a quiz.</p>}
+      {locked.map((l) => (
+        <div key={l.user_id + l.item_id} className="p-card">
+          <p><b>{name(l.user_id)}</b>: {titles[l.item_id] || 'Quiz'} (best score {l.best})</p>
+          <button className="p-btn" onClick={() => unlock(l.user_id, l.item_id)}>Give 3 more attempts</button>
+        </div>
+      ))}
       <h2 className="p-h2">Students and staff ({people.length})</h2>
       <AddStudent onDone={(m) => { setMsg(m); load(); }} />
       {people.map((p) => <Person key={p.id} p={p} courses={courses} enrolled={enr[p.id] || []} onSave={saveProfile} onEnroll={enroll} />)}

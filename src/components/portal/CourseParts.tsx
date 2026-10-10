@@ -1,7 +1,7 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import type { Item, Sub, Att } from '@/lib/coursePath';
+import { MAX_ATTEMPTS, type Item, type Sub, type Att } from '@/lib/coursePath';
 
 export function Written({ item, subs, userId, onSaved }: { item: Item; subs: Sub[]; userId: string; onSaved: () => void }) {
   const [text, setText] = useState('');
@@ -37,17 +37,19 @@ export function Written({ item, subs, userId, onSaved }: { item: Item; subs: Sub
 export function Quiz({ item, atts, onDone }: { item: Item; atts: Att[]; onDone: () => void }) {
   const qs: { q: string; options: string[] }[] = item.content?.questions || [];
   const [ans, setAns] = useState<(number | null)[]>(qs.map(() => null));
-  const [res, setRes] = useState<{ score: number; passed: boolean; correct: boolean[]; explains: string[] | null } | null>(null);
+  const [res, setRes] = useState<{ score: number; passed: boolean; correct: boolean[]; explains: string[] | null; left?: number } | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
   const mine = atts.filter((a) => a.item_id === item.id);
   const best = mine.reduce((m, a) => Math.max(m, a.score), 0);
   const passed = mine.some((a) => a.passed);
+  const left = Math.max(0, MAX_ATTEMPTS - mine.length);
+  const locked = !passed && left === 0;
 
   async function submit() {
     setBusy(true); setErr('');
     const { data, error } = await supabase().rpc('grade_quiz', { p_item: item.id, p_answers: ans.map((a) => (a === null ? -1 : a)) });
-    if (error) setErr(error.message.includes('answer key') ? 'This quiz is not ready yet.' : 'Could not grade the quiz. Please try again.');
+    if (error) setErr(error.message.includes('answer key') ? 'This quiz is not ready yet.' : error.message.includes('No attempts left') ? 'You have used all 3 attempts. Please contact the office.' : error.message.includes('already passed') ? 'You already passed this quiz.' : 'Could not grade the quiz. Please try again.');
     else { setRes(data); onDone(); }
     setBusy(false);
   }
@@ -56,8 +58,9 @@ export function Quiz({ item, atts, onDone }: { item: Item; atts: Att[]; onDone: 
   return (
     <div className="p-card">
       <h3>{item.title} {passed && <span className="p-pass">Passed</span>}</h3>
-      <p className="p-small">{mine.length ? `${mine.length} attempt${mine.length > 1 ? 's' : ''} · best score ${best}` : 'You need 70 percent or better. You may retake until you pass.'}</p>
-      {!res && qs.map((q, i) => (
+      <p className="p-small">{mine.length ? `Attempt${mine.length > 1 ? 's' : ''} used ${mine.length} of ${MAX_ATTEMPTS} · best score ${best}` : `You need 70 percent or better. You have ${MAX_ATTEMPTS} attempts.`}</p>
+      {locked && !res && <p className="p-note">You have used all 3 attempts. Please contact the office.</p>}
+      {!res && !locked && !passed && qs.map((q, i) => (
         <fieldset key={i} className="p-q">
           <legend>{i + 1}. {q.q}</legend>
           {q.options.map((o, j) => (
@@ -65,13 +68,14 @@ export function Quiz({ item, atts, onDone }: { item: Item; atts: Att[]; onDone: 
           ))}
         </fieldset>
       ))}
-      {!res && <button className="p-btn" onClick={submit} disabled={busy || ans.some((a) => a === null)}>{busy ? 'Grading...' : 'Submit Quiz'}</button>}
+      {!res && !locked && !passed && <button className="p-btn" onClick={submit} disabled={busy || ans.some((a) => a === null)}>{busy ? 'Grading...' : 'Submit Quiz'}</button>}
       {err && <p className="p-note">{err}</p>}
       {res && (
         <div className={res.passed ? 'p-result ok' : 'p-result no'}>
           <p><b>{res.score} percent.</b> {res.passed ? 'You passed. Well done.' : 'Not yet 70 percent. Review the topics and try again.'}</p>
           {qs.map((q, i) => <p key={i} className="p-small">{i + 1}. {res.correct[i] ? 'Correct' : 'Incorrect'}{res.explains && res.explains[i] ? `. ${res.explains[i]}` : ''}</p>)}
-          {!res.passed && <button className="p-btn" onClick={retake}>Retake Quiz</button>}
+          {!res.passed && left > 0 && <button className="p-btn" onClick={retake}>Retake Quiz ({left} left)</button>}
+          {!res.passed && left === 0 && <p className="p-note">You have used all 3 attempts. Please contact the office.</p>}
         </div>
       )}
     </div>

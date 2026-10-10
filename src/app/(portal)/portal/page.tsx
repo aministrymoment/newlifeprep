@@ -30,9 +30,9 @@ function Dash({ userId, profile, fallbackName }: { userId: string; profile: Prof
       const { data: items } = await sb.from('course_items').select('id, course_id, kind, position, title').in('course_id', ids);
       const itemIds = (items || []).map((i: any) => i.id);
       const [a, s, p] = await Promise.all([
-        sb.from('quiz_attempts').select('item_id, score, passed, created_at').eq('user_id', userId).in('item_id', itemIds),
-        sb.from('submissions').select('id, item_id, body, score, feedback, status, created_at').eq('user_id', userId).in('item_id', itemIds),
-        sb.from('item_progress').select('item_id').eq('user_id', userId).in('item_id', itemIds),
+        sb.from('quiz_attempts').select('item_id, score, passed, created_at').eq('user_id', userId).eq('voided', false).in('item_id', itemIds),
+        sb.from('submissions').select('id, item_id, body, score, feedback, status, created_at').eq('user_id', userId).eq('voided', false).in('item_id', itemIds),
+        sb.from('item_progress').select('item_id').eq('user_id', userId).eq('voided', false).in('item_id', itemIds),
       ]);
       const atts = (a.data || []) as Att[]; const subs = (s.data || []) as Sub[];
       const prog = new Set<string>((p.data || []).map((r: any) => r.item_id));
@@ -65,7 +65,7 @@ function Dash({ userId, profile, fallbackName }: { userId: string; profile: Prof
   return (
     <>
       <h1 className="p-h1">Welcome, {name}</h1>
-      <p className="p-muted">Your courses, progress and grades are all here. Every quiz needs 70 percent or better, and you may retake it until you pass.</p>
+      <p className="p-muted">Your courses, progress and grades are all here. Every quiz needs 70 percent or better, and you have 3 attempts on each quiz.</p>
       {err && <p className="p-note">{err}</p>}
 
       <div className="p-profile">

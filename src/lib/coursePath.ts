@@ -51,6 +51,7 @@ export function buildPath(items: Item[]): Module[] {
 
 export const flat = (mods: Module[]) => mods.flatMap((m) => m.steps);
 
+export const MAX_ATTEMPTS = 3;
 export type Status = { done: boolean; note: string };
 export function stepStatus(item: Item, prog: Set<string>, atts: Att[], subs: Sub[]): Status {
   if (item.kind === 'topic') return prog.has(item.id) ? { done: true, note: 'Complete' } : { done: false, note: '' };
@@ -58,7 +59,7 @@ export function stepStatus(item: Item, prog: Set<string>, atts: Att[], subs: Sub
     const mine = atts.filter((a) => a.item_id === item.id);
     if (!mine.length) return { done: false, note: '' };
     const best = Math.max(...mine.map((a) => a.score));
-    return mine.some((a) => a.passed) ? { done: true, note: `Passed, ${best} percent` } : { done: false, note: `Best ${best} percent, retake` };
+    return mine.some((a) => a.passed) ? { done: true, note: `Passed, ${best} percent` } : { done: false, note: mine.length >= MAX_ATTEMPTS ? `Best ${best} percent, no attempts left` : `Best ${best} percent, ${MAX_ATTEMPTS - mine.length} attempt${MAX_ATTEMPTS - mine.length > 1 ? 's' : ''} left` };
   }
   const mine = subs.filter((s) => s.item_id === item.id);
   if (!mine.length) return { done: false, note: '' };

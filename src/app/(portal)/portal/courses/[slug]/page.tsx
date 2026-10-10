@@ -44,8 +44,8 @@ function Home({ userId, slug }: { userId: string; slug: string }) {
         <ol className="p-how">
           <li><b>Work in order, top to bottom.</b> Each unit follows the same path: a Lesson, then its Check Quiz, for every lesson in the unit. Then the Unit Quiz, the Written Assignment and the Discussion. The Final Assessment and Final Exam come last.</li>
           <li><b>Lesson.</b> Watch the video when one is posted, read the notes and any Read it here links, and work the Your Task problems on paper. If you are stuck, press Teach Me and the tutor will walk you through it. When you are finished, press Mark Lesson Complete.</li>
-          <li><b>Check Quiz.</b> Take it right after the lesson. You need 70 percent or better to pass, and you may retake it as many times as you need.</li>
-          <li><b>Unit Quiz.</b> Take it after all the lessons in the unit. Same rule: 70 percent or better, unlimited retakes.</li>
+          <li><b>Check Quiz.</b> Take it right after the lesson. You need 70 percent or better to pass, and you have 3 attempts.</li>
+          <li><b>Unit Quiz.</b> Take it after all the lessons in the unit. Same rule: 70 percent or better, 3 attempts.</li>
           <li><b>Written Assignment and Discussion.</b> Type your response in the box and press Submit. The school office reviews it and posts your score and feedback. Show your work and write in complete sentences.</li>
           <li><b>Final Assessment and Final Exam.</b> Finish every unit first. A course grade of 70 percent or better passes the course.</li>
         </ol>

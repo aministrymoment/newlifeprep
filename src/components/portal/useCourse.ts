@@ -20,9 +20,9 @@ export function useCourse(userId: string, slug: string) {
     const ids = list.map((i) => i.id);
     if (ids.length) {
       const [s, a, p] = await Promise.all([
-        sb.from('submissions').select('*').eq('user_id', userId).in('item_id', ids).order('created_at', { ascending: false }),
-        sb.from('quiz_attempts').select('item_id, score, passed, created_at').eq('user_id', userId).in('item_id', ids),
-        sb.from('item_progress').select('item_id').eq('user_id', userId).in('item_id', ids),
+        sb.from('submissions').select('*').eq('user_id', userId).eq('voided', false).in('item_id', ids).order('created_at', { ascending: false }),
+        sb.from('quiz_attempts').select('item_id, score, passed, created_at').eq('user_id', userId).eq('voided', false).in('item_id', ids),
+        sb.from('item_progress').select('item_id').eq('user_id', userId).eq('voided', false).in('item_id', ids),
       ]);
       setSubs((s.data || []) as Sub[]); setAtts((a.data || []) as Att[]);
       setProg(new Set((p.data || []).map((r: { item_id: string }) => r.item_id)));
