@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 
-export type Profile = { id: string; email: string | null; full_name: string | null; student_id: string | null; role: 'student' | 'admin' };
+export type Profile = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level?: number | null; role: 'student' | 'admin' };
 
 export function useAuth() {
   const [session, setSession] = useState<Session | null>(null);

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import PortalFrame from '@/components/portal/PortalFrame';
 
-type P = { id: string; email: string | null; full_name: string | null; student_id: string | null; role: string };
+type P = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level?: number | null; role: string };
 type C = { id: string; title: string; slug: string };
 type S = { id: string; body: string; created_at: string; user_id: string; item_id: string; score: number | null; feedback: string | null; status: string };
 
@@ -30,8 +30,8 @@ function Admin() {
   }, []);
   useEffect(() => { load(); }, [load]);
 
-  async function saveProfile(p: P, name: string, sid: string) {
-    const { error } = await supabase().from('profiles').update({ full_name: name, student_id: sid.trim() || null }).eq('id', p.id);
+  async function saveProfile(p: P, name: string, sid: string, grade: string) {
+    const { error } = await supabase().from('profiles').update({ full_name: name, student_id: sid.trim() || null, grade_level: grade ? Number(grade) : null }).eq('id', p.id);
     setMsg(error ? `Could not save: ${error.message}` : 'Saved.'); load();
   }
   async function enroll(userId: string, courseId: string) {
@@ -62,7 +62,7 @@ function Admin() {
 }
 
 function AddStudent({ onDone }: { onDone: (m: string) => void }) {
-  const [f, setF] = useState({ name: '', email: '', password: '', studentId: '' });
+  const [f, setF] = useState({ name: '', email: '', password: '', studentId: '', gradeLevel: '' });
   const [busy, setBusy] = useState(false);
   const [open, setOpen] = useState(false);
   async function go() {
@@ -70,7 +70,7 @@ function AddStudent({ onDone }: { onDone: (m: string) => void }) {
     const { data } = await supabase().auth.getSession();
     const r = await fetch('/api/admin/students', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${data.session?.access_token}` }, body: JSON.stringify(f) });
     const j = await r.json().catch(() => ({}));
-    if (r.ok) { onDone(j.warning || `Student account created for ${f.name}. Share the email and temporary password with the student.`); setF({ name: '', email: '', password: '', studentId: '' }); }
+    if (r.ok) { onDone(j.warning || `Student account created for ${f.name}. Share the email and temporary password with the student.`); setF({ name: '', email: '', password: '', studentId: '', gradeLevel: '' }); }
     else onDone(j.error || 'Could not create the account.');
     setBusy(false);
   }
@@ -80,6 +80,7 @@ function AddStudent({ onDone }: { onDone: (m: string) => void }) {
       <h3>Add a student</h3>
       <div className="p-row"><input placeholder="Full name" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} /><input placeholder="Email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} /></div>
       <div className="p-row"><input placeholder="Temporary password (8 or more)" value={f.password} onChange={(e) => setF({ ...f, password: e.target.value })} /><input placeholder="Student ID NLPA-2026-001" value={f.studentId} onChange={(e) => setF({ ...f, studentId: e.target.value })} /></div>
+      <div className="p-row"><select value={f.gradeLevel} onChange={(e) => setF({ ...f, gradeLevel: e.target.value })}><option value="">Grade level</option><option value="9">9th Grade</option><option value="10">10th Grade</option><option value="11">11th Grade</option><option value="12">12th Grade</option></select></div>
       <div className="p-row"><button className="p-btn" onClick={go} disabled={busy}>{busy ? 'Creating...' : 'Create Student'}</button><button className="p-link" onClick={() => setOpen(false)}>Cancel</button></div>
     </div>
   );
@@ -96,12 +97,12 @@ function Grader({ s, who, title, onGrade }: { s: S; who: string; title: string; 
   );
 }
 
-function Person({ p, courses, enrolled, onSave, onEnroll }: { p: P; courses: C[]; enrolled: string[]; onSave: (p: P, n: string, s: string) => void; onEnroll: (u: string, c: string) => void }) {
-  const [n, setN] = useState(p.full_name || ''); const [sid, setSid] = useState(p.student_id || ''); const [c, setC] = useState('');
+function Person({ p, courses, enrolled, onSave, onEnroll }: { p: P; courses: C[]; enrolled: string[]; onSave: (p: P, n: string, s: string, g: string) => void; onEnroll: (u: string, c: string) => void }) {
+  const [n, setN] = useState(p.full_name || ''); const [sid, setSid] = useState(p.student_id || ''); const [c, setC] = useState(''); const [g, setG] = useState(p.grade_level ? String(p.grade_level) : '');
   return (
     <div className="p-card">
       <p className="p-small">{p.email} · {p.role}</p>
-      <div className="p-row"><input placeholder="Full name" value={n} onChange={(e) => setN(e.target.value)} /><input placeholder="NLPA-2026-001" value={sid} onChange={(e) => setSid(e.target.value)} /><button className="p-btn" onClick={() => onSave(p, n, sid)}>Save</button></div>
+      <div className="p-row"><input placeholder="Full name" value={n} onChange={(e) => setN(e.target.value)} /><input placeholder="NLPA-2026-001" value={sid} onChange={(e) => setSid(e.target.value)} /><select value={g} onChange={(e) => setG(e.target.value)}><option value="">Grade level</option><option value="9">9th Grade</option><option value="10">10th Grade</option><option value="11">11th Grade</option><option value="12">12th Grade</option></select><button className="p-btn" onClick={() => onSave(p, n, sid, g)}>Save</button></div>
       <div className="p-row">
         <select value={c} onChange={(e) => setC(e.target.value)}><option value="">Enroll in a course</option>{courses.map((x) => <option key={x.id} value={x.id}>{x.title}</option>)}</select>
         <button className="p-btn" onClick={() => onEnroll(p.id, c)} disabled={!c}>Enroll</button>

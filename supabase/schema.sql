@@ -189,3 +189,5 @@ drop policy if exists "progress insert" on public.item_progress;
 create policy "progress read" on public.item_progress for select using (user_id = auth.uid() or public.is_admin());
 create policy "progress insert" on public.item_progress for insert with check (user_id = auth.uid());
 grant select, insert on public.item_progress to authenticated;
+-- Adds the student's grade level (9, 10, 11 or 12). Only administrators can change it. Safe to run more than once.
+alter table public.profiles add column if not exists grade_level int check (grade_level between 9 and 12);
