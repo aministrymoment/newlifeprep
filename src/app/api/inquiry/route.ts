@@ -11,6 +11,7 @@ export async function POST(req: Request) {
   if (typeof b.website === 'string' && b.website) return NextResponse.json({ message: 'Thank you.' }); // honeypot
   const s = (k: string, max: number) => String(b[k] ?? '').trim().slice(0, max);
   const name = s('name', 120), email = s('email', 160), phone = s('phone', 40), program = s('program', 80), message = s('message', 4000);
+  const street = s('street', 160), city = s('city', 80), state = s('state', 40), zip = s('zip', 12);
   if (!name || !message || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return NextResponse.json({ error: 'Please enter your name, a valid email and a message.' }, { status: 400 });
 
   // Save first, so the message is never lost even if email fails.
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
       const ins = await fetch(`${sbUrl}/rest/v1/inquiries`, {
         method: 'POST',
         headers: { apikey: svc, Authorization: `Bearer ${svc}`, 'Content-Type': 'application/json', Prefer: 'return=representation' },
-        body: JSON.stringify({ name, email, phone: phone || null, program: program || null, message }),
+        body: JSON.stringify({ name, email, phone: phone || null, program: program || null, message, street: street || null, city: city || null, state: state || null, zip: zip || null }),
       });
       if (ins.ok) savedId = (await ins.json().catch(() => []))?.[0]?.id ?? null;
     } catch { /* fall through to email */ }
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
           to: [process.env.INQUIRY_TO || SITE.email],
           reply_to: email,
           subject: `Website inquiry from ${name}${program ? ` (${program})` : ''}`,
-          html: `<p><b>Name:</b> ${esc(name)}</p><p><b>Email:</b> ${esc(email)}</p><p><b>Phone:</b> ${esc(phone)}</p><p><b>Program:</b> ${esc(program)}</p><p><b>Message:</b><br>${esc(message).replace(/\n/g, '<br>')}</p>`,
+          html: `<p><b>Name:</b> ${esc(name)}</p><p><b>Email:</b> ${esc(email)}</p><p><b>Phone:</b> ${esc(phone)}</p><p><b>Program:</b> ${esc(program)}</p><p><b>Mailing address:</b> ${esc([street, [city, state, zip].filter(Boolean).join(' ')].filter(Boolean).join(', '))}</p><p><b>Message:</b><br>${esc(message).replace(/\n/g, '<br>')}</p>`,
         }),
       });
       emailed = r.ok;

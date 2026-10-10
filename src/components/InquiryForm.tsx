@@ -40,6 +40,14 @@ export default function InquiryForm() {
           </select>
         </div>
       </div>
+      <div className="form-group"><label htmlFor="f_street">Mailing Address (optional, if you would like information mailed to you)</label><input id="f_street" name="street" autoComplete="street-address" maxLength={160} placeholder="Street address" /></div>
+      <div className="form-row">
+        <div className="form-group"><label htmlFor="f_city">City</label><input id="f_city" name="city" autoComplete="address-level2" maxLength={80} /></div>
+        <div className="form-row">
+          <div className="form-group"><label htmlFor="f_state">State</label><input id="f_state" name="state" autoComplete="address-level1" maxLength={40} /></div>
+          <div className="form-group"><label htmlFor="f_zip">ZIP</label><input id="f_zip" name="zip" autoComplete="postal-code" maxLength={12} /></div>
+        </div>
+      </div>
       <div className="form-group"><label htmlFor="f_msg">How can we help?</label><textarea id="f_msg" name="message" required maxLength={4000} /></div>
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', height: 0, width: 0, opacity: 0 }} />
       {state === 'err' && <div className="form-note err">{msg}</div>}

@@ -2,10 +2,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import PortalFrame from '@/components/portal/PortalFrame';
+import { AVERY_NUMBERS } from '@/lib/avery';
 
 type P = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level?: number | null; role: string };
 type C = { id: string; title: string; slug: string };
-type Q = { id: string; created_at: string; name: string; email: string; phone: string | null; program: string | null; message: string; status: string; emailed: boolean };
+type Q = { id: string; created_at: string; name: string; email: string; phone: string | null; program: string | null; message: string; status: string; emailed: boolean; street: string | null; city: string | null; state: string | null; zip: string | null };
 type S = { id: string; body: string; created_at: string; user_id: string; item_id: string; score: number | null; feedback: string | null; status: string };
 
 function Admin() {
@@ -16,6 +17,9 @@ function Admin() {
   const [enr, setEnr] = useState<Record<string, string[]>>({});
   const [msg, setMsg] = useState('');
   const [inq, setInq] = useState<Q[]>([]);
+  const [pick, setPick] = useState<string[]>([]);
+  const [avery, setAvery] = useState('5160');
+  const [startAt, setStartAt] = useState('1');
   const [locked, setLocked] = useState<{ user_id: string; item_id: string; best: number }[]>([]);
 
   const load = useCallback(async () => {
@@ -67,6 +71,23 @@ function Admin() {
     const { error } = await supabase().from('courses').delete().eq('id', c.id);
     setMsg(error ? `Could not delete the course: ${error.message}` : `${c.title} was deleted.`); load();
   }
+  const hasAddr = (q: Q) => !!(q.street && (q.city || q.zip));
+  function toggle(id: string) { setPick((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id])); }
+  function csvCell(v: unknown) { const t = String(v ?? '').replace(/"/g, '""'); return `"${t}"`; }
+  function downloadCsv() {
+    const head = ['Date', 'Name', 'Email', 'Phone', 'Program', 'Street', 'City', 'State', 'ZIP', 'Message', 'Status'];
+    const lines = inq.map((q) => [new Date(q.created_at).toLocaleString(), q.name, q.email, q.phone, q.program, q.street, q.city, q.state, q.zip, q.message, q.status].map(csvCell).join(','));
+    const blob = new Blob(['\uFEFF' + [head.map(csvCell).join(','), ...lines].join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `NLPA website messages ${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click(); URL.revokeObjectURL(a.href);
+  }
+  function printLabels() {
+    const chosen = inq.filter((q) => pick.includes(q.id) && hasAddr(q)).map((q) => q.id);
+    if (!chosen.length) { setMsg('Tick at least one message that has a mailing address.'); return; }
+    window.open(`/portal/admin/labels?avery=${encodeURIComponent(avery)}&start=${encodeURIComponent(startAt || '1')}&ids=${chosen.join(',')}`, '_blank');
+  }
   async function inquiryStatus(q: Q, status: string) {
     const { error } = await supabase().from('inquiries').update({ status }).eq('id', q.id);
     setMsg(error ? `Could not update: ${error.message}` : status === 'handled' ? 'Marked as handled.' : 'Marked as new.'); load();
@@ -93,9 +114,26 @@ function Admin() {
       {subs.map((s) => <Grader key={s.id} s={s} who={name(s.user_id)} title={titles[s.item_id] || ''} onGrade={grade} />)}
       <h2 className="p-h2">Website messages ({inq.filter((q) => q.status === 'new').length} new)</h2>
       {inq.length === 0 && <p className="p-muted">No website messages yet.</p>}
+      {inq.length > 0 && (
+        <div className="p-card">
+          <div className="p-row">
+            <button className="p-btn" onClick={downloadCsv}>Download spreadsheet</button>
+            <button className="p-link" onClick={() => setPick(inq.filter(hasAddr).map((q) => q.id))}>Select all with an address</button>
+            <button className="p-link" onClick={() => setPick([])}>Clear selection</button>
+          </div>
+          <div className="p-row">
+            <label>Avery label number<select value={avery} onChange={(e) => setAvery(e.target.value)}>{AVERY_NUMBERS.map((n) => <option key={n} value={n}>{n}</option>)}</select></label>
+            <label>Start at label<input type="number" min={1} value={startAt} onChange={(e) => setStartAt(e.target.value)} /></label>
+            <button className="p-btn" onClick={printLabels}>Print labels for selected ({inq.filter((q) => pick.includes(q.id) && hasAddr(q)).length})</button>
+          </div>
+          <p className="p-small">Only messages with a mailing address can be printed. Use Start at label to reuse a sheet that has already been partly used. Print a test on plain paper first.</p>
+        </div>
+      )}
       {inq.map((q) => (
         <div key={q.id} className="p-card" style={q.status === 'handled' ? { opacity: 0.6 } : undefined}>
+          <label style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><input type="checkbox" checked={pick.includes(q.id)} onChange={() => toggle(q.id)} disabled={!hasAddr(q)} />{hasAddr(q) ? 'Select for labels' : 'No mailing address'}</label>
           <p className="p-small"><b>{q.name}</b> · <a href={`mailto:${q.email}`}>{q.email}</a>{q.phone ? ` · ${q.phone}` : ''}{q.program ? ` · ${q.program}` : ''} · {new Date(q.created_at).toLocaleString()} · {q.status === 'new' ? 'New' : 'Handled'}{q.emailed ? '' : ' · Email did not send'}</p>
+          {hasAddr(q) && <p className="p-small">Mail to: {q.street}, {q.city} {q.state} {q.zip}</p>}
           <p className="p-pre">{q.message}</p>
           <div className="p-row">
             {q.status === 'new' ? <button className="p-btn" onClick={() => inquiryStatus(q, 'handled')}>Mark handled</button> : <button className="p-btn" onClick={() => inquiryStatus(q, 'new')}>Mark as new</button>}

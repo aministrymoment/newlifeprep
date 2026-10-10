@@ -245,3 +245,9 @@ alter table public.inquiries enable row level security;
 drop policy if exists "inquiries admin" on public.inquiries;
 create policy "inquiries admin" on public.inquiries for all using (public.is_admin()) with check (public.is_admin());
 grant select, update, delete on public.inquiries to authenticated;
+
+-- Adds an optional mailing address to website messages so labels can be printed. Safe to run more than once.
+alter table public.inquiries add column if not exists street text;
+alter table public.inquiries add column if not exists city text;
+alter table public.inquiries add column if not exists state text;
+alter table public.inquiries add column if not exists zip text;
