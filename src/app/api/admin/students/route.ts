@@ -43,3 +43,29 @@ export async function POST(req: Request) {
   if (!up.ok) return NextResponse.json({ ok: true, warning: 'Account created, but the Student ID was not saved. It may already be in use. Set it below.' });
   return NextResponse.json({ ok: true });
 }
+
+// Permanently deletes a student login and everything tied to it (profile, enrollments, quiz attempts, work, progress).
+export async function DELETE(req: Request) {
+  const auth = req.headers.get('authorization') || '';
+  if (!auth.startsWith('Bearer ')) return NextResponse.json({ error: 'Please sign in again.' }, { status: 401 });
+  const me = await fetch(`${URL_}/auth/v1/user`, { headers: { apikey: ANON, Authorization: auth } });
+  if (!me.ok) return NextResponse.json({ error: 'Please sign in again.' }, { status: 401 });
+  const uid = (await me.json()).id;
+  const pr = await fetch(`${URL_}/rest/v1/profiles?id=eq.${uid}&select=role`, { headers: { apikey: ANON, Authorization: auth } });
+  if ((await pr.json().catch(() => []))?.[0]?.role !== 'admin') return NextResponse.json({ error: 'Administrators only.' }, { status: 403 });
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!key) return NextResponse.json({ error: 'Deleting students is not switched on yet.' }, { status: 503 });
+
+  let b: any; try { b = await req.json(); } catch { return NextResponse.json({ error: 'Invalid request.' }, { status: 400 }); }
+  const target = String(b.userId || '');
+  if (!/^[0-9a-f-]{36}$/i.test(target)) return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
+  if (target === uid) return NextResponse.json({ error: 'You cannot delete your own account.' }, { status: 400 });
+  const tr = await fetch(`${URL_}/rest/v1/profiles?id=eq.${target}&select=role`, { headers: { apikey: key, Authorization: `Bearer ${key}` } });
+  const trow = (await tr.json().catch(() => []))?.[0];
+  if (!trow) return NextResponse.json({ error: 'That account was not found.' }, { status: 404 });
+  if (trow.role === 'admin') return NextResponse.json({ error: 'Administrator accounts cannot be deleted here.' }, { status: 400 });
+
+  const del = await fetch(`${URL_}/auth/v1/admin/users/${target}`, { method: 'DELETE', headers: { apikey: key, Authorization: `Bearer ${key}` } });
+  if (!del.ok) return NextResponse.json({ error: 'Could not delete the account.' }, { status: 502 });
+  return NextResponse.json({ ok: true });
+}

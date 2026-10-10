@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import PasswordField from '@/components/portal/PasswordField';
 
 export default function Login() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function Login() {
         <h1>Student Portal</h1>
         <p className="p-muted">{mode === 'in' ? 'Sign in to continue your coursework.' : 'Enter your email and we will send a reset link.'}</p>
         <label>Email<input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></label>
-        {mode === 'in' && <label>Password<input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" /></label>}
+        {mode === 'in' && <PasswordField label="Password" value={password} onChange={setPassword} autoComplete="current-password" />}
         {msg && <p className="p-note">{msg}</p>}
         <button className="p-btn" disabled={busy}>{busy ? 'Please wait...' : mode === 'in' ? 'Sign In' : 'Send Reset Link'}</button>
         <button type="button" className="p-link" onClick={() => { setMode(mode === 'in' ? 'reset' : 'in'); setMsg(''); }}>{mode === 'in' ? 'Forgot your password?' : 'Back to sign in'}</button>

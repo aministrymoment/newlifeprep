@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import PasswordField from '@/components/portal/PasswordField';
 
 // Students arrive here from the reset email, already verified by Supabase, and choose a new password.
 export default function Reset() {
@@ -42,8 +43,8 @@ export default function Reset() {
         <h1>Choose a New Password</h1>
         {done ? <p className="p-note">Your password is saved. Taking you to your dashboard.</p> : ready ? (
           <>
-            <label>New password<input type="password" required minLength={8} value={pw} onChange={(e) => setPw(e.target.value)} autoComplete="new-password" /></label>
-            <label>Type it again<input type="password" required minLength={8} value={pw2} onChange={(e) => setPw2(e.target.value)} autoComplete="new-password" /></label>
+            <PasswordField label="New password" value={pw} onChange={setPw} autoComplete="new-password" minLength={8} />
+            <PasswordField label="Type it again" value={pw2} onChange={setPw2} autoComplete="new-password" minLength={8} />
             {msg && <p className="p-note">{msg}</p>}
             <button className="p-btn" disabled={busy}>{busy ? 'Saving...' : 'Save Password'}</button>
           </>

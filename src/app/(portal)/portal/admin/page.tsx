@@ -48,6 +48,21 @@ function Admin() {
     const { error } = await supabase().rpc('admin_reset_attempts', { p_user: userId, p_item: itemId });
     setMsg(error ? `Could not reset: ${error.message}` : 'Three more attempts given.'); load();
   }
+  async function removeStudent(p: P) {
+    const who = p.full_name || p.email || 'this student';
+    if (!window.confirm(`Delete ${who}? This permanently removes the login, enrollments, quiz attempts and submitted work. It cannot be undone.`)) return;
+    const { data } = await supabase().auth.getSession();
+    const r = await fetch('/api/admin/students', { method: 'DELETE', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${data.session?.access_token}` }, body: JSON.stringify({ userId: p.id }) });
+    const j = await r.json().catch(() => ({}));
+    setMsg(r.ok ? `${who} was deleted.` : j.error || 'Could not delete the account.'); load();
+  }
+  async function removeCourse(c: C) {
+    const typed = window.prompt(`Deleting "${c.title}" permanently removes the course, all of its lessons and quizzes, and every student's progress in it.\n\nType the course name exactly to confirm:`);
+    if (typed === null) return;
+    if (typed.trim() !== c.title) { setMsg('The name did not match, so nothing was deleted.'); return; }
+    const { error } = await supabase().from('courses').delete().eq('id', c.id);
+    setMsg(error ? `Could not delete the course: ${error.message}` : `${c.title} was deleted.`); load();
+  }
   async function grade(s: S, score: string, feedback: string) {
     const n = Number(score);
     if (!Number.isFinite(n) || n < 0 || n > 100) { setMsg('Enter a score from 0 to 100.'); return; }
@@ -73,7 +88,11 @@ function Admin() {
       ))}
       <h2 className="p-h2">Students and staff ({people.length})</h2>
       <AddStudent onDone={(m) => { setMsg(m); load(); }} />
-      {people.map((p) => <Person key={p.id} p={p} courses={courses} enrolled={enr[p.id] || []} onSave={saveProfile} onEnroll={enroll} />)}
+      {people.map((p) => <Person key={p.id} p={p} courses={courses} enrolled={enr[p.id] || []} onSave={saveProfile} onEnroll={enroll} onDelete={removeStudent} />)}
+      <h2 className="p-h2">Courses ({courses.length})</h2>
+      {courses.map((c) => (
+        <div key={c.id} className="p-card"><div className="p-row"><p><b>{c.title}</b></p><button className="p-danger" onClick={() => removeCourse(c)}>Delete course</button></div></div>
+      ))}
     </>
   );
 }
@@ -114,7 +133,7 @@ function Grader({ s, who, title, onGrade }: { s: S; who: string; title: string; 
   );
 }
 
-function Person({ p, courses, enrolled, onSave, onEnroll }: { p: P; courses: C[]; enrolled: string[]; onSave: (p: P, n: string, s: string, g: string) => void; onEnroll: (u: string, c: string) => void }) {
+function Person({ p, courses, enrolled, onSave, onEnroll, onDelete }: { p: P; courses: C[]; enrolled: string[]; onSave: (p: P, n: string, s: string, g: string) => void; onEnroll: (u: string, c: string) => void; onDelete: (p: P) => void }) {
   const [n, setN] = useState(p.full_name || ''); const [sid, setSid] = useState(p.student_id || ''); const [c, setC] = useState(''); const [g, setG] = useState(p.grade_level ? String(p.grade_level) : '');
   return (
     <div className="p-card">
@@ -124,6 +143,7 @@ function Person({ p, courses, enrolled, onSave, onEnroll }: { p: P; courses: C[]
         <select value={c} onChange={(e) => setC(e.target.value)}><option value="">Enroll in a course</option>{courses.map((x) => <option key={x.id} value={x.id}>{x.title}</option>)}</select>
         <button className="p-btn" onClick={() => onEnroll(p.id, c)} disabled={!c}>Enroll</button>
       </div>
+      {p.role !== 'admin' && <div className="p-row"><button className="p-danger" onClick={() => onDelete(p)}>Delete student</button></div>}
       {enrolled.length > 0 && <p className="p-small">Enrolled: {enrolled.map((id) => courses.find((x) => x.id === id)).filter(Boolean).map((x) => <a key={x!.id} href={`/portal/courses/${x!.slug}`} style={{ marginRight: 12 }}>{x!.title}</a>)}</p>}
     </div>
   );
