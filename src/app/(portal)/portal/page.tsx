@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import PortalFrame from '@/components/portal/PortalFrame';
 
-type Row = { id: string; slug: string; title: string; subject: string | null; credits: number; quizzes: number; passed: number };
+type Row = { id: string; slug: string; title: string; subject: string | null; credits: number; steps: number; done: number };
 
 function Dash({ userId, name }: { userId: string; name: string }) {
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -18,12 +18,17 @@ function Dash({ userId, name }: { userId: string; name: string }) {
       const courses = (enr || []).map((e: any) => e.courses).filter(Boolean);
       if (!courses.length) { setRows([]); return; }
       const ids = courses.map((c: any) => c.id);
-      const { data: items } = await sb.from('course_items').select('id, course_id').eq('kind', 'quiz').in('course_id', ids);
-      const { data: att } = await sb.from('quiz_attempts').select('item_id, passed').eq('user_id', userId).eq('passed', true);
-      const passedSet = new Set((att || []).map((a: any) => a.item_id));
+      const { data: items } = await sb.from('course_items').select('id, course_id, kind').in('course_id', ids);
+      const itemIds = (items || []).map((i: any) => i.id);
+      const [att, sub, pr] = await Promise.all([
+        sb.from('quiz_attempts').select('item_id').eq('user_id', userId).eq('passed', true).in('item_id', itemIds),
+        sb.from('submissions').select('item_id').eq('user_id', userId).in('item_id', itemIds),
+        sb.from('item_progress').select('item_id').eq('user_id', userId).in('item_id', itemIds),
+      ]);
+      const doneSet = new Set<string>([...(att.data || []), ...(sub.data || []), ...(pr.data || [])].map((r: any) => r.item_id));
       setRows(courses.map((c: any) => {
-        const qs = (items || []).filter((i: any) => i.course_id === c.id);
-        return { ...c, quizzes: qs.length, passed: qs.filter((q: any) => passedSet.has(q.id)).length };
+        const mine = (items || []).filter((i: any) => i.course_id === c.id);
+        return { ...c, steps: mine.length, done: mine.filter((i: any) => doneSet.has(i.id)).length };
       }));
     })();
   }, [userId]);
@@ -37,13 +42,13 @@ function Dash({ userId, name }: { userId: string; name: string }) {
       {rows && rows.length === 0 && <div className="p-card"><p>You are not enrolled in a course yet. The office will add your courses soon. Questions? Call (954) 851-6608.</p></div>}
       <div className="p-grid">
         {rows?.map((r) => {
-          const pct = r.quizzes ? Math.round((100 * r.passed) / r.quizzes) : 0;
+          const pct = r.steps ? Math.round((100 * r.done) / r.steps) : 0;
           return (
             <Link key={r.id} href={`/portal/courses/${r.slug}`} className="p-card p-course">
               <span className="p-tag">{r.subject || 'Course'} · {r.credits} credit</span>
               <h2>{r.title}</h2>
               <div className="p-bar"><span style={{ width: `${pct}%` }} /></div>
-              <p className="p-small">{r.passed} of {r.quizzes} quizzes passed</p>
+              <p className="p-small">{pct}% complete · {r.done} of {r.steps} steps</p>
             </Link>
           );
         })}

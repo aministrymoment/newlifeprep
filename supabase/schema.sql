@@ -17,6 +17,7 @@ create table if not exists public.courses (
   subject text,
   credits numeric(3,1) not null default 1,
   focus text,                       -- the Focus of the course
+  video_url text,                   -- optional introduction video (YouTube, Vimeo or .mp4 link)
   active boolean not null default true,
   created_at timestamptz not null default now()
 );
@@ -175,3 +176,16 @@ select i.id, '{2,1}'::int[], array['Every quiz requires 70 percent or better.','
 from public.course_items i join public.courses c on c.id = i.course_id
 where c.slug = 'sample-course' and i.kind = 'quiz'
 on conflict (item_id) do nothing;
+-- Lesson progress: records which lessons a student has marked complete. Safe to run more than once.
+create table if not exists public.item_progress (
+  user_id uuid not null references public.profiles(id) on delete cascade,
+  item_id uuid not null references public.course_items(id) on delete cascade,
+  completed_at timestamptz not null default now(),
+  primary key (user_id, item_id)
+);
+alter table public.item_progress enable row level security;
+drop policy if exists "progress read" on public.item_progress;
+drop policy if exists "progress insert" on public.item_progress;
+create policy "progress read" on public.item_progress for select using (user_id = auth.uid() or public.is_admin());
+create policy "progress insert" on public.item_progress for insert with check (user_id = auth.uid());
+grant select, insert on public.item_progress to authenticated;
