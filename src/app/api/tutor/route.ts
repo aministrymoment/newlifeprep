@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { tooMany } from '@/lib/rateLimit';
 
 export const runtime = 'nodejs';
 const URL_ = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -9,6 +10,9 @@ export async function POST(req: Request) {
   if (!auth.startsWith('Bearer ')) return NextResponse.json({ error: 'Please sign in again.' }, { status: 401 });
   const who = await fetch(`${URL_}/auth/v1/user`, { headers: { apikey: ANON, Authorization: auth } });
   if (!who.ok) return NextResponse.json({ error: 'Please sign in again.' }, { status: 401 });
+
+  const me = await who.clone().json().catch(() => ({}));
+  if (tooMany(`tutor:${me?.id || auth.slice(-24)}`, 40, 60 * 60 * 1000)) return NextResponse.json({ error: 'You have asked a lot of questions this hour. Please take a short break and try again later.' }, { status: 429 });
 
   let b: any; try { b = await req.json(); } catch { return NextResponse.json({ error: 'Invalid request.' }, { status: 400 }); }
   const slug = String(b.slug || '').slice(0, 80);

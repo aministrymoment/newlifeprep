@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
 import { SITE } from '@/site';
+import { tooMany, clientIp } from '@/lib/rateLimit';
 
 export const runtime = 'nodejs';
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
 const FALLBACK = `Our online form is not available right now. Please call ${SITE.phone} or email ${SITE.email}.`;
 
 export async function POST(req: Request) {
+  if (tooMany(`inq:${clientIp(req)}`, 5, 60 * 60 * 1000)) return NextResponse.json({ error: 'Too many messages from this connection. Please call the office at ' + SITE.phone + '.' }, { status: 429 });
   let b: Record<string, unknown>;
   try { b = await req.json(); } catch { return NextResponse.json({ error: 'Invalid request.' }, { status: 400 }); }
   if (typeof b.website === 'string' && b.website) return NextResponse.json({ message: 'Thank you.' }); // honeypot
