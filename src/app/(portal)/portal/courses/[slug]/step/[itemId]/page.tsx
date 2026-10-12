@@ -49,7 +49,7 @@ function StepView({ userId, slug, itemId }: { userId: string; slug: string; item
             <div className="p-card">
               <Video url={item.content?.video} title={item.title} />
               {item.content?.presenter && item.content?.video ? <p className="p-muted">Presented by {item.content.presenter}</p> : null}
-              {Array.isArray(item.content?.readings) && item.content.readings.length ? <div className="p-readings"><strong>Read it here</strong><ul>{item.content.readings.map((r: { title: string; url: string }) => <li key={r.url + r.title}><a href={r.url} target="_blank" rel="noopener noreferrer">{r.title}</a></li>)}</ul></div> : null}
+              {Array.isArray(item.content?.readings) && item.content.readings.length ? <div className="p-readings"><strong>Read it here</strong><ul>{item.content.readings.map((r: { title: string; url: string }) => <li key={r.url + r.title}>{r.url.startsWith('/') ? <Link href={`${r.url}?back=${encodeURIComponent(`/portal/courses/${slug}/step/${itemId}`)}`}>{r.title}</Link> : <a href={r.url} target="_blank" rel="noopener noreferrer">{r.title}</a>}</li>)}</ul></div> : null}
               <p className="p-pre">{item.content?.body}</p>
               <div className="p-row">
                 <button className="p-btn" onClick={() => setTeach({ id: item.id, title: item.title })}>Teach Me</button>

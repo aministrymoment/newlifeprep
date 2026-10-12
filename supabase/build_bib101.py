@@ -4,8 +4,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'content'))
 UNIT_MODULES = [('b101_units1', 'UNIT1')]          # add ('b101_units2', 'UNIT2') ... as units are written
 PRESENTER = "Dr. Alex L. Jenkins Sr."
 def kjv(ref):
-    from urllib.parse import quote
-    return {"title": ref + " (King James Version)", "url": "https://www.biblegateway.com/passage/?search=" + quote(ref) + "&version=KJV"}
+    book, ch = ref.rsplit(' ', 1)
+    return {"title": ref + " (King James Version)", "url": "/portal/bible/" + book.replace(' ', '') + "/" + ch}
 # Scripture reading links per lesson, shown as "Read it here" so students do not need a printed Bible.
 READINGS = {
   "1.1": ["Genesis 1", "Genesis 2", "Genesis 3"],
