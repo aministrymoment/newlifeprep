@@ -3,6 +3,16 @@ import json, random, re, sys, os, importlib
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'content'))
 UNIT_MODULES = [('b101_units1', 'UNIT1')]          # add ('b101_units2', 'UNIT2') ... as units are written
 PRESENTER = "Dr. Alex L. Jenkins Sr."
+def kjv(ref):
+    from urllib.parse import quote
+    return {"title": ref + " (King James Version)", "url": "https://www.biblegateway.com/passage/?search=" + quote(ref) + "&version=KJV"}
+# Scripture reading links per lesson, shown as "Read it here" so students do not need a printed Bible.
+READINGS = {
+  "1.1": ["Genesis 1", "Genesis 2", "Genesis 3"],
+  "1.2": ["Genesis 12", "Genesis 15", "Genesis 22", "Genesis 50"],
+  "1.3": ["Exodus 3", "Exodus 12", "Exodus 14", "Exodus 20"],
+  "1.4": ["Leviticus 19", "Numbers 6", "Deuteronomy 6"],
+}
 SLUG, TITLE = 'bib-101', 'BIB 101 Old Testament Survey'
 FOCUS = ("BIB 101 is a one credit survey of the Old Testament in the King James Version. Students read the Law, the historical books, "
          "the books of poetry and wisdom, and the prophets, learn the setting and message of each section, and trace God's promise of a "
@@ -36,7 +46,7 @@ for n, (mod, name) in enumerate(UNIT_MODULES, 1):
     stmts = []
     for i, t in enumerate(u['topics'], 1):
         body = t['body'].strip() + "\n\nCourse area: Bible elective. Scripture is read from the King James Version."
-        it = dict(title=t['t'], content=dict(readings=[], body=body, video="", presenter=PRESENTER, standards="Bible elective", script=t['script'].strip()))
+        it = dict(title=t['t'], content=dict(readings=[kjv(r) for r in READINGS.get(t['t'].split(' ')[0], [])], body=body, video="", presenter=PRESENTER, standards="Bible elective", script=t['script'].strip()))
         scan(bad, t['t'], t['t'] + body + t['script'])
         stmts.append(item_stmt('topic', (n - 1) * 4 + i, it))
     a = u['assess']; d = u['disc']

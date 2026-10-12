@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import PortalFrame from '@/components/portal/PortalFrame';
@@ -12,6 +12,7 @@ import { buildPath, flat, stepStatus } from '@/lib/coursePath';
 function StepView({ userId, slug, itemId }: { userId: string; slug: string; itemId: string }) {
   const { course, items, subs, atts, prog, state, reload } = useCourse(userId, slug);
   const [teach, setTeach] = useState<{ id: string; title: string } | null>(null);
+  const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
   if (state === 'loading') return <p className="p-muted">Loading...</p>;
@@ -32,7 +33,7 @@ function StepView({ userId, slug, itemId }: { userId: string; slug: string; item
   async function complete() {
     setBusy(true); setErr('');
     const { error } = await supabase().from('item_progress').upsert({ user_id: userId, item_id: item.id }, { onConflict: 'user_id,item_id', ignoreDuplicates: true });
-    if (error) setErr('Could not save your progress. Please try again.'); else await reload();
+    if (error) setErr('Could not save your progress. Please try again.'); else { await reload(); if (next) router.push(to(next.item.id)); }
     setBusy(false);
   }
 
