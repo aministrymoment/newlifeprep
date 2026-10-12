@@ -7,6 +7,7 @@ import { AVERY_NUMBERS } from '@/lib/avery';
 type P = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level?: number | null; role: string };
 type C = { id: string; title: string; slug: string };
 type Q = { id: string; created_at: string; name: string; email: string; phone: string | null; program: string | null; message: string; status: string; emailed: boolean; street: string | null; city: string | null; state: string | null; zip: string | null };
+type Pay = { id: string; created_at: string; receipt_no: string | null; label: string | null; item: string; amount_cents: number; payer_name: string | null; payer_email: string | null; reference: string | null; status: string; refunded_cents: number };
 type S = { id: string; body: string; created_at: string; user_id: string; item_id: string; score: number | null; feedback: string | null; status: string };
 
 function Admin() {
@@ -17,6 +18,7 @@ function Admin() {
   const [enr, setEnr] = useState<Record<string, string[]>>({});
   const [msg, setMsg] = useState('');
   const [inq, setInq] = useState<Q[]>([]);
+  const [pays, setPays] = useState<Pay[]>([]);
   const [pick, setPick] = useState<string[]>([]);
   const [avery, setAvery] = useState('5160');
   const [startAt, setStartAt] = useState('1');
@@ -24,7 +26,7 @@ function Admin() {
 
   const load = useCallback(async () => {
     const sb = supabase();
-    const [p, c, s, e, it, qa, iq] = await Promise.all([
+    const [p, c, s, e, it, qa, iq, py] = await Promise.all([
       sb.from('profiles').select('*').order('created_at', { ascending: false }),
       sb.from('courses').select('id,title,slug').order('title'),
       sb.from('submissions').select('*').eq('status', 'submitted').order('created_at'),
@@ -32,8 +34,10 @@ function Admin() {
       sb.from('course_items').select('id,title'),
       sb.from('quiz_attempts').select('user_id,item_id,score,passed').eq('voided', false),
       sb.from('inquiries').select('*').order('created_at', { ascending: false }).limit(100),
+      sb.from('payments').select('*').order('created_at', { ascending: false }).limit(200),
     ]);
     setInq((iq.data || []) as Q[]);
+    setPays((py.data || []) as Pay[]);
     const g: Record<string, { user_id: string; item_id: string; n: number; best: number; passed: boolean }> = {};
     (qa.data || []).forEach((r: any) => { const k = r.user_id + r.item_id; const x = (g[k] ||= { user_id: r.user_id, item_id: r.item_id, n: 0, best: 0, passed: false }); x.n++; x.best = Math.max(x.best, r.score); x.passed = x.passed || r.passed; });
     setLocked(Object.values(g).filter((x) => x.n >= 3 && !x.passed).map((x) => ({ user_id: x.user_id, item_id: x.item_id, best: x.best })));
@@ -81,6 +85,16 @@ function Admin() {
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = `NLPA website messages ${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click(); URL.revokeObjectURL(a.href);
+  }
+  const money = (c: number) => `$${(c / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  function downloadPayCsv() {
+    const head = ['Receipt', 'Date', 'Payer', 'Email', 'Item', 'Reference', 'Amount', 'Refunded', 'Status'];
+    const lines = pays.map((x) => [x.receipt_no, new Date(x.created_at).toLocaleString(), x.payer_name, x.payer_email, x.label || x.item, x.reference, (x.amount_cents / 100).toFixed(2), (x.refunded_cents / 100).toFixed(2), x.status].map(csvCell).join(','));
+    const blob = new Blob(['\uFEFF' + [head.map(csvCell).join(','), ...lines].join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `NLPA payments ${new Date().toISOString().slice(0, 10)}.csv`;
     a.click(); URL.revokeObjectURL(a.href);
   }
   function printLabels() {
@@ -139,6 +153,20 @@ function Admin() {
             {q.status === 'new' ? <button className="p-btn" onClick={() => inquiryStatus(q, 'handled')}>Mark handled</button> : <button className="p-btn" onClick={() => inquiryStatus(q, 'new')}>Mark as new</button>}
             <button className="p-danger" onClick={() => inquiryDelete(q)}>Delete</button>
           </div>
+        </div>
+      ))}
+      <h2 className="p-h2">Payments ({pays.length})</h2>
+      {pays.length === 0 && <p className="p-muted">No online payments recorded yet. Payments appear here after the Stripe webhook is connected.</p>}
+      {pays.length > 0 && (
+        <div className="p-card">
+          <p><b>Net received: {money(pays.reduce((a, x) => a + x.amount_cents - x.refunded_cents, 0))}</b> across {pays.length} payment{pays.length === 1 ? '' : 's'}</p>
+          <button className="p-btn" onClick={downloadPayCsv}>Download spreadsheet</button>
+        </div>
+      )}
+      {pays.map((x) => (
+        <div key={x.id} className="p-card">
+          <p><b>{x.receipt_no}</b> · {new Date(x.created_at).toLocaleString()} · {money(x.amount_cents)}{x.refunded_cents ? ` (refunded ${money(x.refunded_cents)})` : ''} · {x.status === 'paid' ? 'Paid' : x.status === 'refunded' ? 'Refunded' : 'Partly refunded'}</p>
+          <p className="p-small">{x.payer_name || 'Unnamed'}{x.payer_email ? ` · ${x.payer_email}` : ''} · {x.label || x.item}{x.reference ? ` · ${x.reference}` : ''}</p>
         </div>
       ))}
       <h2 className="p-h2">Quizzes locked after 3 attempts ({locked.length})</h2>
