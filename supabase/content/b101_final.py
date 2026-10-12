@@ -1,0 +1,28 @@
+# BIB 101 Old Testament Survey, Final Assessment and Final Exam.
+FINAL = dict(
+ assess=dict(t="Final Assessment: The Old Testament Story",
+  prompt="Write an essay of at least 500 words titled The Old Testament Story. Using what you learned in the six units, trace the thread of God's promise from Genesis to Malachi. Your essay must include: (1) an introduction that states your main idea; (2) at least one event or person from each of the five sections of the Old Testament, which are the Law, the historical books, poetry and wisdom, the major prophets and the minor prophets; (3) at least three verses quoted from the King James Version, with the book, chapter and verse; (4) an explanation of how the Old Testament points to Jesus Christ; and (5) a conclusion that tells what the story means for your own life.",
+  rubric="Total 100. Clear main idea and introduction: 10. Covers all five sections with accurate events or people: 25. At least three King James Version verses quoted with references: 20. Explains how the Old Testament points to Jesus Christ: 20. Conclusion and personal application: 10. Organization, clear writing and correct conventions: 15."),
+ quiz=[
+  ("What does the word Genesis mean?", ["Beginnings", "Laws", "Judges", "Journeys"], 0, "Genesis means beginnings."),
+  ("What did God promise Abram in Genesis 12?", ["A land, a great nation and a blessing to all families of the earth", "A palace in Egypt", "A throne in Babylon", "A kingdom ruled by Pharaoh"], 0, "God promised Abram a land, a great nation and a blessing to the world."),
+  ("What is the name of the night when the destroyer passed over the houses marked with blood?", ["Passover", "Pentecost", "Purim", "Jubilee"], 0, "God said, when I see the blood, I will pass over you."),
+  ("The first five books of the Bible are called:", ["The Law", "The Prophets", "The Gospels", "The Writings"], 0, "Genesis through Deuteronomy are the Law, or the Pentateuch."),
+  ("Who led Israel across the Jordan River into the promised land?", ["Joshua", "Moses", "Samuel", "David"], 0, "Joshua led Israel into the land after Moses died."),
+  ("What repeated pattern fills the book of Judges?", ["Sin, oppression, a cry for help, deliverance", "Peace, harvest, feast, rest", "Teaching, exile, return, rest", "War, treaty, trade, peace"], 0, "Israel sinned, suffered, cried out, and a judge delivered them."),
+  ("Who was anointed king after God rejected Saul?", ["David", "Solomon", "Jonathan", "Samuel"], 0, "Samuel anointed David, the youngest son of Jesse."),
+  ("What did God promise David in 2 Samuel 7?", ["That his throne would be established for ever", "That he would never face an enemy", "That he would build the ark", "That he would live in Egypt"], 0, "God promised David an everlasting house, kingdom and throne."),
+  ("Which empire carried Judah into exile and burned the temple?", ["Babylon", "Egypt", "Rome", "Greece"], 0, "Babylon under Nebuchadnezzar took Judah into exile."),
+  ("Which book tells how God protected the Jewish people in Persia?", ["Esther", "Ruth", "Ezra", "Nehemiah"], 0, "Esther risked her life and God saved His people from Haman's plot."),
+  ("Which book asks why good people suffer?", ["Job", "Proverbs", "Judges", "Ruth"], 0, "Job wrestles with suffering and the wisdom of God."),
+  ("Psalm 119:105 says God's word is:", ["A lamp unto my feet, and a light unto my path", "A sword and a shield", "A rock in the desert", "A river in a dry land"], 0, "Psalm 119:105 uses the picture of a lamp and a light."),
+  ("According to Proverbs 1:7, what is the beginning of knowledge?", ["The fear of the LORD", "Hard work", "Wealth", "Education alone"], 0, "The fear of the LORD is the beginning of knowledge."),
+  ("According to Ecclesiastes 12:13, what is the whole duty of man?", ["Fear God and keep his commandments", "Build wealth", "Rule well", "Avoid all work"], 0, "The conclusion of the whole matter is to fear God and keep His commandments."),
+  ("Which prophet answered, Here am I; send me?", ["Isaiah", "Jeremiah", "Ezekiel", "Daniel"], 0, "Isaiah answered God's call in Isaiah 6:8."),
+  ("Which prophet is called the weeping prophet?", ["Jeremiah", "Isaiah", "Ezekiel", "Daniel"], 0, "Jeremiah grieved over the fall of Jerusalem."),
+  ("What did Micah 6:8 say the LORD requires?", ["To do justly, love mercy and walk humbly with God", "To build a temple", "To bring many sacrifices", "To fight his enemies"], 0, "Micah 6:8 summarizes what is good."),
+  ("What does Habakkuk 2:4 say the just shall do?", ["Live by his faith", "Flee from trouble", "Build an altar", "Wait for kings"], 0, "The just shall live by his faith."),
+  ("Which prophet said the ruler of Israel would come from Bethlehem?", ["Micah", "Joel", "Amos", "Nahum"], 0, "Micah 5:2 names Bethlehem Ephratah."),
+  ("According to Luke 24:44, the law, the prophets and the psalms were written concerning:", ["Jesus Christ", "The temple", "The kings of Judah", "The Greek empire"], 0, "Jesus said that all things written in the law, the prophets and the psalms concerned Him."),
+ ],
+)

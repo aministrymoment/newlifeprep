@@ -33,7 +33,7 @@ function Reader({ slug, ch, back }: { slug: string; ch: number; back: string }) 
     <>
       {top}
       <p className="p-tag" style={{ marginTop: 14 }}>King James Version</p>
-      <h1 className="p-h1">{book.name} {ch}</h1>
+      <h1 className="p-h1">{book.name === 'Psalms' ? 'Psalm' : book.name} {ch}</h1>
       <div className="p-card" style={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
         {verses.map((v, i) => <p key={i} style={{ margin: '0 0 8px' }}><sup style={{ color: '#C9A84C', fontWeight: 700, marginRight: 6 }}>{i + 1}</sup>{v}</p>)}
       </div>
