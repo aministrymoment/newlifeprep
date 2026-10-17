@@ -123,6 +123,7 @@ function Admin() {
     <>
       <h1 className="p-h1">Administration</h1>
       {msg && <p className="p-note">{msg}</p>}
+      <div className="p-card"><div className="p-row"><b>Transcript Generator</b><a className="p-btn" href="/portal/admin/transcripts">Open the transcript generator</a></div><p className="p-small">Enter a student's real record and download a one page official transcript.</p></div>
       <h2 className="p-h2">Work to review ({subs.length})</h2>
       {subs.length === 0 && <p className="p-muted">Nothing waiting for review.</p>}
       {subs.map((s) => <Grader key={s.id} s={s} who={name(s.user_id)} title={titles[s.item_id] || ''} onGrade={grade} />)}

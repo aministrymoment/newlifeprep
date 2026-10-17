@@ -1,0 +1,71 @@
+<div class="wrap">
+  <header class="top">
+    <img id="hlogo" alt="New Life Preparatory Academy shield seal">
+    <div>
+      <h1>NLPA Transcript Generator</h1>
+      <p>Enter the student's real record. Letter grades, credits, GPAs, and the credit summary calculate for you.</p>
+    </div>
+  </header>
+
+  <div class="grid">
+    <main id="form">
+      <section class="panel">
+        <h2>Student</h2>
+        <div class="f">
+          <div class="wide"><label for="s-name">Name</label><input id="s-name" data-p="student.name" autocomplete="off"></div>
+          <div class="wide"><label for="s-address">Address</label><input id="s-address" data-p="student.address" autocomplete="off"></div>
+          <div><label for="s-city">City</label><input id="s-city" data-p="student.city" autocomplete="off"></div>
+          <div><label for="s-state">State</label><input id="s-state" data-p="student.state" autocomplete="off"></div>
+          <div><label for="s-zip">Zip</label><input id="s-zip" data-p="student.zip" autocomplete="off"></div>
+          <div><label for="s-dob">DOB</label><input id="s-dob" data-p="student.dob" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+          <div><label for="s-gender">Gender</label><input id="s-gender" data-p="student.gender" placeholder="M or F" autocomplete="off"></div>
+          <div><label for="s-id">Student ID</label><input id="s-id" data-p="student.id" placeholder="NLPA-20XX-XXX" autocomplete="off"></div>
+          <div class="wide"><label for="s-track">Program track</label><select id="s-track" data-p="student.track"></select></div>
+          <div class="wide"><label for="s-status">State Requirement Status</label><input id="s-status" data-p="student.status" autocomplete="off"></div>
+          <div class="wide"><label for="s-exit">Exit level assessment (optional)</label><input id="s-exit" data-p="exit" placeholder="ENG 3: 00/A, ENG 4: 00/A, ALG 2: 00/A, WHIST: 00/A, CHEM: 00/A, ESSAY: PASSED" autocomplete="off"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Courses <small>Rows with no title are left off the transcript</small></h2>
+        <div class="cols" id="courses"></div>
+        <div class="stats" id="stats"></div>
+        <p class="note" id="gnote"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Credits by year <small>Optional. Prints only when you add a year</small></h2>
+        <div id="years"></div>
+        <button class="btn" type="button" data-act="addyear">Add year</button>
+      </section>
+
+      <section class="panel">
+        <h2>Standing, dates, and diploma</h2>
+        <div class="f">
+          <div><label for="r-rank">Class rank</label><input id="r-rank" data-p="rank" inputmode="numeric" autocomplete="off"></div>
+          <div><label for="r-size">Class size</label><input id="r-size" data-p="size" inputmode="numeric" autocomplete="off"></div>
+          <div><label for="r-rd">Date of class rank</label><input id="r-rd" data-p="rankDate" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+          <div><label for="r-grad">Date of graduation</label><input id="r-grad" data-p="grad" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+          <div><label for="r-print">Date printed</label><input id="r-print" data-p="printed" placeholder="MM/DD/YYYY" autocomplete="off"></div>
+          <div class="wide"><label for="r-dip">Diploma awarded</label><input id="r-dip" data-p="diploma" autocomplete="off"></div>
+        </div>
+        <p class="note">Rank, size, and rank date print only when you fill them in. Use figures from real enrollment records. Leave the graduation date and diploma blank until the diploma is earned.</p>
+      </section>
+
+      <section class="panel">
+        <div class="actions">
+          <button class="btn primary" type="button" id="dl">Download Word transcript</button>
+          <button class="btn link" type="button" id="reset">Clear the form</button>
+        </div>
+        <div id="msg" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <aside class="sticky">
+      <div class="panel" style="padding:10px">
+        <h2 style="margin:2px 4px 8px">Live preview <small>One page, US Letter</small></h2>
+        <div id="stage"><div id="sheet"></div></div>
+      </div>
+    </aside>
+  </div>
+</div>
