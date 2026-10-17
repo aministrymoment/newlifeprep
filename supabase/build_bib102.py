@@ -1,7 +1,7 @@
 """Builds supabase/seed_bib102_unitN.sql from content/b102_units*.py. Run: python3 supabase/build_bib102.py"""
 import json, random, re, sys, os, importlib
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'content'))
-UNIT_MODULES = [('b102_units1', 'UNIT1')]
+UNIT_MODULES = [('b102_units1', 'UNIT1'), ('b102_units2', 'UNIT2'), ('b102_units3', 'UNIT3')]
 PRESENTER = "Dr. Alex L. Jenkins Sr."
 def kjv(ref):
     book, ch = ref.rsplit(' ', 1)
@@ -12,6 +12,14 @@ READINGS = {
   "1.2": ["Matthew 3", "Matthew 4", "Matthew 5", "Matthew 6"],
   "1.3": ["Mark 4", "Mark 5", "Luke 15", "John 11"],
   "1.4": ["Luke 23", "John 3", "John 19", "John 20", "Matthew 28"],
+  "2.1": ["Acts 1", "Acts 2"],
+  "2.2": ["Acts 3", "Acts 4", "Acts 7", "Acts 9"],
+  "2.3": ["Acts 10", "Acts 11", "Acts 13", "Acts 15"],
+  "2.4": ["Acts 16", "Acts 17", "Acts 20", "Acts 28"],
+  "3.1": ["Romans 3", "Romans 5", "Romans 6"],
+  "3.2": ["Romans 8", "Romans 10", "Romans 12"],
+  "3.3": ["1 Corinthians 12", "1 Corinthians 13", "1 Corinthians 15", "2 Corinthians 5", "2 Corinthians 12"],
+  "3.4": ["Galatians 2", "Galatians 3", "Galatians 5"],
 }
 SLUG, TITLE = 'bib-102', 'BIB 102 New Testament Survey'
 FOCUS = ("BIB 102 is a one credit survey of the New Testament in the King James Version. Students read the four Gospels, the book of Acts, "
