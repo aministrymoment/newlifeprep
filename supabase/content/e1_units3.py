@@ -269,7 +269,7 @@ Strong conventions free your ideas to be heard. Finish well.""" + CLOSE,
 FINAL = dict(
  assess=dict(t="Final Assessment: Argumentative Essay (500 words or more)",
  prompt="Write an argumentative essay of at least 500 words on this question: Should every student be required to read for twenty minutes every day? Take a clear position. Include an introduction with a hook and thesis, at least three body paragraphs with evidence and reasoning, a counterclaim with a rebuttal, and a conclusion. Use at least one quotation from Scripture (KJV) or from a text read in this course, and use ethos, pathos and logos on purpose.",
- rubric="Total 100. Clear, debatable thesis: 10. Organization and transitions: 15. Evidence from at least two sources and reasoning: 25. Counterclaim and rebuttal: 15. Use of rhetorical appeals: 10. Style and word choice: 10. Conventions: 10. Length of 500 words or more: 5. A score of 70 or better is required to pass. A certified proctor and the 500 word essay requirement apply to Test Out students."),
+ rubric="Total 100. Clear, debatable thesis: 10. Organization and transitions: 15. Evidence from at least two sources and reasoning: 25. Counterclaim and rebuttal: 15. Use of rhetorical appeals: 10. Style and word choice: 10. Conventions: 10. Length of 500 words or more: 5. A score of 70 or better is required to pass."),
  quiz=[
  ("Which part of the plot is the turning point?",["Climax","Exposition","Resolution","Setting"],0,"The climax is the turning point."),
  ("Giving a character's traits through actions is:",["Indirect characterization","Direct characterization","Plot","Mood"],0,"Showing is indirect characterization."),

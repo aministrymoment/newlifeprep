@@ -3,9 +3,8 @@ export type PayItem = { id: string; label: string; amountCents: number | null; n
 
 export const CATALOG: PayItem[] = [
   { id: 'application', label: 'Application Fee, $50.00', amountCents: 5000, needs: 'program' },
-  { id: 'completion_full', label: 'Adult Diploma Completion Program, paid in full, $1,250.00', amountCents: 125000, needs: 'program' },
-  { id: 'completion_half', label: 'Adult Diploma Completion Program, 50% payment, $625.00', amountCents: 62500, needs: 'student' },
-  { id: 'testout', label: 'Adult Test Out Diploma Program, $750.00', amountCents: 75000, needs: 'program' },
+  { id: 'completion_full', label: 'Adult Diploma Completion Program, paid in full, $750.00', amountCents: 75000, needs: 'program' },
+  { id: 'completion_half', label: 'Adult Diploma Completion Program, 50% payment, $375.00', amountCents: 37500, needs: 'student' },
   { id: 'hs_application', label: 'High School Application Fee, $150.00', amountCents: 15000, needs: 'program' },
   { id: 'hs_enrollment', label: 'High School Enrollment Fee, $150.00', amountCents: 15000, needs: 'student' },
   { id: 'hs_annual_9_12', label: 'High School Grades 9 to 12, annual tuition, $8,510.00', amountCents: 851000, needs: 'student' },
