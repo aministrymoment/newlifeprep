@@ -31,6 +31,7 @@ export default function InquiryForm() {
           <select id="f_prog" name="program" defaultValue="">
             <option value="">Select a program</option>
             <option>Adult Diploma Completion Program</option>
+            <option>Adult Test Out Diploma Program</option>
             <option>High School Grades 9 to 12</option>
             <option>13th Year Postgraduate</option>
             <option>Athletic Program</option>
