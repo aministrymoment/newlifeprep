@@ -108,6 +108,7 @@ function Admin() {
   return (
     <>
       <h1 className="p-h1">Administration</h1>
+      <div className="p-row"><a className="p-btn" href="/portal/admin/transcript">Transcript Generator</a><a className="p-btn" href="/portal/admin/diploma">Diploma Generator</a></div>
       {msg && <p className="p-note">{msg}</p>}
       <h2 className="p-h2">Work to review ({subs.length})</h2>
       {subs.length === 0 && <p className="p-muted">Nothing waiting for review.</p>}
