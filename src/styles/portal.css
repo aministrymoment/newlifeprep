@@ -107,3 +107,6 @@ textarea { resize: vertical; margin-top: 8px; }
 .p-pwbtn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: 0; cursor: pointer; font-family: Cinzel, serif; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); text-decoration: underline; }
 .p-danger { background: #8a1c1c; color: #fff; border: 0; padding: 8px 14px; font-family: Cinzel, serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; }
 .p-danger:hover { background: #6e1414; }
+
+/* Controls inside a label inside a row keep their natural height */
+.p-row label input, .p-row label select { flex: 0 0 auto; }
