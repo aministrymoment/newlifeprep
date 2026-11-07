@@ -14,6 +14,7 @@ def kjv(ref):
     return {"title": ref.replace("Psalms ", "Psalm ") + " (King James Version)", "url": "/portal/bible/" + book.replace(' ', '') + "/" + ch}
 READINGS = {
   "1.1": ["Ruth 1"], "1.2": ["Luke 15"], "1.3": ["1 Samuel 3"], "1.4": ["Psalms 23"],
+  "2.1": ["Psalms 1"], "2.2": ["Psalms 121"], "2.3": ["Proverbs 3"], "2.4": ["Luke 10"],
 }
 rng = random.Random(2002310)
 def shuffle_q(q):
