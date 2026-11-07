@@ -35,6 +35,7 @@ export async function POST(req: Request) {
   p.set('line_items[0][price_data][currency]', 'usd');
   p.set('line_items[0][price_data][unit_amount]', String(cents));
   p.set('line_items[0][price_data][product_data][name]', item.id === 'donation' ? 'Donation to New Life Preparatory Academy' : item.label.replace(/,\s*\$[\d,.]+$/, ''));
+  p.set('metadata[source]', 'nlpa');
   p.set('metadata[item]', item.id);
   p.set('metadata[payer_name]', name);
   p.set('metadata[reference]', reference);
