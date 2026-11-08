@@ -15,6 +15,10 @@ def kjv(ref):
 READINGS = {
   "1.1": ["Ruth 1"], "1.2": ["Luke 15"], "1.3": ["1 Samuel 3"], "1.4": ["Psalms 23"],
   "2.1": ["Psalms 1"], "2.2": ["Psalms 121"], "2.3": ["Proverbs 3"], "2.4": ["Luke 10"],
+  "4.1": ["Proverbs 18"], "4.2": ["Acts 26"], "4.3": ["1 Thessalonians 5"], "4.4": ["Isaiah 1"],
+  "5.1": ["Acts 9"], "5.2": ["Genesis 1"], "5.3": ["Psalms 19"], "5.4": ["James 3"],
+  "6.1": ["Proverbs 2"], "6.2": ["Exodus 20"], "6.3": ["Ecclesiastes 3"], "6.4": ["Proverbs 4"],
+  "3.2": ["Joshua 24"], "3.3": ["Acts 17", "Mark 3"], "3.4": ["Matthew 5"],
 }
 rng = random.Random(2002310)
 def shuffle_q(q):
