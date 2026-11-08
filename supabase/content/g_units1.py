@@ -1,0 +1,185 @@
+"""Geometry, Unit 1: Reasoning, Angles and Constructions. Florida B.E.S.T. Mathematics Geometry standards."""
+CLOSE = " Excellence, Faith, Purpose. I will see you in the next lesson."
+
+UNIT1 = dict(
+ title="Unit 1: Reasoning, Angles and Constructions",
+ std="MA.912.GR.1.1, MA.912.GR.5.1, MA.912.GR.5.2, MA.912.LT.4.3, MA.912.LT.4.10",
+ topics=[
+ dict(t="1.1 Points, Lines, Planes and Angle Relationships", std="MA.912.GR.1.1",
+ body="""Geometry begins with three undefined terms: a point (a location with no size), a line (a straight path that goes on forever in both directions), and a plane (a flat surface that goes on forever). From these we define a segment (part of a line with two endpoints), a ray (part of a line with one endpoint) and an angle (two rays that share an endpoint called the vertex).
+
+Angles are measured in degrees. An acute angle is less than 90 degrees, a right angle is exactly 90, an obtuse angle is more than 90 and less than 180, and a straight angle is 180.
+
+Angle pairs:
+Complementary angles add to 90 degrees.
+Supplementary angles add to 180 degrees.
+A linear pair is two adjacent angles that form a straight line, so they are supplementary.
+Vertical angles are opposite each other when two lines cross, and they are always congruent (equal in measure).
+
+Worked example: Two lines cross. One angle measures 5x + 10 and its vertical angle measures 3x + 40. Vertical angles are equal, so 5x + 10 = 3x + 40, 2x = 30, x = 15. Each angle measures 85 degrees.
+
+Worked example: Angle A and angle B are supplementary and angle A is 4 times angle B. Then 4B + B = 180, so B = 36 and A = 144.
+
+Your task: (1) Two angles are complementary and one is 25 degrees. Find the other. (2) A linear pair has angles measuring 2x + 20 and 3x + 10. Find x and both angles. (3) Name the angle pair type: two angles that share a side and a vertex and add to 180 degrees.""",
+ script="""Welcome to Geometry. Geometry is the study of shape, size and position, and it is also the course where you learn to prove that something is true. Today we build the vocabulary that every later lesson depends on.
+
+We begin with three words that we do not define, only describe. A point is a location. It has no size. A line is a straight path that goes on forever in both directions. A plane is a flat surface that goes on forever, like a tabletop that never ends. From those three we build everything else. A segment is a piece of a line with two endpoints. A ray has one endpoint and goes on forever in one direction. And an angle is made of two rays that share an endpoint called the vertex.
+
+Now watch this. We measure angles in degrees. An acute angle is less than ninety degrees. A right angle is exactly ninety. An obtuse angle is more than ninety but less than one hundred eighty. And a straight angle is one hundred eighty degrees, which is a flat line.
+
+Next, special pairs of angles. Complementary angles add up to ninety degrees. Supplementary angles add up to one hundred eighty degrees. A linear pair is two angles side by side that form a straight line, so a linear pair is always supplementary. And vertical angles are the angles opposite each other when two lines cross. Here is the key fact. Vertical angles are always congruent, which means they have the same measure.
+
+Let us use it. Two lines cross. One angle measures five x plus ten, and its vertical angle measures three x plus forty. Vertical angles are equal, so we write five x plus ten equals three x plus forty. Subtract three x from both sides, two x plus ten equals forty. Subtract ten, two x equals thirty. So x is fifteen. Put it back, five times fifteen is seventy five, plus ten is eighty five degrees. Always check by substituting into the other angle too. Three times fifteen is forty five, plus forty is eighty five. They match.
+
+One more. Angle A and angle B are supplementary, and angle A is four times angle B. So four B plus B equals one hundred eighty. Five B equals one hundred eighty, B is thirty six, and A is one hundred forty four.
+
+Your task today. Find the complement of twenty five degrees. Solve the linear pair problem. And name the pair that shares a side and a vertex and adds to one hundred eighty. Take the four question check when you finish.
+
+Order and exactness are built into creation, and we are invited to study them. Excellence, Faith, Purpose. I will see you in the next lesson.""" ,
+ quiz=[
+ ("Two angles are complementary. One measures 25 degrees. The other measures:", ["65 degrees", "155 degrees", "25 degrees", "75 degrees"], 0, "Complementary angles add to 90, and 90 minus 25 is 65."),
+ ("Vertical angles are always:", ["Congruent", "Supplementary", "Complementary", "Acute"], 0, "Vertical angles have equal measures."),
+ ("A linear pair of angles adds to:", ["180 degrees", "90 degrees", "360 degrees", "45 degrees"], 0, "A linear pair forms a straight line, which is 180 degrees."),
+ ("Angle A and angle B are supplementary and angle A is 4 times angle B. Angle B measures:", ["36 degrees", "144 degrees", "45 degrees", "90 degrees"], 0, "4B + B = 180, so B = 36."),
+ ]),
+
+ dict(t="1.2 Conditional Statements and Their Relatives", std="MA.912.LT.4.3",
+ body="""A conditional statement has the form "If p, then q." The part after "if" is the hypothesis (p) and the part after "then" is the conclusion (q).
+
+Example: "If a figure is a square, then it has four sides."
+
+From a conditional we can build three related statements:
+Converse: switch the hypothesis and conclusion. "If a figure has four sides, then it is a square."
+Inverse: negate both parts. "If a figure is not a square, then it does not have four sides."
+Contrapositive: switch and negate. "If a figure does not have four sides, then it is not a square."
+
+A conditional and its contrapositive always have the same truth value. The converse and inverse always have the same truth value as each other, but not always the same as the original.
+
+A biconditional uses "if and only if." It means both the conditional and its converse are true. "An angle is a right angle if and only if it measures 90 degrees."
+
+Other key words: "all" means every member of a group; "not" reverses a statement (the negation of "the triangle is acute" is "the triangle is not acute").
+
+Your task: Given "If a number is divisible by 4, then it is even": (1) Underline the hypothesis. (2) Write the converse and say whether it is true. (3) Write the contrapositive. (4) Write one true biconditional about angles.""",
+ script="""Now, let us talk about the language of proof. Mathematicians say exactly what they mean, and one of the most useful tools is the conditional statement. A conditional has the form, if p, then q. The part after the word if is the hypothesis. The part after the word then is the conclusion.
+
+Here is an example. If a figure is a square, then it has four sides. The hypothesis is, a figure is a square. The conclusion is, it has four sides. Is it true? Yes. Every square has four sides.
+
+Watch this. From one conditional we can build three relatives. The converse switches the hypothesis and conclusion. If a figure has four sides, then it is a square. Is that true? No. A rectangle has four sides and is not a square. So the converse of a true statement can be false.
+
+The inverse negates both parts. If a figure is not a square, then it does not have four sides. Also false. A rectangle is not a square, yet it has four sides.
+
+The contrapositive switches and negates. If a figure does not have four sides, then it is not a square. That is true. And here is the powerful rule. A conditional and its contrapositive always have the same truth value. If one is true, the other is true. If one is false, the other is false. The converse and the inverse also match each other, but they do not have to match the original.
+
+When a conditional and its converse are both true, we combine them into a biconditional with the words, if and only if. An angle is a right angle if and only if it measures ninety degrees. That one is true in both directions.
+
+Two more words. The word all means every member of a group. All squares are rectangles. And the word not reverses a statement. The negation of, the triangle is acute, is, the triangle is not acute.
+
+Your task today. Take the statement, if a number is divisible by four, then it is even. Underline the hypothesis. Write the converse and decide if it is true. The converse is, if a number is even, then it is divisible by four. Six is even but not divisible by four, so the converse is false. Write the contrapositive and write one true biconditional about angles. Take the four question check when you finish.
+
+Say what you mean, and mean what you say. Excellence, Faith, Purpose. I will see you in the next lesson.""" ,
+ quiz=[
+ ("In 'If it rains, then the ground is wet,' the hypothesis is:", ["It rains", "The ground is wet", "The ground", "Then"], 0, "The hypothesis follows the word if."),
+ ("The converse of 'If p, then q' is:", ["If q, then p", "If not p, then not q", "If not q, then not p", "If p, then not q"], 0, "The converse switches the hypothesis and conclusion."),
+ ("A conditional statement and its contrapositive always:", ["Have the same truth value", "Have opposite truth values", "Are both false", "Are both true"], 0, "A statement and its contrapositive are logically equivalent."),
+ ("Which is a biconditional?", ["A number is even if and only if it is divisible by 2.", "If a number is even, then it is 4.", "All numbers are even.", "A number is not odd."], 0, "A biconditional uses 'if and only if' and is true in both directions."),
+ ]),
+
+ dict(t="1.3 Counterexamples and Valid Arguments", std="MA.912.LT.4.10",
+ body="""To show that a statement is false, you need only one counterexample: a specific case where the hypothesis is true and the conclusion is false.
+
+Example: "If a number is prime, then it is odd." The number 2 is prime but not odd, so 2 is a counterexample and the statement is false.
+
+Valid reasoning follows a form that guarantees the conclusion when the premises are true.
+
+Law of Detachment: If "If p, then q" is true and p is true, then q is true.
+Example: If a triangle has three equal sides, then it is equilateral. Triangle ABC has three equal sides. Therefore ABC is equilateral.
+
+Law of Syllogism: If "If p, then q" and "If q, then r" are both true, then "If p, then r" is true.
+Example: If it is a square, then it is a rectangle. If it is a rectangle, then it is a parallelogram. Therefore, if it is a square, then it is a parallelogram.
+
+Invalid reasoning: affirming the conclusion. "If it is a square, then it has four sides. This figure has four sides. Therefore it is a square." This is not valid, since a rectangle fits.
+
+Your task: (1) Find a counterexample to "If a number is a multiple of 3, then it is odd." (2) Is this argument valid? "If a figure is a square, then it has four sides. Figure F has four sides. So F is a square." Explain. (3) Use the Law of Syllogism to combine the statement that if an angle is a right angle, then it measures 90 degrees, and the statement that if an angle measures 90 degrees, then it is not acute.""",
+ script="""Listen, one of the most important skills in mathematics is knowing how to show that something is false. And the tool is called a counterexample.
+
+A counterexample is a specific case where the hypothesis is true and the conclusion is false. You need only one. Consider the statement, if a number is prime, then it is odd. The number two is prime, but two is not odd. That one example destroys the statement. It does not matter that most primes are odd. One counterexample is enough.
+
+Now watch this. Let us look at valid reasoning, which is reasoning that guarantees its conclusion when the starting facts are true. There are two famous patterns.
+
+The first is the Law of Detachment. If the statement, if p then q, is true, and p is true, then q must be true. Example. If a triangle has three equal sides, then it is equilateral. Triangle A B C has three equal sides. Therefore A B C is equilateral. The conclusion is forced.
+
+The second is the Law of Syllogism. If, if p then q, and, if q then r, are both true, then, if p then r, is true. It is a chain. If it is a square, then it is a rectangle. If it is a rectangle, then it is a parallelogram. So if it is a square, then it is a parallelogram. We connected the two links.
+
+Now beware of a common trap. It is called affirming the conclusion. If it is a square, then it has four sides. This figure has four sides. Therefore it is a square. That is not valid. The figure could be a rectangle. The statement tells us what follows from p, not what leads to q.
+
+Let us do one. Is this valid? If a figure is a square, then it has four sides. Figure F has four sides. So F is a square. No, it is not valid. It affirms the conclusion. Figure F could be a rectangle, a rhombus or any other four sided shape. Having four sides does not force a figure to be a square.
+
+Your task today. Find a counterexample to, if a number is a multiple of three, then it is odd. The number six works. Judge the argument about figure F. It is not valid. And chain the two statements about right angles. Take the four question check when you finish.
+
+Truth does not fear testing. Prove all things. Excellence, Faith, Purpose. I will see you in the next lesson.""" ,
+ quiz=[
+ ("How many counterexamples are needed to show a statement is false?", ["One", "Two", "Three", "Ten"], 0, "A single counterexample disproves a statement."),
+ ("A counterexample to 'If a number is prime, then it is odd' is:", ["2", "3", "9", "15"], 0, "Two is prime and even."),
+ ("If 'If p, then q' is true and p is true, then q is true. This is the Law of:", ["Detachment", "Syllogism", "Inverse", "Converse"], 0, "That is the Law of Detachment."),
+ ("From 'If p, then q' and 'If q, then r,' we conclude:", ["If p, then r", "If r, then p", "If q, then p", "p and r"], 0, "That is the Law of Syllogism."),
+ ]),
+
+ dict(t="1.4 Basic Constructions", std="MA.912.GR.5.1, MA.912.GR.5.2",
+ body="""A construction draws a geometric figure using only a compass and a straightedge (an unmarked ruler). Constructions rely on equal arcs, not on measuring.
+
+Copy a segment: Draw a ray. Set the compass to the length of the original segment. Place the compass point at the ray's endpoint and mark an arc on the ray. That distance is congruent to the original.
+
+Copy an angle: Draw an arc across both rays of the original angle. Draw the same arc on a new ray. Measure the width of the first arc with the compass and mark that width on the new arc. Draw a ray through the mark.
+
+Bisect a segment (and construct its perpendicular bisector): Open the compass more than half the length of the segment. From each endpoint draw arcs above and below the segment. Draw a line through the two points where the arcs cross. That line cuts the segment into two equal parts at the midpoint and is perpendicular to it.
+
+Bisect an angle: Draw an arc across both rays. From each crossing point draw equal arcs that intersect inside the angle. Draw a ray from the vertex through the intersection.
+
+Why it works: every point on the perpendicular bisector is the same distance from both endpoints.
+
+Your task: (1) Describe the steps to bisect an angle in your own words. (2) If a segment is 12 cm long and you construct its perpendicular bisector, how long is each half? (3) An angle of 80 degrees is bisected. Find each new angle.""",
+ script="""Now, let us talk about constructions. Before computers and even before the ruler was common, geometers drew exact figures using only two tools: a compass for drawing arcs and circles, and a straightedge for drawing straight lines. A straightedge has no markings. Constructions rely on equal arcs and not on measuring.
+
+First, copying a segment. Draw a ray. Set the compass to the length of the original segment by placing the point on one end and the pencil on the other. Without changing the opening, place the point at the endpoint of your ray and swing an arc across it. The distance from the endpoint to the arc is congruent to the original segment.
+
+Second, copying an angle. On the original angle, draw an arc that crosses both rays. Draw the same arc on a new ray. Now measure the width of the first arc, from one crossing point to the other, and mark that same width on the new arc. Draw a ray from the endpoint through that mark. The new angle is congruent to the old one.
+
+Watch this. Third, the perpendicular bisector of a segment. Open the compass wider than half the segment. Place the point on one endpoint and draw an arc above and below. Without changing the opening, do the same from the other endpoint. The arcs cross in two places. Draw a line through those two points. That line cuts the segment into two equal halves at the midpoint, and it meets the segment at a right angle. That is why it is called a perpendicular bisector.
+
+Fourth, bisecting an angle. Draw an arc across both rays of the angle. From each crossing point draw equal arcs that cross inside the angle. Draw a ray from the vertex through that crossing point. The ray splits the angle into two congruent angles.
+
+Why does it work? Because every point on the perpendicular bisector is the same distance from both endpoints. Equal arcs make equal distances, and equal distances give us exact geometry.
+
+Your task today. Describe how to bisect an angle in your own words. If a segment is twelve centimeters long and you construct its perpendicular bisector, each half is six centimeters. And if an eighty degree angle is bisected, each new angle is forty degrees. Take the four question check when you finish.
+
+Precision is a form of honesty. Measure twice, build once. Excellence, Faith, Purpose. I will see you in the next lesson.""" ,
+ quiz=[
+ ("A construction uses:", ["A compass and a straightedge", "A protractor and a ruler", "A calculator", "A graph only"], 0, "Constructions use a compass and an unmarked straightedge."),
+ ("The perpendicular bisector of a segment:", ["Cuts it into two equal parts at a right angle", "Is parallel to it", "Is longer than it", "Never touches it"], 0, "It passes through the midpoint at 90 degrees."),
+ ("A 12 cm segment is bisected. Each part measures:", ["6 cm", "12 cm", "24 cm", "3 cm"], 0, "Half of 12 is 6."),
+ ("An 80 degree angle is bisected. Each new angle measures:", ["40 degrees", "80 degrees", "160 degrees", "20 degrees"], 0, "Half of 80 is 40."),
+ ]),
+ ],
+ assess=dict(t="Assessment 1: Reasoning and Angles",
+ prompt="""Complete all parts, showing your work and explaining your reasoning in complete sentences.
+
+Part A: Two lines cross. One angle measures 7x minus 5 degrees and its vertical angle measures 4x plus 22 degrees. Find x and the measure of all four angles formed. Name each pair of angles you used.
+
+Part B: Write a true conditional statement about shapes of your choice. Then write its converse, inverse and contrapositive. Tell which of the four statements are true, and give a counterexample for any that are false.
+
+Part C: Use the Law of Syllogism to write a conclusion from these statements: If a figure is a square, then it has four congruent sides. If a figure has four congruent sides, then it is a rhombus.
+
+Part D: Describe, step by step, how to construct the perpendicular bisector of a segment, and explain why the construction works.""",
+ rubric="""100 points. Part A, correct value of x and all four angles with angle pair names: 25 points. Part B, correct related statements with truth values and counterexamples: 30 points. Part C, valid conclusion with explanation: 15 points. Part D, correct steps and explanation: 20 points. Clear communication and complete sentences: 10 points. A score of 70 or above is passing."""),
+ disc=dict(t="Discussion 1: Why Do We Prove Things?",
+ prompt="""Geometry asks us to prove what we claim, not merely to say it. Write a post of at least 120 words that (1) describes something you once believed was true but found out was false, (2) explains how a single counterexample or piece of evidence changed your mind, (3) tells why exact language, such as 'if and only if,' matters in mathematics, and (4) connects your answer to the Scripture principle in 1 Thessalonians 5:21, 'Prove all things; hold fast that which is good.' Then write a respectful reply of at least 40 words to another student's post, or answer this question: Why is it more powerful to prove a claim than to repeat it loudly? Keep your language clean and your tone kind."""),
+ unit_quiz=[
+ ("Two angles that add to 90 degrees are:", ["Complementary", "Supplementary", "Vertical", "Adjacent only"], 0, "Complementary angles add to 90."),
+ ("Two lines cross and one angle is 70 degrees. Its vertical angle is:", ["70 degrees", "110 degrees", "20 degrees", "180 degrees"], 0, "Vertical angles are congruent."),
+ ("In the same crossing, an angle adjacent to the 70 degree angle measures:", ["110 degrees", "70 degrees", "20 degrees", "290 degrees"], 0, "Adjacent angles on a line form a linear pair that adds to 180."),
+ ("The converse of 'If it is a square, then it is a rectangle' is:", ["If it is a rectangle, then it is a square", "If it is not a square, then it is not a rectangle", "If it is not a rectangle, then it is not a square", "It is a square"], 0, "The converse switches the hypothesis and conclusion."),
+ ("The contrapositive of a true conditional is:", ["Always true", "Always false", "Sometimes true", "Not a statement"], 0, "A conditional and its contrapositive are equivalent."),
+ ("Which number is a counterexample to 'All prime numbers are odd'?", ["2", "5", "7", "11"], 0, "Two is prime and even."),
+ ("The perpendicular bisector of a segment passes through the:", ["Midpoint at a right angle", "Endpoint at a straight angle", "Vertex of an angle", "Center of a circle"], 0, "It meets the segment at its midpoint and is perpendicular to it."),
+ ("The steps 'draw an arc across both rays, draw equal arcs from the crossing points, and draw a ray from the vertex through their intersection' construct:", ["An angle bisector", "A perpendicular bisector", "A copy of a segment", "A circle"], 0, "That is the angle bisector construction."),
+ ])
