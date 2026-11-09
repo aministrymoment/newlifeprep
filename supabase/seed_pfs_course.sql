@@ -1,0 +1,6 @@
+-- Personal Finance and Stewardship course record. Safe to run more than once.
+alter table public.courses add column if not exists video_url text;
+
+insert into public.courses (slug, title, subject, credits, focus)
+values ('personal-finance', 'Personal Finance and Stewardship', 'Electives', 1.0, $j$Personal Finance and Stewardship is a one credit elective that prepares students to manage money wisely and honor God with what He gives. Students study biblical stewardship, needs and wants, SMART goals, income and careers, paychecks and taxes, budgeting, tracking spending and records, saving and the emergency fund, tithes and generosity, banking and accounts, payment methods, fraud and identity theft, simple and compound interest, credit cards, credit reports and scores, loans, getting out of debt, investing, retirement planning, insurance, major purchases, entrepreneurship, consumer rights and contracts, contentment and legacy, and building a personal financial plan. Every lesson is taught by Dr. Alex L. Jenkins Sr. with Scripture from the King James Version, and every unit includes a Focus, Topics, Assessments, Discussions and Quizzes, with a final personal financial plan and a final exam. The course is aligned at the strand level to Florida financial literacy standards.$j$)
+on conflict (slug) do nothing;
