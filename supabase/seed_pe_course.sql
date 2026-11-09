@@ -1,0 +1,6 @@
+-- Physical Education course record. Safe to run more than once.
+alter table public.courses add column if not exists video_url text;
+
+insert into public.courses (slug, title, subject, credits, focus)
+values ('physical-education', 'Physical Education with Personal Fitness', 'Physical Education', 1.0, $j$Physical Education with Personal Fitness is a one credit course that teaches students to build and keep a healthy, active life. Students study why fitness matters, the parts of fitness, safe training, cardiorespiratory fitness, muscular strength, endurance and flexibility, injury prevention and first aid, nutrition and hydration, mental and emotional health, sleep, avoiding tobacco, alcohol and drugs, healthy relationships and safety, sportsmanship, lifetime activities and the design of a personal fitness plan. Students keep an activity log, set goals, track progress and apply what Scripture teaches about caring for the body as the temple of the Holy Ghost. Students should have a parent or guardian approve physical activity, and a doctor if there is any health concern, and should stop any activity that causes pain, dizziness or distress. The course aligns to the Florida physical education and health standards and ends with a final personal fitness plan and a final exam. Excellence, Faith, Purpose.$j$)
+on conflict (slug) do nothing;
