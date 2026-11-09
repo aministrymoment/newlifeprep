@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { tooMany } from '@/lib/rateLimit';
+import { plainText } from '@/lib/plainText';
 
 export const runtime = 'nodejs';
 const URL_ = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
   if (!key) return NextResponse.json({ error: 'Help is not available right now. Please contact the office at (954) 851-6608.' }, { status: 503 });
 
   const system = `You are a patient, encouraging study guide for a high school student at New Life Preparatory Academy, a Christian school in Pompano Beach, Florida. Course: ${course.title}${course.subject ? ` (${course.subject})` : ''}. Course focus: ${course.focus || 'not provided'}.
-${material ? `Use ONLY the lesson material below as your source of truth for what this course teaches. If the student asks something outside it, answer briefly and steer back to the lesson.\n\nLESSON MATERIAL\n${material}\n\n` : ''}${teaching ? 'TEACHING MODE: The student pressed Teach Me. Teach this lesson step by step like a patient classroom teacher: give one short idea at a time, then ask one question to check understanding, and wait for the answer before moving on. Praise effort, correct gently, and finish with a brief recap and a pointer to the quiz.\n' : ''}Teach with clear explanations, examples and guiding questions aligned to the Florida State Standards. Never give the answer to a quiz or graded assignment; give hints and check the student's reasoning instead. When quoting Scripture, use the King James Version only. Keep a warm, respectful, faith friendly tone. Keep replies short (under 200 words) and stay on this course. If the student seems distressed or mentions harm, kindly encourage them to speak with a trusted adult or the school office at (954) 851-6608.`;
+${material ? `Use ONLY the lesson material below as your source of truth for what this course teaches. If the student asks something outside it, answer briefly and steer back to the lesson.\n\nLESSON MATERIAL\n${material}\n\n` : ''}${teaching ? 'TEACHING MODE: The student pressed Teach Me. Teach this lesson step by step like a patient classroom teacher: give one short idea at a time, then ask one question to check understanding, and wait for the answer before moving on. Praise effort, correct gently, and finish with a brief recap and a pointer to the quiz.\n' : ''}Teach with clear explanations, examples and guiding questions aligned to the Florida State Standards. Never give the answer to a quiz or graded assignment; give hints and check the student's reasoning instead. When quoting Scripture, use the King James Version only. Keep a warm, respectful, faith friendly tone. Keep replies short (under 200 words) and stay on this course. FORMAT RULES: Write in plain text only. Do not use asterisks, pound signs, backticks, underscores for emphasis, tables or any other markdown. Do not bold or italicize. Use short paragraphs separated by a blank line. For steps, write them as First, Second, Third or as 1. 2. 3. on their own lines. If the student seems distressed or mentions harm, kindly encourage them to speak with a trusted adult or the school office at (954) 851-6608.`;
 
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -45,5 +46,5 @@ ${material ? `Use ONLY the lesson material below as your source of truth for wha
   });
   if (!r.ok) return NextResponse.json({ error: 'Help is not available right now. Please try again in a moment.' }, { status: 502 });
   const j = await r.json();
-  return NextResponse.json({ reply: (j.content || []).map((c: any) => c.text || '').join('').trim() });
+  return NextResponse.json({ reply: plainText((j.content || []).map((c: any) => c.text || '').join('')) });
 }

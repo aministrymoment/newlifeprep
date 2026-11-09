@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import { plainText } from '@/lib/plainText';
 import { MAX_ATTEMPTS, type Item, type Sub, type Att } from '@/lib/coursePath';
 
 export function Written({ item, subs, userId, onSaved }: { item: Item; subs: Sub[]; userId: string; onSaved: () => void }) {
@@ -115,9 +116,10 @@ export function Help({ slug, topic, onClear }: { slug: string; topic: { id: stri
     <aside className="p-card p-help" ref={box as any}>
       <h3>{topic ? 'Teach Me' : 'Ask for Help'}</h3>
       {topic ? <p className="p-small">Lesson: {topic.title} <button className="p-link" onClick={() => { onClear(); setLog([]); }}>End lesson</button></p> : <p className="p-small">Ask about this course. You will get hints and explanations, not quiz answers. Press Teach Me on any topic for a guided lesson.</p>}
-      <div className="p-log">{log.map((m, i) => <p key={i} className={m.role === 'user' ? 'me' : 'bot'}>{m.content}</p>)}{busy && <p className="bot p-muted">Thinking...</p>}</div>
+      <div className="p-log">{log.map((m, i) => <p key={i} className={m.role === 'user' ? 'me' : 'bot'} style={{ whiteSpace: 'pre-wrap' }}>{m.role === 'user' ? m.content : plainText(m.content)}</p>)}{busy && <p className="bot p-muted">Thinking...</p>}</div>
       <textarea rows={3} value={text} onChange={(e) => setText(e.target.value)} placeholder={topic ? 'Type your answer or question' : 'Type your question'} onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ask(); } }} />
       <button className="p-btn" onClick={ask} disabled={busy || !text.trim()}>Send</button>
     </aside>
   );
 }
+
