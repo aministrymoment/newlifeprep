@@ -1,0 +1,6 @@
+-- Probability and Statistics course record. Safe to run more than once.
+alter table public.courses add column if not exists video_url text;
+
+insert into public.courses (slug, title, subject, credits, focus)
+values ('probability-statistics', 'Probability and Statistics', 'Mathematics', 1.0, $j$Probability and Statistics is a one credit mathematics course that teaches students to collect, display, analyze and interpret data, to measure chance, and to use numbers honestly. Students study types of data and sampling, graphs, measures of center and spread, quartiles and box plots, standard deviation and the normal distribution, z scores and the empirical rule, probability rules, independence and conditional probability, counting with permutations and combinations, expected value and the binomial distribution, scatter plots, correlation and regression lines, two way tables, the difference between correlation and causation, margins of error, confidence intervals, and the idea of a significance test. Throughout the course students apply Scripture on honest weights and measures, careful counting and testing claims. The course aligns to the Florida mathematics standards for data analysis and probability and ends with a final statistical investigation report and a final exam. Excellence, Faith, Purpose.$j$)
+on conflict (slug) do nothing;
