@@ -3,9 +3,9 @@ CLOSE = " Excellence, Faith, Purpose. I will see you in the next lesson."
 
 UNIT1 = dict(
  title="Unit 1: Foundations of Communication and Confidence",
- std="SPC.912.C",
+ std="Florida speech and communication course standards",
  topics=[
- dict(t="1.1 The Communication Process and Why Speaking Matters", std="SPC.912.C",
+ dict(t="1.1 The Communication Process and Why Speaking Matters", std="Florida speech and communication course standards",
  body="""Communication is the sharing of meaning between people. Proverbs 18:21 says, Death and life are in the power of the tongue: and they that love it shall eat the fruit thereof. Words can build up or tear down, and a person who learns to speak well gains a tool for school, work, family and ministry. Proverbs 25:11 adds, A word fitly spoken is like apples of gold in pictures of silver.
 
 Every act of communication has parts. The sender is the person who has a message. The message is the idea, along with the words, tone and gestures that carry it. The channel is the way the message travels, such as a voice in a room, a phone call, a letter, a video or a text message. The receiver is the person who takes in the message and gives meaning to it. Feedback is the response the receiver sends back, such as a nod, a question or a reply. Noise is anything that blocks or distorts the message. External noise includes a loud room or a bad microphone. Internal noise includes worry, hunger or a distracting thought. Context is the setting and situation in which communication happens.
@@ -30,7 +30,7 @@ Your task is to name the parts of the process, give examples of noise and explai
  ("A nod or a question from a listener is called:", ["Feedback", "Noise", "A channel", "A message"], 0, "Feedback is the response sent back to the sender."),
  ("Communication that takes place between two people is:", ["Interpersonal communication", "Intrapersonal communication", "Mass communication", "Public speaking"], 0, "Interpersonal means between persons."),
  ]),
- dict(t="1.2 Overcoming Fear and Building Confidence", std="SPC.912.C",
+ dict(t="1.2 Overcoming Fear and Building Confidence", std="Florida speech and communication course standards",
  body="""Almost everyone feels nervous before speaking to a group. Moses felt it too. In Exodus 4:10 he said to the LORD, O my Lord, I am not eloquent, neither heretofore, nor since thou hast spoken unto thy servant: but I am slow of speech, and of a slow tongue. The LORD answered in verse 12, Now therefore go, and I will be with thy mouth, and teach thee what thou shalt say. Fear of speaking is common, and it can be managed.
 
 Speech anxiety shows up in the body and in the mind. The body may show a fast heartbeat, shaky hands, a dry mouth or a trembling voice. These signs happen because the body releases energy to face a challenge. The mind may say, I will forget everything, or Everyone will laugh. Those thoughts are often exaggerated. Most audiences want the speaker to succeed, and listeners notice far less of your nervousness than you imagine.
@@ -55,7 +55,7 @@ Your task is to list signs of anxiety, describe ways to reduce it and explain Ex
  ("Positive self talk means:", ["Telling yourself that you are prepared and have something worth saying", "Telling yourself that you will fail", "Ignoring your preparation", "Blaming the audience"], 0, "What you tell yourself shapes how you feel."),
  ("In Exodus 4:12 the LORD told Moses that He would:", ["Be with his mouth and teach him what to say", "Send someone else instead", "Remove the need to speak", "Make him silent"], 0, "God promised to help Moses speak."),
  ]),
- dict(t="1.3 Listening Well", std="SPC.912.C",
+ dict(t="1.3 Listening Well", std="Florida speech and communication course standards",
  body="""Good speakers are good listeners first. James 1:19 says, Wherefore, my beloved brethren, let every man be swift to hear, slow to speak, slow to wrath. Listening is not the same as hearing. Hearing is the body's ability to receive sound. Listening is the choice to pay attention and make meaning from what is said.
 
 Listening has several purposes. We listen to understand information, such as a lesson or directions. We listen critically, to judge whether an argument is sound. We listen with empathy, to support a friend who is hurting. We listen for enjoyment, such as when enjoying a story or music. A wise listener knows which purpose is in play.
@@ -84,7 +84,7 @@ Your task is to tell hearing from listening, list habits and paraphrase a statem
  ("Which is a barrier to good listening?", ["Planning your reply while the speaker is talking", "Taking brief notes", "Giving eye contact", "Asking a clarifying question"], 0, "Planning a reply means missing what is being said."),
  ("Listening to judge whether an argument is sound is called:", ["Critical listening", "Listening for enjoyment", "Empathic listening", "Distracted listening"], 0, "Critical listening tests the speaker's evidence and logic."),
  ]),
- dict(t="1.4 Ethics, Honesty and Respect in Speech", std="SPC.912.C",
+ dict(t="1.4 Ethics, Honesty and Respect in Speech", std="Florida speech and communication course standards",
  body="""A speaker holds power. An audience gives time and trust, and speakers owe them honesty and respect. Ephesians 4:29 says, Let no corrupt communication proceed out of your mouth, but that which is good to the use of edifying, that it may minister grace unto the hearers. Ephesians 4:25 adds, Wherefore putting away lying, speak every man truth with his neighbour.
 
 Ethical speaking rests on a few principles. Be truthful. Do not state as fact what you know to be false, and do not leave out facts that change the meaning. Be accurate. Check your sources and correct mistakes. Be fair. Represent other views honestly and not as a weak copy that is easy to knock down. Be respectful. Avoid insults, name calling and language that attacks people for their race, background, faith, disability or appearance. Disagree with ideas without attacking persons. Be responsible. Think about the effect of your words on those who hear them.

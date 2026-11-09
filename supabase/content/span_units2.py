@@ -3,9 +3,9 @@ from span_units1 import CLOSE
 
 UNIT2 = dict(
  title="Unit 2: Family, Nouns, Adjectives and the Verbs Ser, Estar and Tener",
- std="WL.912",
+ std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  topics=[
- dict(t="2.1 Family and Possessives", std="WL.912",
+ dict(t="2.1 Family and Possessives", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Ephesians 6:2 says, Honour thy father and mother; which is the first commandment with promise. In Spanish speaking cultures the family is at the center of life, and learning family words is one of the first steps to friendship.
 
 Family words include la familia for family, el padre or papá for father, la madre or mamá for mother, los padres for parents, el hermano and la hermana for brother and sister, el hijo and la hija for son and daughter, el abuelo and la abuela for grandfather and grandmother, el tío and la tía for uncle and aunt, el primo and la prima for cousin, el esposo and la esposa for husband and wife, and el nieto and la nieta for grandson and granddaughter. When a word can mean both males and females together, Spanish uses the masculine plural, so los hermanos can mean brothers or brothers and sisters, and los padres means parents.
@@ -30,7 +30,7 @@ Your task is to write five sentences about your family and translate two phrases
  ("My brothers in Spanish is:", ["Mis hermanos", "Mi hermanos", "Mis hermano", "Tu hermanos"], 0, "The possessive agrees in number with the noun."),
  ("La casa de mi abuela means:", ["My grandmother's house", "My mother's school", "The house of my aunt", "Our grandfather's house"], 0, "De shows ownership."),
  ]),
- dict(t="2.2 Nouns, Articles, Gender and Number", std="WL.912",
+ dict(t="2.2 Nouns, Articles, Gender and Number", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""In the beginning, God created order, and Spanish grammar also has a pattern. Genesis 1:27 says, So God created man in his own image, in the image of God created he him; male and female created he them. Spanish nouns also have gender. Every noun is either masculine or feminine, even for things.
 
 Most nouns that end in o are masculine, such as el libro, and most that end in a are feminine, such as la mesa. Nouns that end in ción, sión, dad and tad are feminine, such as la canción and la libertad. Common exceptions are el día, el mapa, el problema, el programa, la mano and la foto. Nouns that end in e or a consonant must be learned one at a time, such as el nombre and la clase.
@@ -55,7 +55,7 @@ Your task is to add articles and make plurals. Take the four question check.""" 
  ("The plural of lección is:", ["Lecciones", "Leccións", "Lecciónes", "Leccion"], 0, "Add es after a consonant and drop the accent."),
  ("The plural of lápiz is:", ["Lápices", "Lápizes", "Lápizs", "Lápiz"], 0, "Change z to c and add es."),
  ]),
- dict(t="2.3 Adjectives and Describing People", std="WL.912",
+ dict(t="2.3 Adjectives and Describing People", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Psalm 139:14 says, I will praise thee; for I am fearfully and wonderfully made. Describing people with kind and honest words is a way to honor what God has made.
 
 In Spanish, adjectives usually come after the noun and must agree with it in gender and number. If the noun is feminine, the adjective changes to match. Adjectives that end in o have four forms: alto, alta, altos, altas. Adjectives that end in e or a consonant have the same form for masculine and feminine, such as inteligente, fácil and joven, and add s or es for plural. Examples include el chico alto, la chica alta, los chicos altos, las chicas altas, la madre inteligente and los abuelos inteligentes.
@@ -80,7 +80,7 @@ Your task is to describe a family member with four adjectives and translate two 
  ("Un buen amigo means:", ["A good friend", "A big friend", "A bad friend", "A tall friend"], 0, "Bueno shortens to buen before a masculine singular noun."),
  ("In Spanish, adjectives usually go:", ["After the noun", "Before the noun", "At the end of the sentence only", "Nowhere"], 0, "Descriptive adjectives follow the noun."),
  ]),
- dict(t="2.4 The Verbs Ser, Estar and Tener", std="WL.912",
+ dict(t="2.4 The Verbs Ser, Estar and Tener", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Psalm 100:3 says, Know ye that the LORD he is God: it is he that hath made us, and not we ourselves. Spanish has two verbs that mean to be, ser and estar, and they are not interchangeable. Learning the difference is one of the keys to speaking well.
 
 Use ser for identity, origin, nationality, occupation, characteristics, time, dates and possession. Yo soy estudiante. Ella es de Cuba. Son las tres. Use estar for location, temporary conditions and feelings. Estoy en la iglesia. Mi madre está cansada. Estamos felices. Ser forms: soy, eres, es, somos, son. Estar forms: estoy, estás, está, estamos, están. Compare Él es aburrido, which means he is boring, and Él está aburrido, which means he is bored.

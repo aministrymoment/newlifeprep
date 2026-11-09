@@ -3,9 +3,9 @@ CLOSE = " Excellence, Faith, Purpose. I will see you in the next lesson."
 
 UNIT1 = dict(
  title="Unit 1: Computing Foundations and Digital Citizenship",
- std="SC.912.CS",
+ std="Florida computer science and digital literacy course standards",
  topics=[
- dict(t="1.1 Computers, Hardware and Software", std="SC.912.CS",
+ dict(t="1.1 Computers, Hardware and Software", std="Florida computer science and digital literacy course standards",
  body="""A computer is an electronic machine that accepts input, processes it, stores it and produces output. Every device you use follows this cycle. When you type a key, that is input. The processor works on it. The screen showing the letter is output. Saved files are storage.
 
 Hardware is the physical part of a computer that you can touch. The central processing unit, or CPU, is the brain that carries out instructions. Random access memory, or RAM, is short term working memory that is cleared when the power goes off. Storage, such as a solid state drive, keeps files even when the power is off. The motherboard connects the parts. Input devices include a keyboard, mouse, microphone and camera. Output devices include a monitor, printer and speakers. Phones, tablets and laptops are computers too.
@@ -34,7 +34,7 @@ Your task is to name the computing cycle, compare RAM and storage and compare ha
  ("Eight bits make one:", ["Byte", "Kilobyte", "Gigabyte", "Pixel"], 0, "A byte is eight bits."),
  ("A keyboard is an example of:", ["An input device", "An output device", "System software", "A network"], 0, "A keyboard sends information into the computer."),
  ]),
- dict(t="1.2 Operating Systems, Files and Folders", std="SC.912.CS",
+ dict(t="1.2 Operating Systems, Files and Folders", std="Florida computer science and digital literacy course standards",
  body="""An operating system, or OS, is the main software that manages a computer. It controls the hardware, runs applications, provides the screen you see and organizes files. Common operating systems include Windows, macOS, ChromeOS and Linux for computers, and Android and iOS for phones and tablets. An application must be made to work with the operating system it runs on.
 
 A file is a named collection of information. A folder, also called a directory, holds files and other folders. Good organization saves time. 1 Corinthians 14:40 says, Let all things be done decently and in order. Use clear names such as Science Report Draft 2 instead of New Document. Group files in folders by subject or project. Avoid spaces and symbols that cause trouble when files are shared, and never rely on a vague name like final final.
@@ -65,7 +65,7 @@ Your task is to name the jobs of an operating system, match extensions and descr
  ("Which is an operating system for phones?", ["Android", "Excel", "Chrome extension", "Keyboard"], 0, "Android and iOS run on phones."),
  ("A good backup plan keeps copies:", ["In more than one place", "Only on the desktop", "Only in the recycle bin", "Nowhere"], 0, "Separate copies protect against loss."),
  ]),
- dict(t="1.3 Digital Citizenship, Ethics and Stewardship of Technology", std="SC.912.CS",
+ dict(t="1.3 Digital Citizenship, Ethics and Stewardship of Technology", std="Florida computer science and digital literacy course standards",
  body="""A digital citizen uses technology responsibly, respectfully and safely. The Lord is as concerned with how we behave online as how we behave in person. Matthew 7:12 says, Therefore all things whatsoever ye would that men should do to you, do ye even so to them: for this is the law and the prophets. Ephesians 4:29 says, Let no corrupt communication proceed out of your mouth, but that which is good to the use of edifying, that it may minister grace unto the hearers.
 
 Your digital footprint is the record of everything you post, share, search and click. It can last for years, be copied and be seen by schools, employers and others. Before posting, ask whether it is true, kind and necessary, and whether you would be comfortable if a parent or pastor saw it. Netiquette means good manners online: avoid all capital letters that look like shouting, think before replying, and do not forward rumors.
@@ -96,7 +96,7 @@ Your task is to define digital footprint, list steps for cyberbullying and expla
  ("If you are cyberbullied, a wise first step is to:", ["Save the evidence and tell a trusted adult", "Reply in anger", "Delete everything and say nothing", "Join in"], 0, "Evidence and adult help are important."),
  ("Copyright protection begins:", ["When a work is created", "Only after a fee is paid", "After 50 years", "Never"], 0, "Original works are protected from creation."),
  ]),
- dict(t="1.4 Online Safety, Passwords and Privacy", std="SC.912.CS",
+ dict(t="1.4 Online Safety, Passwords and Privacy", std="Florida computer science and digital literacy course standards",
  body="""The internet is a useful place and also a place with dangers. Proverbs 22:3 says, A prudent man foreseeth the evil, and hideth himself: but the simple pass on, and are punished. Proverbs 4:23 says, Keep thy heart with all diligence; for out of it are the issues of life. Online safety protects your heart, your mind, your information and your family.
 
 Protect personal information such as your full name, address, school, phone number, passwords, birth date and financial details. Never post them publicly, and be careful about what you share even with friends. Turn off location sharing for photos and posts unless you need it. Remember that people online may not be who they say they are. Never meet someone you only know online, and tell a parent or trusted adult if a stranger contacts you or asks for photos or secrets.

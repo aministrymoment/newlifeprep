@@ -3,9 +3,9 @@ from ent_units1 import CLOSE
 
 UNIT4 = dict(
  title="Unit 4: Selling, Customer Service and Operations",
- std="BE.912",
+ std="Florida Entrepreneurship course standards (course 8812100)",
  topics=[
- dict(t="4.1 Honest Selling and Communication", std="BE.912",
+ dict(t="4.1 Honest Selling and Communication", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Selling is helping a person decide to buy something that truly meets a need. It is not tricking or pressuring. Proverbs 16:21 says, The wise in heart shall be called prudent: and the sweetness of the lips increaseth learning. Kind and clear speech makes a good seller.
 
 A simple selling process has five steps. First, greet the customer with respect and a smile. Second, ask questions and listen to learn the need. Third, explain how your product or service meets that need, naming benefits rather than only features. A feature is a fact about the product, such as a waterproof cover. A benefit is what the feature does for the customer, such as keeping notes dry in the rain. Fourth, answer objections honestly. An objection is a concern, such as price or timing. Fifth, ask for the sale politely and thank the customer whether or not they buy.
@@ -32,7 +32,7 @@ Your task is to define three terms, write a pitch and list three honest practice
  ("Honest selling means:", ["Never hiding flaws", "Pressuring unsure people", "Lying about quality", "Targeting the confused"], 0, "Truthfulness builds trust."),
  ("A student sending business messages should:", ["Use an account a parent or guardian can see", "Hide messages from adults", "Share a home address", "Meet strangers alone"], 0, "Safety includes adult oversight."),
  ]),
- dict(t="4.2 Customer Service That Honors God", std="BE.912",
+ dict(t="4.2 Customer Service That Honors God", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Customer service is how you treat people before, during and after a sale. Matthew 20:26 says, whosoever will be great among you, let him be your minister. Great businesses are built by servants. Jesus washed feet, and a business leader can serve with the same humility.
 
 Excellent service includes being on time, being friendly, listening, keeping promises, solving problems quickly and following up. A satisfied customer returns and tells others. An unhappy customer tells even more people. The cost of keeping a customer is usually much lower than the cost of finding a new one.
@@ -59,7 +59,7 @@ Your task is to define three terms, list complaint steps and role play a respons
  ("The first step in handling a complaint is to:", ["Listen without interrupting", "Argue", "Hang up", "Blame the customer"], 0, "Listening shows respect."),
  ("Customer privacy means:", ["Keeping personal details safe", "Posting names online", "Selling phone numbers", "Sharing payment details"], 0, "Protect customer information."),
  ]),
- dict(t="4.3 Operations, Suppliers and Quality", std="BE.912",
+ dict(t="4.3 Operations, Suppliers and Quality", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Operations are the daily activities that produce and deliver your product or service. Proverbs 24:3 and 4 says, Through wisdom is an house builded; and by understanding it is established: And by knowledge shall the chambers be filled with all precious and pleasant riches. Good operations are built on wisdom and understanding.
 
 A supplier is a person or company that provides the materials you need. Choose suppliers who are reliable, fair and honest. Compare prices, quality and delivery time. Keep a list of at least two suppliers for important items so that a problem with one does not stop your business. Pay suppliers on time. Inventory is the stock of goods you hold. Too little inventory loses sales. Too much ties up cash and may spoil or go out of style. Track what you have, what sells and when to reorder.
@@ -86,7 +86,7 @@ Your task is to define three terms, make a checklist and name two safety rules. 
  ("Quality means:", ["Doing what you promised every time", "Charging the highest price", "Working fast only", "Avoiding checks"], 0, "Consistency builds a good name."),
  ("Before selling food, a student should:", ["Check health rules and get adult supervision", "Skip all rules", "Sell to strangers alone", "Ignore safety"], 0, "Food safety rules protect people."),
  ]),
- dict(t="4.4 Technology, Online Business and Safety", std="BE.912",
+ dict(t="4.4 Technology, Online Business and Safety", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Technology lets small businesses reach more people at lower cost. A website, an online store, a payment app, a scheduling tool and a spreadsheet can help you work well. Proverbs 14:15 says, The simple believeth every word: but the prudent man looketh well to his going. Be prudent online.
 
 Online business has special rules. Sellers must describe products honestly, deliver on time and respect refund policies. Many places require disclosure of fees, taxes and shipping. If you collect information from customers, protect it and tell customers how you use it. Federal law has special rules for collecting information from children under thirteen. Do not copy photos, text, music or software without permission, because copyright protects creators. Use original work, licensed work or work in the public domain.

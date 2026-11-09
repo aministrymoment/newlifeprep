@@ -3,9 +3,9 @@ from span_units1 import CLOSE
 
 UNIT6 = dict(
  title="Unit 6: Faith, Future Plans, the Past Tense and Serving Others",
- std="WL.912",
+ std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  topics=[
- dict(t="6.1 Church and Faith Vocabulary", std="WL.912",
+ dict(t="6.1 Church and Faith Vocabulary", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Psalm 23:1 says, The LORD is my shepherd; I shall not want. Many Spanish speaking neighbors in Florida worship in Spanish, and knowing the language of faith helps you pray with them, welcome them and serve them. In this course all Scripture quotations are in the King James Version. Spanish speaking churches often use Spanish translations of the Bible, and the vocabulary below will help you recognize the words they use.
 
 Key words include Dios for God, Jesús or Jesucristo for Jesus Christ, el Señor for the Lord, el Espíritu Santo for the Holy Ghost, la Biblia for the Bible, el evangelio for the gospel, la fe for faith, la esperanza for hope, el amor for love, la gracia for grace, la oración for prayer, la alabanza for praise, la adoración for worship, el pecado for sin, el perdón for forgiveness, la salvación for salvation, el bautismo for baptism, el cielo for heaven and la vida for life.
@@ -30,7 +30,7 @@ Your task is to write ten faith words and five sentences. Take the four question
  ("El culto is:", ["The worship service", "The Bible", "The pastor", "The choir"], 0, "Culto is a worship service."),
  ("Dios es amor means:", ["God is love", "God is good", "God is here", "God is king"], 0, "Amor is love."),
  ]),
- dict(t="6.2 Future Plans and Careers", std="WL.912",
+ dict(t="6.2 Future Plans and Careers", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Proverbs 16:3 says, Commit thy works unto the LORD, and thy thoughts shall be established. Making plans with prayer and wisdom is part of a faithful life, and Spanish gives us several ways to talk about the future.
 
 The most common way is ir a plus an infinitive. Voy a estudiar means I am going to study. Vas a trabajar means you are going to work. Ella va a viajar means she is going to travel. Vamos a orar means we are going to pray. The verb pensar, which means to think or to plan, changes e to ie: pienso, piensas, piensa, pensamos, piensan. Pienso estudiar medicina means I plan to study medicine. Querer and esperar, which means to hope, are also followed by infinitives: Quiero ser maestro. Espero servir a Dios.
@@ -55,7 +55,7 @@ Your task is to conjugate ir a estudiar, write five sentences about your plans a
  ("El próximo año means:", ["Next year", "Last year", "This year", "Every year"], 0, "Próximo means next."),
  ("Mi padre es maestro. Why is there no un before maestro?", ["Occupations after ser usually omit the article", "It is a mistake", "Maestro is feminine", "Ser needs two nouns"], 0, "After ser, an occupation is used without un or una unless it is described."),
  ]),
- dict(t="6.3 Talking About the Past: An Introduction to the Preterite", std="WL.912",
+ dict(t="6.3 Talking About the Past: An Introduction to the Preterite", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Psalm 77:11 says, I will remember the works of the LORD: surely I will remember thy wonders of old. Telling what happened in the past is a way to give testimony, and Spanish uses the preterite tense for completed actions.
 
 For regular ar verbs, drop ar and add é, aste, ó, amos and aron. Hablar becomes hablé, hablaste, habló, hablamos, hablaron. Ayer hablé con mi pastor means yesterday I spoke with my pastor. For regular er and ir verbs, drop the ending and add í, iste, ió, imos and ieron. Comer becomes comí, comiste, comió, comimos, comieron. Vivir becomes viví, viviste, vivió, vivimos, vivieron. Notice the accent marks on the yo and the él, ella and usted forms. The nosotros form of ar and ir verbs looks the same in the present and the preterite, so context tells the meaning.
@@ -80,7 +80,7 @@ Your task is to conjugate cantar and escribir and write five sentences about las
  ("Fui a la iglesia means:", ["I went to church", "I was a church", "He went to church", "I go to church"], 0, "Fui is the yo form of ir in the preterite."),
  ("Anoche means:", ["Last night", "Tomorrow", "Next week", "This morning"], 0, "Anoche is last night."),
  ]),
- dict(t="6.4 Serving Neighbors, Careers and Next Steps", std="WL.912",
+ dict(t="6.4 Serving Neighbors, Careers and Next Steps", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Matthew 28:19 says, Go ye therefore, and teach all nations. Matthew 25:35 says, I was a stranger, and ye took me in. A language is a tool for love, and Spanish can open doors to serve neighbors, share the gospel and work with excellence.
 
 Ways to use Spanish in service include welcoming visitors at church with Bienvenidos and ¿En qué puedo ayudarle?, which means how can I help you; helping with children's ministry or tutoring; reading to others; helping a family with forms or directions; and serving in community outreach and food ministry. Always speak with respect, use usted with elders, listen carefully, ask if you do not understand and never pretend to know more than you do. In important situations, such as legal, medical or financial matters, bring in a trained interpreter and do not guess. Be honest about your level. Say Estoy aprendiendo español, which means I am learning Spanish, and Hable más despacio, por favor, which means speak more slowly, please.

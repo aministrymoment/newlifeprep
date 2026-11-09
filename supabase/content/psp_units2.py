@@ -3,9 +3,9 @@ from psp_units1 import CLOSE
 
 UNIT2 = dict(
  title="Unit 2: Preparing a Speech",
- std="SPC.912.C",
+ std="Florida speech and communication course standards",
  topics=[
- dict(t="2.1 Choosing a Topic, Purpose and Audience", std="SPC.912.C",
+ dict(t="2.1 Choosing a Topic, Purpose and Audience", std="Florida speech and communication course standards",
  body="""Every good speech starts with three questions: What is my topic? What is my purpose? Who is my audience? Proverbs 16:23 says, The heart of the wise teacheth his mouth, and addeth learning to his lips. A wise speaker thinks before speaking.
 
 Choosing a topic is easier when you start with what you know and care about. List your interests, experiences, skills and concerns. Then ask whether the topic is right for the audience, the occasion and the time limit. A topic that is too broad, such as sports, cannot be covered in five minutes. Narrow it step by step: sports, then basketball, then how to improve free throw shooting. A good topic is interesting to you, useful to listeners and possible to research.
@@ -32,7 +32,7 @@ Your task is to narrow a topic, write a purpose and central idea and list audien
  ("A persuasive speech is meant to:", ["Move listeners to believe or do something", "Entertain only", "Teach a skill only", "Fill time"], 0, "Persuasion seeks a change in belief or action."),
  ("Audience analysis helps a speaker:", ["Choose the best way to communicate the truth", "Change the facts", "Avoid preparation", "Insult listeners"], 0, "Adapting the approach is not changing the truth."),
  ]),
- dict(t="2.2 Research and Credible Sources", std="SPC.912.C",
+ dict(t="2.2 Research and Credible Sources", std="Florida speech and communication course standards",
  body="""A speaker earns trust by getting the facts right. Acts 17:22 to 31 records how Paul spoke on Mars' Hill in Athens. He had observed the city, read its poets and knew its altars. Acts 17:23 says, For as I passed by, and beheld your devotions, I found an altar with this inscription, TO THE UNKNOWN GOD. Paul did his homework. Good research gives a speaker substance and confidence.
 
 Begin by listing what you already know and what you need to find out. Then gather information from several kinds of sources. Primary sources are original materials, such as interviews, speeches, letters, data and eyewitness reports. Secondary sources explain or interpret primary sources, such as textbooks, news analysis and encyclopedias. Libraries, school databases, government websites and respected organizations are good places to start. Interviewing an expert, a pastor or a community leader can add fresh material.
@@ -57,7 +57,7 @@ Your task is to compare source types, apply CRAAP and explain how to record sour
  ("A good way to verify a surprising claim is to:", ["Confirm it in at least two good sources", "Share it right away", "Trust the first result", "Ignore the source"], 0, "Cross checking protects accuracy."),
  ("Why should a speaker record the author, title, date and address of a source?", ["To avoid plagiarism and build a bibliography", "To make notes longer", "To impress the audience", "It is never needed"], 0, "Records let you credit and find the source again."),
  ]),
- dict(t="2.3 Organizing: Introduction, Body and Conclusion", std="SPC.912.C",
+ dict(t="2.3 Organizing: Introduction, Body and Conclusion", std="Florida speech and communication course standards",
  body="""A speech without order is like a road without signs. Listeners get lost. Luke 1:3 and 4 shows the value of order. Luke wrote, It seemed good to me also, having had perfect understanding of all things from the very first, to write unto thee in order, most excellent Theophilus, That thou mightest know the certainty of those things, wherein thou hast been instructed. A clear order helps people understand and remember.
 
 Most speeches have three parts: introduction, body and conclusion. The introduction does four jobs. It gets attention with a story, a surprising fact, a question or a short quotation. It states the topic and why it matters. It builds the speaker's credibility by showing why the audience can trust what follows. It previews the main points. Avoid an apology such as, I am not very good at this.
@@ -86,7 +86,7 @@ Your task is to list the jobs of an introduction, name patterns and describe a c
  ("A strong conclusion should:", ["Restate the central idea and end with a memorable final thought", "Add three new points", "Apologize", "Trail off"], 0, "A conclusion ties the speech together."),
  ("The pattern that describes a need and then a remedy is:", ["Problem and solution", "Chronological", "Spatial", "Topical"], 0, "It names the problem first and then the fix."),
  ]),
- dict(t="2.4 Outlines, Transitions and Supporting Material", std="SPC.912.C",
+ dict(t="2.4 Outlines, Transitions and Supporting Material", std="Florida speech and communication course standards",
  body="""An outline is the skeleton of a speech. Ecclesiastes 12:10 says, The preacher sought to find out acceptable words: and that which was written was upright, even words of truth. Careful planning leads to words that are acceptable and true.
 
 A full sentence outline helps you plan, and a brief key word outline helps you speak. A standard outline uses Roman numerals for main points (I, II, III), capital letters for subpoints (A, B, C) and numbers for details (1, 2, 3). Each level must follow the rule of subordination, meaning that the lower level supports the higher level. It also follows the rule of division: if there is an A, there must be a B. Write the specific purpose and central idea at the top. Label the introduction, body and conclusion.

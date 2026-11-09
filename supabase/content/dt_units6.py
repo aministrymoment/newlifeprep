@@ -3,9 +3,9 @@ from dt_units1 import CLOSE
 
 UNIT6 = dict(
  title="Unit 6: Digital Media, Careers, Ministry Technology and Your Portfolio",
- std="SC.912.CS",
+ std="Florida computer science and digital literacy course standards",
  topics=[
- dict(t="6.1 Digital Media: Images, Audio and Video", std="SC.912.CS",
+ dict(t="6.1 Digital Media: Images, Audio and Video", std="Florida computer science and digital literacy course standards",
  body="""Digital media includes images, audio and video created or shared with technology. Psalm 33:3 says, Sing unto him a new song; play skilfully with a loud noise. God is pleased when we use our gifts skillfully, and media is one way to share testimonies, teaching and worship.
 
 Start with images. A digital image is made of tiny squares of color called pixels. Resolution is the number of pixels, and more pixels give more detail but a larger file. A raster image, such as a photograph, is made of pixels and loses quality when enlarged too much. A vector image, such as a logo, is made of shapes and mathematical lines, and it can be resized without losing quality. Common formats include JPG for photographs, PNG for graphics and images with transparent areas, GIF for simple animation and SVG for vector graphics. Compression makes files smaller, and some compression loses a little quality.
@@ -38,7 +38,7 @@ Your task is to compare raster and vector, list audio tips and explain captions 
  ("Adding captions to a video helps:", ["Viewers who are deaf or have the sound off", "Make the file disappear", "Block copyright", "Reduce frame rate"], 0, "Captions improve access."),
  ("Before posting an image of a minor, you should:", ["Get permission from a parent or guardian", "Post it quickly", "Add a filter only", "Ignore the question"], 0, "Permission protects children and families."),
  ]),
- dict(t="6.2 Technology Careers and Certifications", std="SC.912.CS",
+ dict(t="6.2 Technology Careers and Certifications", std="Florida computer science and digital literacy course standards",
  body="""Technology touches every career, from medicine and ministry to farming and music. Learning it well opens doors. Proverbs 18:16 says, A man's gift maketh room for him, and bringeth him before great men. Skills developed with diligence can create opportunity and a place to serve.
 
 Know some technology careers. A software developer designs and writes programs and apps. A web developer builds websites. A network administrator keeps networks running. A cybersecurity analyst protects systems from attack. An IT support specialist helps people solve technical problems. A data analyst studies information to answer questions. A database administrator manages stored data. A graphic designer creates visuals. A video producer or audio engineer creates media. A computer support teacher or instructional technologist helps others learn. Artificial intelligence and robotics fields are growing quickly. Many ministries also need people who can manage websites, sound, live streaming, giving platforms and member records.
@@ -67,7 +67,7 @@ Your task is to describe three careers, name skills and explain two paths. Take 
  ("The Occupational Outlook Handbook is published by the:", ["Bureau of Labor Statistics", "Cable company", "Weather service", "Game studio"], 0, "It lists career information."),
  ("An example of an entry level support certification is:", ["CompTIA A+", "A driver license", "A library card", "A score card"], 0, "A+ is for IT support."),
  ]),
- dict(t="6.3 Technology for Ministry and Service", std="SC.912.CS",
+ dict(t="6.3 Technology for Ministry and Service", std="Florida computer science and digital literacy course standards",
  body="""Technology is a servant of the mission. Matthew 28:19 says, Go ye therefore, and teach all nations. Every generation has used the tools of its day, from scrolls to the printing press to radio, to carry the gospel. Today those tools include websites, video, streaming, social media, texting, email and apps. A faithful steward asks how each tool can help serve people and honor God.
 
 Look at common ministry uses. A church website shares service times, the address, beliefs, events and ways to contact the church. Live streaming and recorded video let those who are sick, traveling or far away take part. Presentation software displays lyrics and Scripture. Sound systems and microphones need to be set up and tested. Email and text messaging keep members informed. Online giving gives members a secure way to give, and giving records must be handled carefully. Calendar tools help schedule volunteers. Spreadsheets and databases track attendance, visitors and needs. Social media shares encouragement and invites people.
@@ -96,7 +96,7 @@ Your task is to list ways technology serves ministry, describe safeguards and ex
  ("Churches that display lyrics or stream music should:", ["Check their copyright license", "Ignore copyright", "Delete all music", "Sell the music"], 0, "Licensing respects creators."),
  ("Private prayer requests should be:", ["Protected unless approved to share", "Posted publicly", "Sent to strangers", "Sold"], 0, "Confidences must be kept."),
  ]),
- dict(t="6.4 Your Digital Portfolio", std="SC.912.CS",
+ dict(t="6.4 Your Digital Portfolio", std="Florida computer science and digital literacy course standards",
  body="""A digital portfolio is an organized collection of your best work that shows what you know and can do. Colleges, employers and ministry leaders often want to see evidence, not only a list of classes. Colossians 3:23 says, And whatsoever ye do, do it heartily, as to the Lord, and not unto men. A portfolio is a place to present your diligent work with honesty and humility.
 
 Choose what to include. A portfolio might contain a short biography, a resume, a writing sample, a formatted report or letter, a spreadsheet with formulas and a chart, a presentation, a simple web page, photos, audio or video you created, certificates and a list of service and leadership. Select work that shows variety and growth, and make sure everything is your own or properly credited. Do not include private information, other people's images without permission, passwords or anything you would not want an employer to see.

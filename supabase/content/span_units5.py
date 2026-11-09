@@ -3,9 +3,9 @@ from span_units1 import CLOSE
 
 UNIT5 = dict(
  title="Unit 5: Home, Health, Weather and the Spanish Speaking World",
- std="WL.912",
+ std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  topics=[
- dict(t="5.1 The Home and Prepositions of Location", std="WL.912",
+ dict(t="5.1 The Home and Prepositions of Location", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Proverbs 24:3 says, Through wisdom is an house builded; and by understanding it is established. A home is a place of rest, family and hospitality, and describing your home in Spanish is a practical skill.
 
 Rooms in a house include la casa for house, la sala for living room, la cocina for kitchen, el comedor for dining room, el dormitorio or la habitación for bedroom, el baño for bathroom, el garaje for garage, el jardín for garden or yard and el patio for patio. Furniture and objects include la cama for bed, el sofá for sofa, la mesa for table, la silla for chair, el escritorio for desk, la lámpara for lamp, el televisor for television and la ventana for window. Many families have a place for a Bible or a picture of the family.
@@ -30,7 +30,7 @@ Your task is to name rooms and objects and write sentences about your home. Take
  ("El libro ___ sobre la mesa.", ["está", "es", "tiene", "hay"], 0, "The location of a known thing uses estar."),
  ("The word for bedroom is:", ["Dormitorio", "Comedor", "Garaje", "Baño"], 0, "Dormitorio means bedroom."),
  ]),
- dict(t="5.2 The Body, Health and the Verb Doler", std="WL.912",
+ dict(t="5.2 The Body, Health and the Verb Doler", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Proverbs 17:22 says, A merry heart doeth good like a medicine: but a broken spirit drieth the bones. Knowing the words for the body and for how you feel lets you ask for help and care for others who speak Spanish. These lessons teach vocabulary and are not medical advice. If you or someone you care for is sick or hurt, tell a parent, guardian or doctor, or call 911 in an emergency.
 
 Parts of the body include la cabeza for head, el pelo for hair, la cara for face, los ojos for eyes, la nariz for nose, la boca for mouth, los oídos for ears, el cuello for neck, el brazo for arm, la mano for hand, el dedo for finger, el pecho for chest, la espalda for back, el estómago for stomach, la pierna for leg, la rodilla for knee and el pie for foot.
@@ -53,7 +53,7 @@ Your task is to name ten body parts, write four sentences with doler and write a
  ("Tengo fiebre means:", ["I have a fever", "I have a cold shirt", "I am happy", "I have a cough"], 0, "Fiebre is fever."),
  ("Who should you tell first if you feel sick at home?", ["A parent, guardian or doctor", "No one", "Only a friend", "Only a website"], 0, "Always seek real help from a trusted adult or doctor."),
  ]),
- dict(t="5.3 Weather, Seasons and Hobbies", std="WL.912",
+ dict(t="5.3 Weather, Seasons and Hobbies", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Psalm 19:1 says, The heavens declare the glory of God; and the firmament sheweth his handywork. Weather, seasons and the things we enjoy doing are part of everyday conversation in any language.
 
 To describe the weather, Spanish uses hacer and other verbs. ¿Qué tiempo hace? asks what is the weather. Hace calor means it is hot. Hace frío means it is cold. Hace sol means it is sunny. Hace viento means it is windy. Hace buen tiempo and hace mal tiempo mean it is good or bad weather. Llueve means it is raining, from the verb llover. Nieva means it is snowing. Está nublado means it is cloudy. Hay tormenta means there is a storm. In Florida we know the words huracán for hurricane and tormenta tropical for tropical storm. In hurricane season, listen to local officials and prepare with your family.
@@ -78,7 +78,7 @@ Your task is to describe the weather and write five sentences about your hobbies
  ("The yo form of jugar is:", ["Juego", "Jugo", "Juega", "Jugamos"], 0, "Jugar changes u to ue."),
  ("We use tocar for:", ["Playing an instrument", "Playing a sport", "Eating", "Running"], 0, "Tocar la guitarra means to play guitar."),
  ]),
- dict(t="5.4 The Spanish Speaking World and Hispanic Florida", std="WL.912",
+ dict(t="5.4 The Spanish Speaking World and Hispanic Florida", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Revelation 7:9 describes a great multitude, which no man could number, of all nations, and kindreds, and people, and tongues, standing before the throne. Learning about Spanish speaking cultures prepares us to love and serve people from many nations.
 
 Spanish is an official language in about twenty countries. In North America it is spoken in México. In Central America it is spoken in Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica and Panamá. In the Caribbean it is spoken in Cuba, la República Dominicana and Puerto Rico, which is part of the United States. In South America it is spoken in Colombia, Venezuela, Ecuador, Perú, Bolivia, Chile, Argentina, Uruguay and Paraguay. In Europe it is spoken in España, and in Africa in Guinea Ecuatorial. There are also tens of millions of Spanish speakers in the United States.

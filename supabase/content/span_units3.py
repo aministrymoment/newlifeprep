@@ -3,9 +3,9 @@ from span_units1 import CLOSE
 
 UNIT3 = dict(
  title="Unit 3: School, Daily Life and Present Tense Verbs",
- std="WL.912",
+ std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  topics=[
- dict(t="3.1 School Vocabulary and Classroom Commands", std="WL.912",
+ dict(t="3.1 School Vocabulary and Classroom Commands", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Proverbs 4:7 says, Wisdom is the principal thing; therefore get wisdom: and with all thy getting get understanding. School is a place to gain wisdom, and learning the words of the classroom helps you study in Spanish.
 
 Places and people at school include la escuela for school, el colegio for school or high school in many countries, el salón de clase for classroom, la biblioteca for library, el maestro and la maestra for teacher, el estudiante and la estudiante for student, el director and la directora for principal and el compañero and la compañera for classmate. School subjects include las matemáticas, el inglés, el español, la historia, la ciencia, la biología, el arte, la música, la educación física and la religión.
@@ -32,7 +32,7 @@ Your task is to name subjects and objects, write four sentences with hay and wri
  ("Abre el libro means:", ["Open the book", "Close the book", "Read the book", "Buy the book"], 0, "Abre is the command to open."),
  ("No entiendo means:", ["I do not understand", "I do not know him", "I do not have it", "I do not want it"], 0, "Entiendo comes from entender."),
  ]),
- dict(t="3.2 Regular AR Verbs in the Present Tense", std="WL.912",
+ dict(t="3.2 Regular AR Verbs in the Present Tense", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Colossians 3:23 says, And whatsoever ye do, do it heartily, as to the Lord, and not unto men. Verbs are the action words of a language, and knowing how to use them lets you say what you do each day.
 
 Spanish verbs have an infinitive form that ends in ar, er or ir. To conjugate a regular ar verb, drop the ar and add the endings o, as, a, amos and an. For hablar, which means to speak or talk, the forms are yo hablo, tú hablas, él or ella or usted habla, nosotros hablamos and ellos or ellas or ustedes hablan. The verb ending shows who is doing the action, so Spanish speakers often leave out the subject pronoun. Hablo español means I speak Spanish.
@@ -57,7 +57,7 @@ Your task is to conjugate cantar and write five sentences, two of them negative.
  ("To say I do not work, say:", ["No trabajo", "Trabajo no", "No trabajas", "Yo no trabajan"], 0, "Put no before the verb."),
  ("Necesito estudiar means:", ["I need to study", "I study", "I needed it", "He needs to study"], 0, "Necesito is the yo form of necesitar."),
  ]),
- dict(t="3.3 Regular ER and IR Verbs in the Present Tense", std="WL.912",
+ dict(t="3.3 Regular ER and IR Verbs in the Present Tense", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Proverbs 2:6 says, For the LORD giveth wisdom: out of his mouth cometh knowledge and understanding. As you learn more verbs, you can say more about your life.
 
 To conjugate a regular er verb, drop the er and add the endings o, es, e, emos and en. For comer, which means to eat, the forms are como, comes, come, comemos and comen. To conjugate a regular ir verb, drop the ir and add o, es, e, imos and en. For vivir, which means to live, the forms are vivo, vives, vive, vivimos and viven. The only difference between er and ir verbs is the nosotros form, which ends in emos for er verbs and imos for ir verbs.
@@ -82,7 +82,7 @@ Your task is to conjugate comer and vivir, write five sentences and translate on
  ("Escribir means:", ["To write", "To read", "To eat", "To run"], 0, "Escribir is to write."),
  ("The yo form of hacer is:", ["Hago", "Hazo", "Hace", "Hacemos"], 0, "Hacer is irregular in the yo form."),
  ]),
- dict(t="3.4 Telling Time and the Daily Schedule", std="WL.912",
+ dict(t="3.4 Telling Time and the Daily Schedule", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Ecclesiastes 3:1 says, To every thing there is a season, and a time to every purpose under the heaven. Knowing how to tell time lets you plan your day and meet people on time in any language.
 
 To ask the time, say ¿Qué hora es? For one o'clock, say Es la una. For all other hours, say Son las dos, Son las tres, Son las cuatro and so on. To add minutes, use y, as in Son las tres y diez, which is 3:10. A quarter past is y cuarto, as in Son las cinco y cuarto. Half past is y media, as in Son las seis y media. To subtract minutes, use menos, as in Son las ocho menos veinte, which is 7:40, and Son las doce menos cuarto, which is 11:45. Noon is el mediodía and midnight is la medianoche. Use de la mañana for AM until noon, de la tarde from noon until evening and de la noche at night.

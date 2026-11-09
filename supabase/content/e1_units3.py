@@ -2,9 +2,9 @@ CLOSE = " Excellence, Faith, Purpose. I will see you in the next lesson."
 
 UNIT5 = dict(
  title="Unit 5: Writing Workshop",
- std="ELA.9.C.1.3, ELA.9.C.1.4, ELA.9.C.1.1 (verify), ELA.9.C.1.2 (verify), ELA.9.C.1.5 (verify)",
+ std="ELA.9.C.1.3, ELA.9.C.1.4, ELA.9.C.1.1, ELA.9.C.1.2, ELA.9.C.1.5",
  topics=[
- dict(t="5.1 Planning and Thesis", std="ELA.9.C.1.3, ELA.9.C.1.4, ELA.9.C.1.1 (verify)",
+ dict(t="5.1 Planning and Thesis", std="ELA.9.C.1.3, ELA.9.C.1.4, ELA.9.C.1.1",
  body="""Writing begins before the first sentence. Choose a topic, know your audience and purpose, gather ideas, and write a thesis statement.
 
 A thesis states your main point in one or two sentences. In an expository essay it explains. In an argumentative essay it takes a position.
@@ -33,7 +33,7 @@ Planning feels slow, but it saves time. A good plan makes the writing flow.""" +
  ("Brainstorming means:",["Listing ideas without judging","Editing","Publishing","Copying"],0,"Brainstorming generates ideas."),
  ("In a five paragraph essay the thesis usually appears:",["End of the introduction","In the conclusion only","In the title only","Nowhere"],0,"It ends the introduction."),
  ]),
- dict(t="5.2 Drafting Paragraphs", std="ELA.9.C.1.3, ELA.9.C.1.4, ELA.9.C.1.2 (verify)",
+ dict(t="5.2 Drafting Paragraphs", std="ELA.9.C.1.3, ELA.9.C.1.4, ELA.9.C.1.2",
  body="""A strong body paragraph has a topic sentence, evidence, reasoning and a closing sentence. Transitions connect ideas.
 
 Your task: draft one body paragraph (6 to 8 sentences) for your outline from the last lesson. Use the pattern claim, evidence, reasoning.""",
@@ -60,7 +60,7 @@ Do not wait for the perfect sentence. Write, then improve.""" + CLOSE,
  ("Reasoning is:",["Explaining how evidence proves the point","A list of titles","The hook","The title"],0,"Reasoning connects evidence to claim."),
  ("A strong introduction has:",["Hook, background and thesis","Only a title","Only evidence","Only a quote"],0,"Hook, background and thesis."),
  ]),
- dict(t="5.3 Revising", std="ELA.9.C.1.3, ELA.9.C.1.4, ELA.9.C.1.5 (verify)",
+ dict(t="5.3 Revising", std="ELA.9.C.1.3, ELA.9.C.1.4, ELA.9.C.1.5",
  body="""Revising means improving ideas, organization and style. It is different from editing, which fixes grammar and spelling.
 
 Revision checklist: Is my thesis clear? Does each paragraph support it? Is there enough evidence and reasoning? Are my transitions smooth? Is my voice consistent?
@@ -87,7 +87,7 @@ Revision is not a sign of failure. It is how good writing becomes great.""" + CL
  ("Replacing 'a lot of people' with 'hundreds of students' is:",["Making language more specific","Cutting","Moving","Editing spelling"],0,"Specific words improve writing."),
  ("Reading your essay aloud helps you:",["Catch awkward or missing words","Skip revising","Count words","Pick a title"],0,"Your ears catch problems."),
  ]),
- dict(t="5.4 Editing and Publishing", std="ELA.9.C.1.5 (verify), ELA.9.C.3.1",
+ dict(t="5.4 Editing and Publishing", std="ELA.9.C.1.5, ELA.9.C.3.1",
  body="""Editing checks conventions: spelling, capitalization, punctuation, grammar and format. Publishing means preparing your final copy to share.
 
 Editing checklist: complete sentences, subject and verb agreement, capitalization, commas, apostrophes, quotation marks, spelling, and consistent tense.

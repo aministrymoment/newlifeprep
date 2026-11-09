@@ -3,9 +3,9 @@ CLOSE = " Excellence, Faith, Purpose. I will see you in the next lesson."
 
 UNIT1 = dict(
  title="Unit 1: Sounds, Greetings and Introductions",
- std="WL.912",
+ std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  topics=[
- dict(t="1.1 The Spanish Alphabet and Pronunciation", std="WL.912",
+ dict(t="1.1 The Spanish Alphabet and Pronunciation", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Spanish is spoken by more than 400 million people and is one of the most useful languages for ministry, work and community in Florida. The Bible tells us that God cares about every language. Genesis 11:9 records that the LORD did confound the language of all the earth, and today we learn another language so that we can bless our neighbors. Spanish is a very regular language, so once you learn the sounds you can read almost any word aloud.
 
 The Spanish alphabet has 27 letters: the 26 letters of English plus the letter ñ. The five vowels always keep the same sound. A sounds like ah, E like eh, I like ee, O like oh and U like oo. Some consonants differ from English. The letter h is always silent, so hola sounds like OH lah. The letter j sounds like an English h, so jugo sounds like HOO go. The double l, ll, sounds like the English y, so llamo sounds like YAH mo. The ñ sounds like ny in canyon, so español sounds like es pah NYOL. The rr is rolled with the tongue. The letters b and v sound almost the same. The letter combination qu sounds like k, so queso sounds like KEH so. The letter g before e or i sounds like an English h, as in gente.
@@ -28,7 +28,7 @@ Your task is to say the vowels, pronounce five words and explain the accent mark
  ("The letter ñ sounds like:", ["ny in canyon", "n in no", "m in man", "l in love"], 0, "The ñ makes a ny sound."),
  ("The vowel U in Spanish sounds like:", ["oo in food", "uh in cup", "yoo in use", "oh in go"], 0, "Spanish vowels are always the same sound."),
  ]),
- dict(t="1.2 Greetings, Farewells and Courtesy", std="WL.912",
+ dict(t="1.2 Greetings, Farewells and Courtesy", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Proverbs 15:1 says, A soft answer turneth away wrath: but grievous words stir up anger. Kind greetings open the door to friendship in every language, and Spanish speakers value polite, warm greetings.
 
 Greetings depend on the time of day. Buenos días means good morning, buenas tardes means good afternoon and buenas noches means good evening or good night. Hola means hello and is used any time. To ask how someone is, use ¿Cómo estás? with a friend or someone younger, and ¿Cómo está usted? with an older person or someone you respect. Spanish has two ways to say you. Tú is informal and used with friends, family and children. Usted is formal and used with elders, teachers, pastors and strangers. When in doubt, use usted.
@@ -55,7 +55,7 @@ Your task is to write two short greetings, one formal and one informal. Take the
  ("Which form of you is formal?", ["Usted", "Tú", "Yo", "Nosotros"], 0, "Usted shows respect."),
  ("Hasta mañana means:", ["See you tomorrow", "Good evening", "Pleased to meet you", "Excuse me"], 0, "Mañana means tomorrow."),
  ]),
- dict(t="1.3 Introducing Yourself, Countries and Nationalities", std="WL.912",
+ dict(t="1.3 Introducing Yourself, Countries and Nationalities", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""On the day of Pentecost the people were amazed because every man heard them speak in his own language, as Acts 2:6 records. Introducing yourself in someone's own language shows honor and love.
 
 To say your name, use Me llamo and your name, which means my name is. To ask someone's name, say ¿Cómo te llamas? with a friend and ¿Cómo se llama usted? with someone you respect. To say where you are from, use Soy de, as in Soy de Florida. To ask, say ¿De dónde eres? Other helpful phrases are Tengo quince años for I am fifteen years old, and ¿Cuántos años tienes? for how old are you?
@@ -80,7 +80,7 @@ Your task is to write a four sentence introduction and conjugate ser. Take the f
  ("The pronoun nosotros means:", ["We", "They", "You all", "I"], 0, "Nosotros is we."),
  ("A woman from Mexico says:", ["Soy mexicana", "Soy mexicano", "Eres mexicana", "Son mexicana"], 0, "Nationality adjectives agree with the speaker."),
  ]),
- dict(t="1.4 Numbers, Days, Months and Dates", std="WL.912",
+ dict(t="1.4 Numbers, Days, Months and Dates", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Psalm 90:12 says, So teach us to number our days, that we may apply our hearts unto wisdom. Numbers, days and dates are part of every conversation.
 
 The numbers from zero to ten are cero, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve and diez. Eleven to fifteen are once, doce, trece, catorce and quince. Sixteen to nineteen are dieciséis, diecisiete, dieciocho and diecinueve. Twenty is veinte, and twenty one to twenty nine are veintiuno, veintidós, veintitrés and so on. The tens are treinta for 30, cuarenta for 40, cincuenta for 50, sesenta for 60, setenta for 70, ochenta for 80 and noventa for 90. From thirty onward the numbers are written as separate words joined by y, as in treinta y cinco for 35. One hundred is cien.

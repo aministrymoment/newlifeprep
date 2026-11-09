@@ -3,9 +3,9 @@ from ent_units1 import CLOSE
 
 UNIT3 = dict(
  title="Unit 3: Startup Money, Budgets, Break Even and Records",
- std="BE.912, SS.912.FL",
+ std="Florida Entrepreneurship course standards (course 8812100), SS.912.FL",
  topics=[
- dict(t="3.1 Startup Costs and Funding", std="BE.912",
+ dict(t="3.1 Startup Costs and Funding", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Before you begin a business, count the cost. Luke 14:28 says, For which of you, intending to build a tower, sitteth not down first, and counteth the cost, whether he have sufficient to finish it? Careful planning prevents painful surprises.
 
 Startup costs are the one time expenses needed to open a business, such as equipment, supplies, a website, permits, insurance and your first inventory. Operating costs are the ongoing expenses, such as rent, utilities, advertising and wages. List every expense, add a cushion for the unexpected, and decide how much money you need before the first sale.
@@ -30,7 +30,7 @@ Your task is to define two terms, list ten startup costs and choose a wise fundi
  ("Proverbs 22:7 warns that the borrower is:", ["Servant to the lender", "Free", "Rich", "The owner"], 0, "Debt creates obligation."),
  ("The safest beginner funding is usually:", ["Personal savings", "A large risky loan", "A stranger's offer", "Unwritten promises"], 0, "Savings carry no repayment debt."),
  ]),
- dict(t="3.2 Revenue, Expenses, Profit and Budgets", std="BE.912",
+ dict(t="3.2 Revenue, Expenses, Profit and Budgets", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Proverbs 27:23 says, Be thou diligent to know the state of thy flocks, and look well to thy herds. A business owner must know the state of the money. This means understanding revenue, expenses, profit and a budget.
 
 Revenue is the money received from sales. Expenses are the costs of running the business. Profit equals revenue minus expenses. If you earn 500 dollars in revenue and spend 350 dollars, the profit is 150 dollars. If expenses are larger than revenue, the result is a loss. Gross profit is revenue minus the direct cost of goods sold. Net profit is what remains after all expenses, including overhead and taxes.
@@ -55,7 +55,7 @@ Your task is to define four terms, find a profit and create a budget. Take the f
  ("If expenses exceed revenue the result is a:", ["Loss", "Profit", "Grant", "Dividend"], 0, "Expenses above revenue are a loss."),
  ("Assets are:", ["What a business owns", "What it owes", "Its taxes", "Its logo"], 0, "Liabilities are what it owes."),
  ]),
- dict(t="3.3 Break Even Analysis and Cash Flow", std="BE.912",
+ dict(t="3.3 Break Even Analysis and Cash Flow", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""A business must know how much it needs to sell to cover its costs. The break even point is the level of sales where revenue equals total costs, so profit is zero. Selling more than the break even point creates profit. Proverbs 21:5 says, The thoughts of the diligent tend only to plenty; but of every one that is hasty only to want.
 
 The break even formula in units is fixed costs divided by the contribution margin per unit. The contribution margin per unit is the selling price minus the variable cost per unit. Example: a student sells handmade candles for 10 dollars each. Each candle costs 4 dollars in materials. Fixed costs for the month are 600 dollars. The contribution margin is 10 minus 4, which is 6 dollars. The break even point is 600 divided by 6, which is 100 candles. Selling 100 candles covers all costs. Selling 150 candles gives a profit of 50 times 6, which is 300 dollars.

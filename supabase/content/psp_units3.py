@@ -3,9 +3,9 @@ from psp_units1 import CLOSE
 
 UNIT3 = dict(
  title="Unit 3: Delivering a Speech",
- std="SPC.912.C",
+ std="Florida speech and communication course standards",
  topics=[
- dict(t="3.1 Voice: Volume, Rate, Pitch and Pause", std="SPC.912.C",
+ dict(t="3.1 Voice: Volume, Rate, Pitch and Pause", std="Florida speech and communication course standards",
  body="""The voice is a speaker's main instrument. Proverbs 15:23 says, A man hath joy by the answer of his mouth: and a word spoken in due season, how good is it! A well used voice carries the message clearly and warmly.
 
 Five qualities of the voice can be shaped. Volume is how loud or soft you speak. Speak loudly enough for the person in the back row, and use a microphone properly when one is provided. Drop the volume at times for emphasis, since a quiet line can be powerful. Rate is the speed of speech. Conversation usually runs about 120 to 150 words per minute. Speaking too fast makes words run together, and too slow can bore the audience. Vary the rate, slowing for key ideas and moving faster in a story. Pitch is how high or low the voice is. A voice with no change in pitch sounds flat, which is called a monotone. Let the pitch rise and fall naturally, as in warm conversation. Tone is the feeling in the voice, such as joy, concern or conviction. Pauses are silent moments that let listeners absorb a point. A pause before a key sentence builds interest, and a pause after it lets it sink in. Do not fear silence.
@@ -30,7 +30,7 @@ Your task is to define voice qualities, give the usual rate and describe ways to
  ("A pause before or after a key idea helps by:", ["Letting listeners absorb the point", "Wasting time", "Showing fear", "Hiding mistakes"], 0, "Silence gives emphasis."),
  ("Shaping sounds clearly with the lips, tongue and teeth is:", ["Articulation", "Volume", "Rate", "Pitch"], 0, "Good articulation keeps word endings clear."),
  ]),
- dict(t="3.2 Body Language, Eye Contact and Presence", std="SPC.912.C",
+ dict(t="3.2 Body Language, Eye Contact and Presence", std="Florida speech and communication course standards",
  body="""Listeners watch as well as listen. Acts 4:13 says, Now when they saw the boldness of Peter and John, and perceived that they were unlearned and ignorant men, they marvelled; and they took knowledge of them, that they had been with Jesus. Boldness, calm and sincerity show in a speaker's whole presence.
 
 Nonverbal delivery includes posture, movement, gestures, facial expression, eye contact and appearance. Posture should be upright but relaxed, with feet about shoulder width apart and weight balanced. Do not lean on the podium or sway. Movement should have a purpose. Step toward the audience to make a point, or move to a new spot at a transition. Avoid pacing without a reason. Gestures should be natural and match the words, such as holding up three fingers for three points or opening the hands to welcome. Avoid distracting habits, such as jingling keys, tugging at clothing or tapping a pen. Keep hands out of pockets and off the podium when you can.
@@ -61,7 +61,7 @@ Your task is to list nonverbal parts, use eye contact and explain presence. Take
  ("Which is a distracting habit?", ["Jingling keys or tapping a pen", "Standing upright", "Smiling at a welcome", "Pausing"], 0, "Nervous habits pull attention away."),
  ("Appearance matters for a speaker because it:", ["Signals respect for the audience and occasion", "Replaces preparation", "Decides the topic", "Is never noticed"], 0, "Fitting dress shows respect."),
  ]),
- dict(t="3.3 Practice, Notes and Handling Mistakes", std="SPC.912.C",
+ dict(t="3.3 Practice, Notes and Handling Mistakes", std="Florida speech and communication course standards",
  body="""Great speakers are made in practice. 2 Timothy 2:15 says, Study to shew thyself approved unto God, a workman that needeth not to be ashamed, rightly dividing the word of truth. Diligence in preparation is a form of respect for God and for the people who listen.
 
 There are four common ways to deliver a speech. A manuscript speech is read word for word. It is exact but can sound stiff, and it cuts eye contact. A memorized speech is recited from memory. It can look polished, but a lapse can cause panic. An impromptu speech is given with little or no preparation, such as answering a question in class. An extemporaneous speech is carefully prepared and practiced, but delivered from a brief outline in natural words. This is the style most speakers use because it is both organized and conversational.
@@ -90,7 +90,7 @@ Your task is to compare delivery styles, describe practice stages and tell what 
  ("If you lose your place during a speech, the best response is to:", ["Pause, breathe, check your notes and continue", "Run out of the room", "Apologize for five minutes", "Start over loudly"], 0, "A calm recovery earns respect."),
  ("A speech given with little or no preparation is:", ["Impromptu", "Manuscript", "Memorized", "Extemporaneous"], 0, "Impromptu means without preparation."),
  ]),
- dict(t="3.4 Visual Aids and Technology", std="SPC.912.C",
+ dict(t="3.4 Visual Aids and Technology", std="Florida speech and communication course standards",
  body="""A picture can make an idea clear in a moment. Habakkuk 2:2 says, Write the vision, and make it plain upon tables, that he may run that readeth it. Visual aids make a message plain, but they must serve the speech and not take it over.
 
 Visual aids come in many forms. Objects and models let the audience see the real thing. Charts and graphs show numbers and trends. Diagrams explain how something works. Photographs and short video clips show places and events. Slides combine text and images. A handout gives details to take home. Choose a visual only if it helps the audience understand or remember. If it does not, leave it out.

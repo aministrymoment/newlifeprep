@@ -3,9 +3,9 @@ from dt_units1 import CLOSE
 
 UNIT5 = dict(
  title="Unit 5: Computational Thinking, Coding, Web and Data",
- std="SC.912.CS",
+ std="Florida computer science and digital literacy course standards",
  topics=[
- dict(t="5.1 Algorithms and Problem Solving", std="SC.912.CS",
+ dict(t="5.1 Algorithms and Problem Solving", std="Florida computer science and digital literacy course standards",
  body="""Computer science is not only about using computers. It is about solving problems with clear, logical steps. Proverbs 24:3 says, Through wisdom is an house builded; and by understanding it is established. Good solutions are built with wisdom and understanding.
 
 Computational thinking is a way of solving problems that a person or a computer can carry out. It has four main parts. Decomposition means breaking a big problem into smaller, manageable parts. Pattern recognition means noticing similarities and repeated ideas. Abstraction means focusing on what matters and ignoring unneeded detail. Algorithm design means writing clear steps to solve the problem.
@@ -34,7 +34,7 @@ Your task is to define the four parts, describe a flowchart and explain debuggin
  ("In a flowchart, a diamond usually shows a:", ["Decision", "Start", "Printer", "Password"], 0, "Diamonds mark decisions."),
  ("Finding and fixing errors in a program is:", ["Debugging", "Compiling only", "Formatting", "Backing up"], 0, "Debugging removes bugs."),
  ]),
- dict(t="5.2 Programming Concepts", std="SC.912.CS",
+ dict(t="5.2 Programming Concepts", std="Florida computer science and digital literacy course standards",
  body="""A program is a set of instructions written in a programming language so a computer can carry out a task. Python, JavaScript, Java and Scratch are popular languages. Each has rules, called syntax, that must be followed exactly, because a computer does only what it is told. Proverbs 2:6 says, For the LORD giveth wisdom: out of his mouth cometh knowledge and understanding. Learn patiently, and ask God for wisdom.
 
 The same big ideas appear in nearly every language. A variable is a named place to store a value, such as score equals 85 or name equals Maria. A data type describes the kind of value, such as an integer for whole numbers, a float for decimals, a string for text and a Boolean for true or false. Operators perform actions: arithmetic operators add, subtract, multiply and divide, and comparison operators test whether values are equal or one is larger.
@@ -65,7 +65,7 @@ Your task is to define terms, explain an if statement and describe the errors. T
  ("A structure that repeats actions is a:", ["Loop", "Comment", "Variable", "Header"], 0, "Loops repeat code."),
  ("An error that causes the program to give the wrong answer without crashing is a:", ["Logic error", "Syntax error", "Power error", "Screen error"], 0, "Logic errors produce wrong results."),
  ]),
- dict(t="5.3 Web Basics: HTML and CSS", std="SC.912.CS",
+ dict(t="5.3 Web Basics: HTML and CSS", std="Florida computer science and digital literacy course standards",
  body="""Every web page you visit is built with code. The three core languages of the web are HTML, CSS and JavaScript. HTML, or HyperText Markup Language, gives a page its structure and content. CSS, or Cascading Style Sheets, controls how the page looks. JavaScript makes the page interactive. In this lesson we focus on HTML and CSS. 1 Corinthians 3:10 says, let every man take heed how he buildeth thereupon. Whoever builds, whether a house, a ministry or a website, should build with care.
 
 HTML uses tags to mark up content. Most tags come in pairs, an opening tag and a closing tag, with content between them. A basic page has these parts. The html element wraps the page. The head holds information such as the title shown on the browser tab. The body holds what visitors see. Inside the body, the h1 tag marks a main heading, h2 marks subheadings, p marks a paragraph, a with an href attribute marks a link, img with src and alt attributes inserts an image, and ul and li make a bulleted list. Always write alt text that describes an image, so that people who use screen readers can understand it.
@@ -96,7 +96,7 @@ Your task is to describe HTML and CSS, name five tags and explain alt text. Take
  ("The tag for the largest heading is:", ["h1", "p", "ul", "img"], 0, "h1 marks the main heading."),
  ("Alt text on an image helps:", ["Screen reader users understand the image", "The image load slower", "Hide the image", "Change the file type"], 0, "Alt text supports accessibility."),
  ]),
- dict(t="5.4 Data, Databases and Artificial Intelligence", std="SC.912.CS",
+ dict(t="5.4 Data, Databases and Artificial Intelligence", std="Florida computer science and digital literacy course standards",
  body="""Data is the fuel of the modern world. Every search, purchase, photo and message creates data. A database is an organized collection of data stored so that it can be searched, sorted and updated quickly. School records, church membership lists, online stores and banks all use databases.
 
 A relational database stores data in tables. A table has rows called records and columns called fields. For example, a students table might have fields for student ID, name, grade and email, with one record for each student. A primary key is a field that uniquely identifies each record, such as a student ID. Tables can be linked by keys, so that a table of courses can connect to a table of students without repeating information. A language called SQL is used to ask a database questions. For example, a query can select the names of all students whose grade is ten.

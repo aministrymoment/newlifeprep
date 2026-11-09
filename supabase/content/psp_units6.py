@@ -3,9 +3,9 @@ from psp_units1 import CLOSE
 
 UNIT6 = dict(
  title="Unit 6: Speaking with Purpose, Faith and Leadership",
- std="SPC.912.C",
+ std="Florida speech and communication course standards",
  topics=[
- dict(t="6.1 Rhetoric, Logic and Critical Thinking", std="SPC.912.C",
+ dict(t="6.1 Rhetoric, Logic and Critical Thinking", std="Florida speech and communication course standards",
  body="""Rhetoric is the art of using words well to inform and persuade. It was studied in ancient Greece and Rome, and the philosopher Aristotle, who lived in the fourth century before Christ, described three appeals that speakers use. 1 Peter 3:15 gives a Christian pattern: But sanctify the Lord God in your hearts: and be ready always to give an answer to every man that asketh you a reason of the hope that is in you with meekness and fear. A ready answer given with meekness joins reason and respect.
 
 The three appeals are ethos, pathos and logos. Ethos is the appeal to the speaker's credibility and character. Listeners trust speakers who are knowledgeable, honest and caring. Pathos is the appeal to emotion. Stories, vivid images and sincere feeling can move people to care. Logos is the appeal to logic and evidence, using facts, statistics and reasoning. A strong speech balances all three. Emotion without facts can mislead, and facts without any feeling can leave an audience unmoved.
@@ -34,7 +34,7 @@ Your task is to define the appeals, compare reasoning and identify fallacies. Ta
  ("Attacking the person instead of the argument is called:", ["Ad hominem", "A straw man", "A bandwagon appeal", "A red herring"], 0, "Ad hominem means to the person."),
  ("Moving from a general rule to a specific case is:", ["Deductive reasoning", "Inductive reasoning", "A false dilemma", "Paraphrasing"], 0, "Deduction starts from a general statement."),
  ]),
- dict(t="6.2 Speaking About Faith with Grace", std="SPC.912.C",
+ dict(t="6.2 Speaking About Faith with Grace", std="Florida speech and communication course standards",
  body="""Believers are called to speak about what they know and love, and to do it with wisdom. Colossians 4:6 says, Let your speech be alway with grace, seasoned with salt, that ye may know how ye ought to answer every man. Grace means kindness and favor, and salt means a clear and wholesome flavor. A believer's speech should be gracious and truthful at once.
 
 The Bible is full of speaking. Prophets proclaimed God's word. Nehemiah read the law to the people. Jesus taught on hillsides and in homes. Peter spoke at Pentecost, and Paul reasoned in synagogues and in the marketplace. Their speaking was rooted in Scripture, delivered with courage and aimed at the good of the listeners. In every age, God has used human voices to share His truth.
@@ -67,7 +67,7 @@ Your task is to explain salt, list principles and outline a testimony. Take the 
  ("When a listener asks a question you cannot answer, you should:", ["Say you will study it and get back to them", "Guess confidently", "Change the subject angrily", "Mock the question"], 0, "Honesty and humility build trust."),
  ("According to 2 Timothy 2:24, the servant of the Lord must be:", ["Gentle, apt to teach and patient", "Quarrelsome", "Silent always", "Proud"], 0, "The servant does not strive."),
  ]),
- dict(t="6.3 Public Leadership and Community Speaking", std="SPC.912.C",
+ dict(t="6.3 Public Leadership and Community Speaking", std="Florida speech and communication course standards",
  body="""Leaders must speak. They cast a vision, rally a team, report on progress and encourage people in hard times. Nehemiah is a model. When he saw the broken wall of Jerusalem, he spoke to the people. Nehemiah 2:17 and 18 records, Then said I unto them, Ye see the distress that we are in, how Jerusalem lieth waste, and the gates thereof are burned with fire: come, and let us build up the wall of Jerusalem, that we be no more a reproach. And they said, Let us rise up and build. So they strengthened their hands for this good work.
 
 Notice how Nehemiah spoke. He named a shared problem, ye see the distress that we are in. He included himself, saying us and we. He gave a clear goal, build up the wall. He offered hope, and he gave an invitation to act. Leaders who speak this way unite people around a purpose.
@@ -96,7 +96,7 @@ Your task is to list Nehemiah's elements, outline a public comment and describe 
  ("In a crisis, leaders should:", ["Speak calmly, tell the truth and give clear instructions", "Guess", "Spread rumors", "Hide information"], 0, "Calm and honest messages help communities."),
  ("A leader who takes all the credit:", ["Loses trust", "Gains trust", "Becomes humble", "Improves the team"], 0, "Giving credit builds trust."),
  ]),
- dict(t="6.4 Evaluating Speeches, Your Portfolio and Your Calling", std="SPC.912.C",
+ dict(t="6.4 Evaluating Speeches, Your Portfolio and Your Calling", std="Florida speech and communication course standards",
  body="""To grow as a speaker, you must learn to evaluate speeches, both others' and your own. Psalm 19:14 is a prayer every speaker can make: Let the words of my mouth, and the meditation of my heart, be acceptable in thy sight, O LORD, my strength, and my redeemer.
 
 Evaluation begins with clear criteria. Ask about content. Was the topic clear and the purpose met? Was the evidence accurate and cited? Ask about organization. Did the speech have a strong introduction, a clear body and a conclusion that finished well? Ask about delivery. Was the voice clear, varied and the right volume? Did the speaker use eye contact, good posture and natural gestures? Did the speaker stay within the time? Ask about language. Were the words clear, correct and appropriate? Ask about audience connection. Did the speaker adapt to the listeners and show respect? Ask about ethics. Was the speaker honest and fair?

@@ -3,9 +3,9 @@ from dt_units1 import CLOSE
 
 UNIT2 = dict(
  title="Unit 2: Documents, Presentations and Collaboration",
- std="SC.912.CS",
+ std="Florida computer science and digital literacy course standards",
  topics=[
- dict(t="2.1 Word Processing Essentials", std="SC.912.CS",
+ dict(t="2.1 Word Processing Essentials", std="Florida computer science and digital literacy course standards",
  body="""A word processor is application software used to write, edit, format and print documents. Common programs include Microsoft Word, Google Docs and Apple Pages. Learning to use one well is a skill needed in school, church, business and ministry.
 
 Begin with keyboarding. Place your fingers on the home row and learn to type without looking at the keys. Accuracy comes first, then speed. Speed is measured in words per minute. Good posture and regular breaks protect your hands, wrists and eyes. Colossians 3:23 says, And whatsoever ye do, do it heartily, as to the Lord, and not unto men.
@@ -36,7 +36,7 @@ Your task is to explain accuracy before speed, list five tools and describe the 
  ("Spell check may miss:", ["A correctly spelled wrong word", "Every typo", "All capital letters", "Page numbers"], 0, "Proofreading catches wrong word choices."),
  ("Which step comes after writing a first draft?", ["Revising", "Deleting everything", "Printing only", "Closing the file"], 0, "Revision improves clarity and organization."),
  ]),
- dict(t="2.2 Formatting Professional Documents", std="SC.912.CS",
+ dict(t="2.2 Formatting Professional Documents", std="Florida computer science and digital literacy course standards",
  body="""Formatting is how a document looks, and it affects how easily it is read. Proverbs 22:29 says, Seest thou a man diligent in his business? he shall stand before kings; he shall not stand before mean men. Careful work shows respect for the reader and for God.
 
 Start with structure. Use heading styles for titles and sections instead of just making the text bigger. Styles keep the document consistent, allow an automatic table of contents and help screen readers and navigation. Use a readable font such as Times New Roman, Calibri or Arial at 11 or 12 points. Set margins to one inch unless told otherwise. Use consistent line spacing, often double spacing for school papers. Add page numbers, and use a header or footer for the title or author when needed.
@@ -71,7 +71,7 @@ Your task is to explain heading styles, list formatting settings and describe a 
  ("Alternative text for an image helps:", ["People who cannot see the image", "Printers", "Keyboards", "Batteries"], 0, "Alt text describes images for accessibility."),
  ("A citation tells the reader:", ["Where information came from", "How fast you type", "Your password", "Your folder name"], 0, "Citations credit and locate sources."),
  ]),
- dict(t="2.3 Presentation Design", std="SC.912.CS",
+ dict(t="2.3 Presentation Design", std="Florida computer science and digital literacy course standards",
  body="""A presentation is a tool for sharing ideas with an audience. Programs such as PowerPoint, Google Slides and Keynote help you build slides, but the slides support the speaker and do not replace the speaker. Habakkuk 2:2 says, And the LORD answered me, and said, Write the vision, and make it plain upon tables, that he may run that readeth it. Clear communication makes a message easy to receive.
 
 Begin with purpose and audience. Ask what you want people to know, feel or do, and who will be listening. Outline the main points before opening the software. A strong presentation has an opening that gains attention, a body with a few main points and a closing that summarizes and gives a call to action.
@@ -100,7 +100,7 @@ Your task is to explain planning, list five design rules and describe three deli
  ("The best way to deliver a presentation is to:", ["Speak to the audience and not read slides word for word", "Read every word", "Face the screen", "Skip practice"], 0, "Slides support the speaker."),
  ("Speaker notes are used to:", ["Hold details for the speaker", "Replace the slides", "Change the file type", "Print the screen"], 0, "Notes help the speaker without crowding slides."),
  ]),
- dict(t="2.4 Collaboration and Cloud Tools", std="SC.912.CS",
+ dict(t="2.4 Collaboration and Cloud Tools", std="Florida computer science and digital literacy course standards",
  body="""Cloud computing means storing files and running programs on servers over the internet instead of only on your own device. Services such as Google Drive, OneDrive and iCloud keep files available from any device with a connection and also act as a backup. Cloud tools make teamwork easier. Ecclesiastes 4:9 says, Two are better than one; because they have a good reward for their labour. And verse 12 adds, a threefold cord is not quickly broken.
 
 In a shared document, several people can read, comment and edit together. Sharing settings, called permissions, control what others can do. A viewer can only read. A commenter can add comments. An editor can change the content. Give people only the access they need. Share to specific people when possible instead of making a link open to everyone, since anyone with an open link may be able to see the file.

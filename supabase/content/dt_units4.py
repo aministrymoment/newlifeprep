@@ -3,9 +3,9 @@ from dt_units1 import CLOSE
 
 UNIT4 = dict(
  title="Unit 4: The Internet, Networks and Cybersecurity",
- std="SC.912.CS",
+ std="Florida computer science and digital literacy course standards",
  topics=[
- dict(t="4.1 How the Internet Works", std="SC.912.CS",
+ dict(t="4.1 How the Internet Works", std="Florida computer science and digital literacy course standards",
  body="""The internet is a worldwide network of networks that connects billions of devices. Psalm 19:4 says of God's creation, Their line is gone out through all the earth, and their words to the end of the world. The internet now carries words, sounds and pictures to the ends of the earth, and it can be used to spread the gospel as well as to spread harm.
 
 The internet is not the same thing as the World Wide Web. The internet is the infrastructure, made of cables, towers, satellites, routers and servers. The web is a service that runs on the internet. It is a system of pages and files you view with a browser. Email, video calls and online games also use the internet.
@@ -34,7 +34,7 @@ Your task is to explain the internet and the web, DNS and HTTPS. Take the four q
  ("HTTPS differs from HTTP because it:", ["Encrypts the connection", "Is slower by design", "Has no address", "Removes the web"], 0, "HTTPS scrambles data in transit."),
  ("Data travels across the internet in small pieces called:", ["Packets", "Folders", "Passwords", "Pixels"], 0, "Packets are reassembled at the destination."),
  ]),
- dict(t="4.2 Networks, WiFi and Devices", std="SC.912.CS",
+ dict(t="4.2 Networks, WiFi and Devices", std="Florida computer science and digital literacy course standards",
  body="""A network is a group of connected devices that share information and resources. Ecclesiastes 4:12 says, a threefold cord is not quickly broken. Connected people and connected devices can do more together than apart.
 
 Networks are described by size. A local area network, or LAN, covers a small area such as a home, a school or a church building. A wide area network, or WAN, covers a large area, and the internet is the largest WAN. A personal area network, such as Bluetooth between a phone and earbuds, covers a very short range.
@@ -67,7 +67,7 @@ Your task is to compare LAN and WAN, name the jobs of a modem and router and lis
  ("A good first step to secure a new router is to:", ["Change the default password", "Leave the default password", "Turn off updates", "Share the password publicly"], 0, "Default passwords are widely known."),
  ("A VPN is used to:", ["Encrypt your traffic on a network", "Print documents", "Increase screen size", "Delete viruses by itself"], 0, "A VPN protects traffic on untrusted networks."),
  ]),
- dict(t="4.3 Cybersecurity: Threats and Defenses", std="SC.912.CS",
+ dict(t="4.3 Cybersecurity: Threats and Defenses", std="Florida computer science and digital literacy course standards",
  body="""Cybersecurity is the practice of protecting devices, networks and information from attack. Nehemiah 4:9 says, Nevertheless we made our prayer unto our God, and set a watch against them day and night. Nehemiah prayed and posted guards while rebuilding the wall. We also pray and stay watchful. Churches, schools and families are targets, and Proverbs 22:3 reminds us that a prudent man foreseeth the evil.
 
 Know the threats. Malware is harmful software. A virus attaches to files and spreads when they are opened. A worm spreads by itself across networks. A trojan pretends to be useful software. Spyware secretly watches your activity. Ransomware locks your files and demands payment. Adware shows unwanted advertisements.
@@ -96,7 +96,7 @@ Your task is to define malware, ransomware and phishing, list defenses and descr
  ("A firewall:", ["Filters network traffic", "Prints pages", "Cleans the screen", "Increases RAM"], 0, "It blocks unwanted traffic."),
  ("An important reason to install software updates is to:", ["Fix known security weaknesses", "Make files disappear", "Remove all passwords", "Slow the device"], 0, "Updates patch vulnerabilities."),
  ]),
- dict(t="4.4 Research, Evaluating Sources and Responsible Use of AI Tools", std="SC.912.CS",
+ dict(t="4.4 Research, Evaluating Sources and Responsible Use of AI Tools", std="Florida computer science and digital literacy course standards",
  body="""Everyone can publish online, so not everything found there is true. 1 Thessalonians 5:21 says, Prove all things; hold fast that which is good. Good researchers test what they read before they trust or share it.
 
 Search with skill. Choose specific keywords instead of whole questions. Put exact phrases in quotation marks. Narrow results by site type or date. Try different words if the first search fails. Remember that the first result is not always the best, and some top results are paid advertisements. Use library databases, government sites and academic sources for school research.

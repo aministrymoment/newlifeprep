@@ -3,9 +3,9 @@ from dt_units1 import CLOSE
 
 UNIT3 = dict(
  title="Unit 3: Spreadsheets and Data",
- std="SC.912.CS",
+ std="Florida computer science and digital literacy course standards",
  topics=[
- dict(t="3.1 Spreadsheet Basics", std="SC.912.CS",
+ dict(t="3.1 Spreadsheet Basics", std="Florida computer science and digital literacy course standards",
  body="""A spreadsheet is a program that organizes data in rows and columns and performs calculations. Common programs include Microsoft Excel and Google Sheets. Churches, schools and businesses use spreadsheets for budgets, attendance records, schedules, inventories and grade books. Proverbs 27:23 says, Be thou diligent to know the state of thy flocks, and look well to thy herds. Good records help leaders know the true state of their work.
 
 Learn the parts. A workbook is the whole file, and it holds one or more worksheets, also called sheets or tabs. A worksheet is a grid. A column runs up and down and is labeled with letters. A row runs across and is labeled with numbers. A cell is where a row and a column meet, and each cell has an address called a cell reference, such as B3, which is column B, row 3. A range is a group of cells, written as B2 to B10 with a colon in the program. The active cell is the one you have selected, and the formula bar shows its contents.
@@ -36,7 +36,7 @@ Your task is to explain a cell reference, define the parts of a spreadsheet and 
  ("Columns in a spreadsheet are labeled with:", ["Letters", "Numbers only", "Colors", "Symbols"], 0, "Columns use letters; rows use numbers."),
  ("Freezing the top row helps by:", ["Keeping headings visible while scrolling", "Deleting data", "Locking the file forever", "Adding formulas"], 0, "Headings stay in view."),
  ]),
- dict(t="3.2 Formulas and Functions", std="SC.912.CS",
+ dict(t="3.2 Formulas and Functions", std="Florida computer science and digital literacy course standards",
  body="""The real power of a spreadsheet is its ability to calculate. A formula is an instruction that tells the spreadsheet to compute a value. Every formula begins with an equals sign. For example, typing equals B2 plus B3 in a cell adds the values in those two cells. The symbols for math are plus for addition, the minus sign for subtraction, an asterisk for multiplication and a slash for division. Spreadsheets follow the order of operations, so parentheses are done first, then multiplication and division, then addition and subtraction.
 
 The great advantage is that formulas use cell references. If you change a number in B2, every formula using B2 updates automatically. This saves time and reduces errors. Luke 14:28 says, For which of you, intending to build a tower, sitteth not down first, and counteth the cost, whether he have sufficient to finish it? A spreadsheet is a good tool for counting the cost.
@@ -67,7 +67,7 @@ Your task is to write a SUM formula, explain relative and absolute references an
  ("A reference that does not change when copied is:", ["Absolute", "Relative", "Broken", "Hidden"], 0, "Dollar signs make references absolute."),
  ("The AVERAGE of 10, 20 and 30 is:", ["20", "60", "10", "30"], 0, "60 divided by 3 equals 20."),
  ]),
- dict(t="3.3 Charts and Data Visualization", std="SC.912.CS",
+ dict(t="3.3 Charts and Data Visualization", std="Florida computer science and digital literacy course standards",
  body="""Numbers are easier to understand when they are shown in a picture. A chart turns data into a visual that reveals patterns, comparisons and trends. Habakkuk 2:2 says, Write the vision, and make it plain upon tables, that he may run that readeth it. A good chart makes information plain.
 
 Choose the right chart for the job. A column or bar chart compares amounts among categories, such as attendance by service or giving by month. A line chart shows change over time, such as weekly attendance across a year. A pie chart shows parts of a whole, such as a budget, and works best with a small number of slices that add to one hundred percent. A scatter chart shows the relationship between two numbers, such as hours studied and test score. Choose the simplest chart that tells the story.
@@ -98,7 +98,7 @@ Your task is to match charts to data, list the parts of a good chart and fix a m
  ("A chart title should:", ["Say what the chart shows", "Be left blank", "Use only symbols", "Hide the data"], 0, "Titles explain the chart."),
  ("A vertical axis that starts far above zero on a bar chart can:", ["Exaggerate small differences", "Make data more accurate", "Remove errors", "Print faster"], 0, "Truncated axes can mislead."),
  ]),
- dict(t="3.4 Data Analysis and Data Ethics", std="SC.912.CS",
+ dict(t="3.4 Data Analysis and Data Ethics", std="Florida computer science and digital literacy course standards",
  body="""Data is facts and figures collected for a purpose. Data analysis is the process of cleaning, organizing and studying data to answer questions and make decisions. Proverbs 18:13 says, He that answereth a matter before he heareth it, it is folly and shame unto him. Wise leaders look at the facts before they decide.
 
 Begin by cleaning the data. Look for typing errors, misspelled names, inconsistent formats such as two ways of writing the same date, blank cells and duplicate records. Dirty data produces wrong answers. Keep an untouched copy of the original data, and do your cleaning on a copy.

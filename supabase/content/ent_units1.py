@@ -3,9 +3,9 @@ CLOSE = " Excellence, Faith, Purpose. I will see you in the next lesson."
 
 UNIT1 = dict(
  title="Unit 1: Foundations of Entrepreneurship",
- std="BE.912",
+ std="Florida Entrepreneurship course standards (course 8812100)",
  topics=[
- dict(t="1.1 What Is Entrepreneurship and Is It a Calling", std="BE.912",
+ dict(t="1.1 What Is Entrepreneurship and Is It a Calling", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""An entrepreneur is a person who sees a need, organizes resources and takes a reasonable risk to meet that need through a business. Entrepreneurs create jobs, serve customers and strengthen communities. Proverbs 22:29 says, Seest thou a man diligent in his business? he shall stand before kings; he shall not stand before mean men. Diligence in work is honored in Scripture.
 
 A business is an organization that provides goods or services in exchange for money. A good is a physical product, such as a loaf of bread. A service is work done for others, such as lawn care or tutoring. The owner takes on risk, which is the chance of losing money or time, and hopes for a reward, which is profit. Profit is what remains after all costs are paid.
@@ -32,7 +32,7 @@ Your task is to define three terms, name a good and a service and explain Prover
  ("Lawn care is an example of a:", ["Service", "Good", "Tax", "Loan"], 0, "A service is work done for others."),
  ("Risk is:", ["The chance of losing money or time", "A guaranteed profit", "A kind of tax", "A price"], 0, "Every business carries risk."),
  ]),
- dict(t="1.2 Finding Needs and Business Ideas", std="BE.912",
+ dict(t="1.2 Finding Needs and Business Ideas", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Great businesses begin by solving a problem. Proverbs 14:23 says, In all labour there is profit: but the talk of the lips tendeth only to penury. Real work meets real needs. An idea that no one needs is only a wish.
 
 To find ideas, begin by looking around you. What do your family, church, school or neighborhood need? What frustrates people? What takes too much time or costs too much? What skills do you have that others value? Keep an idea notebook and write down needs you see. Good sources include your own experiences, your talents and hobbies, community needs, and trends such as technology, health and education.
@@ -59,7 +59,7 @@ Your task is to list five needs, choose one idea and plan ten conversations. Tak
  ("When a student starts a real business, they should:", ["Involve a parent or guardian", "Hide it from adults", "Meet strangers alone", "Share their home address online"], 0, "Adult involvement keeps young people safe."),
  ("A good is:", ["A physical product", "Work done for others", "A kind of risk", "A tax"], 0, "A good is a product you can touch."),
  ]),
- dict(t="1.3 Character, Ethics and Integrity in Business", std="BE.912",
+ dict(t="1.3 Character, Ethics and Integrity in Business", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""A business is built on trust, and trust is built on character. Proverbs 11:1 says, A false balance is abomination to the LORD: but a just weight is his delight. Proverbs 20:23 says, Divers weights are an abomination unto the LORD; and a false balance is not good. Honest dealing pleases God and protects your name.
 
 Ethics are the moral principles that guide choices. Ethical business owners tell the truth in advertising, price fairly, keep promises, pay what they owe, treat workers and customers with respect, and refuse to cheat even when no one is watching. Unethical behavior includes lying about a product, hiding fees, copying another person's work, stealing ideas or images, and treating people unfairly. Dishonesty may bring quick money, but it destroys trust and often leads to lawsuits or loss of the business.
@@ -86,7 +86,7 @@ Your task is to define two terms, list three honest habits and apply Matthew 7:1
  ("Integrity means:", ["Being the same in public and in private", "Making the most money", "Avoiding customers", "Working alone"], 0, "Integrity is consistent character."),
  ("Your most valuable business asset is often your:", ["Reputation", "Logo", "Office", "Slogan"], 0, "Trust and a good name last longer than money."),
  ]),
- dict(t="1.4 Business Structures and Legal Basics", std="BE.912",
+ dict(t="1.4 Business Structures and Legal Basics", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Every business has a legal form. Choosing the right form affects taxes, risk and paperwork. This lesson is general education and not legal or tax advice. A real business owner should consult a licensed attorney, accountant or the appropriate government office. Romans 13:1 teaches respect for lawful authority, and following the law protects your business.
 
 A sole proprietorship is owned by one person. It is simple and cheap to start, but the owner is personally responsible for the debts and legal claims of the business. A partnership has two or more owners who share profits and responsibility. A limited liability company, called an LLC, is a separate legal entity that can protect the owner's personal property from many business debts. A corporation is a separate legal entity owned by shareholders and is more complex. A nonprofit organization uses its income to serve a mission rather than to pay owners, and may qualify for tax exempt status after meeting legal requirements.

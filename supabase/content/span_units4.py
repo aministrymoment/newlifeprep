@@ -3,9 +3,9 @@ from span_units1 import CLOSE
 
 UNIT4 = dict(
  title="Unit 4: Food, Shopping and Community",
- std="WL.912",
+ std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  topics=[
- dict(t="4.1 Foods, Meals and the Verb Gustar", std="WL.912",
+ dict(t="4.1 Foods, Meals and the Verb Gustar", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Psalm 104:14 and 15 say that God causes grass to grow for the cattle and herb for the service of man, that he may bring forth food out of the earth, and bread which strengtheneth man's heart. Food is a gift from God and a way to share friendship.
 
 The meals of the day are el desayuno for breakfast, el almuerzo for lunch and la cena for dinner. Foods include el pan for bread, la leche for milk, los huevos for eggs, el arroz for rice, los frijoles for beans, el pollo for chicken, la carne for meat, el pescado for fish, el queso for cheese, la sopa for soup, la ensalada for salad, las verduras for vegetables and las frutas for fruit. Fruits include la manzana for apple, la naranja for orange, el plátano for banana and la fresa for strawberry. Drinks include el agua, el jugo, el café and el té.
@@ -28,7 +28,7 @@ Your task is to write your meals and four sentences with gusta or gustan. Take t
  ("Which is correct?", ["Me gusta el pollo", "Me gustan el pollo", "Yo gusto el pollo", "Me gusto el pollo"], 0, "One thing liked uses gusta."),
  ("La leche is:", ["Milk", "Cheese", "Bread", "Soup"], 0, "Leche is milk."),
  ]),
- dict(t="4.2 At the Restaurant and Stem Changing Verbs", std="WL.912",
+ dict(t="4.2 At the Restaurant and Stem Changing Verbs", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Proverbs 15:17 says, Better is a dinner of herbs where love is, than a stalled ox and hatred therewith. A meal is best when it is shared in love, and a restaurant is a great place to practice Spanish.
 
 Some Spanish verbs change their stem vowel in most forms but not in the nosotros form. These are called stem changing verbs. Querer, which means to want, changes e to ie: quiero, quieres, quiere, queremos, quieren. Preferir, which means to prefer, works the same way: prefiero, prefieres, prefiere, preferimos, prefieren. Poder, which means to be able or can, changes o to ue: puedo, puedes, puede, podemos, pueden. Almorzar, which means to eat lunch, also changes o to ue: almuerzo, almuerzas, almuerza, almorzamos, almuerzan. Pedir, which means to order or ask for, changes e to i: pido, pides, pide, pedimos, piden. Dormir, which means to sleep, is duermo, duermes, duerme, dormimos, duermen.
@@ -53,7 +53,7 @@ Your task is to conjugate querer and poder and write a restaurant dialogue. Take
  ("La cuenta, por favor means:", ["The bill, please", "The menu, please", "The water, please", "The soup, please"], 0, "Cuenta is bill."),
  ("The yo form of pedir is:", ["Pido", "Pedo", "Pide", "Pedimos"], 0, "Pedir changes e to i."),
  ]),
- dict(t="4.3 Clothing, Colors, Shopping and Larger Numbers", std="WL.912",
+ dict(t="4.3 Clothing, Colors, Shopping and Larger Numbers", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""Proverbs 31:22 describes a virtuous woman who maketh herself coverings of tapestry; her clothing is silk and purple. Clothing and shopping are part of daily life, and knowing prices and numbers helps you shop wisely.
 
 Clothing words include la camisa for shirt, los pantalones for pants, el vestido for dress, la falda for skirt, la chaqueta for jacket, los zapatos for shoes, los calcetines for socks, el sombrero for hat and la ropa for clothes. Colors are adjectives that agree with the noun: rojo, azul, verde, amarillo, negro, blanco, gris, rosado and morado. La camisa roja, los zapatos negros.
@@ -80,7 +80,7 @@ Your task is to write four numbers and a shopping dialogue. Take the four questi
  ("Red shirt in Spanish is:", ["La camisa roja", "La camisa rojo", "El camisa roja", "La roja camisa"], 0, "The adjective follows the noun and agrees."),
  ("Barato means:", ["Cheap", "Expensive", "Big", "New"], 0, "Barato is inexpensive."),
  ]),
- dict(t="4.4 Places in Town, the Verb Ir and Directions", std="WL.912",
+ dict(t="4.4 Places in Town, the Verb Ir and Directions", std="Florida World Languages standards, Level 1 (WL.K12.NL, WL.K12.NM, WL.K12.NH)",
  body="""In Luke 10:36 and 37, Jesus asked which of three men was neighbour unto him that fell among the thieves, and the answer was, He that shewed mercy on him. Then said Jesus, Go, and do thou likewise. Knowing the places in your town and how to give directions helps you be a good neighbor.
 
 Places include la iglesia for church, el banco for bank, el supermercado for supermarket, la tienda for store, el parque for park, el hospital for hospital, la farmacia for pharmacy, la biblioteca for library, el restaurante for restaurant, la escuela for school, el correo for post office and la playa for beach.

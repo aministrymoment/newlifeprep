@@ -3,9 +3,9 @@ from ent_units1 import CLOSE
 
 UNIT2 = dict(
  title="Unit 2: Customers, Competition, Pricing and Marketing",
- std="BE.912",
+ std="Florida Entrepreneurship course standards (course 8812100)",
  topics=[
- dict(t="2.1 Customers and Market Research", std="BE.912",
+ dict(t="2.1 Customers and Market Research", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""A business exists to serve customers. Proverbs 15:22 says, Without counsel purposes are disappointed: but in the multitude of counsellors they are established. Good decisions begin with listening to the people you serve.
 
 A market is the group of people who might buy what you offer. A target market is the specific group you serve best, described by age, location, needs, interests and income. A business that tries to serve everyone often serves no one well. A church bakery, for example, may target families in a particular neighborhood who want fresh bread for gatherings.
@@ -32,7 +32,7 @@ Your task is to define four terms, write five survey questions and describe your
  ("Census data is an example of:", ["Secondary research", "Primary research", "Advertising", "Profit"], 0, "Secondary research uses existing information."),
  ("When surveying others, you should:", ["Keep answers private and get adult approval", "Collect sensitive data", "Publish names", "Skip questions"], 0, "Protect privacy and involve adults."),
  ]),
- dict(t="2.2 Competition and Your Value Proposition", std="BE.912",
+ dict(t="2.2 Competition and Your Value Proposition", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Almost every business has competition. Competition means other businesses that offer something similar or that meet the same need in another way. Competition is not an enemy. It pushes businesses to improve, and it gives customers choices. Proverbs 27:17 says, Iron sharpeneth iron; so a man sharpeneth the countenance of his friend. Respectful competition can sharpen everyone.
 
 Direct competitors offer the same product. Indirect competitors meet the same need differently. For a tutoring service, a direct competitor is another tutor, and an indirect competitor may be a video lesson website. Study competitors honestly: What do they offer? What do they charge? What do customers say? Where do they fall short? Never lie about competitors or damage their name. Romans 12:18 says, If it be possible, as much as lieth in you, live peaceably with all men.
@@ -57,7 +57,7 @@ Your task is to list competitors, write a value proposition and complete a SWOT.
  ("In SWOT, the O stands for:", ["Opportunities", "Orders", "Owners", "Offices"], 0, "SWOT: strengths, weaknesses, opportunities, threats."),
  ("Toward competitors a Christian owner should be:", ["Honest and peaceable", "Deceptive", "Insulting", "Secretive"], 0, "Romans 12:18 calls for peace."),
  ]),
- dict(t="2.3 Pricing Wisely and Fairly", std="BE.912",
+ dict(t="2.3 Pricing Wisely and Fairly", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Pricing is one of the most important decisions in a business. Proverbs 20:10 says, Divers weights, and divers measures, both of them are alike abomination to the LORD. A fair price is honest, clearly stated and the same for similar customers.
 
 Start with costs. Fixed costs stay the same no matter how much you sell, such as rent or a monthly website fee. Variable costs change with each item, such as ingredients or packaging. The total cost per item equals variable cost plus a share of fixed costs. If a cake costs 6 dollars in ingredients and packaging, the price must be higher than 6 dollars for you to earn anything.
@@ -82,7 +82,7 @@ Your task is to define two costs, compute a price and explain honest pricing. Ta
  ("Ingredients for each cake are a:", ["Variable cost", "Fixed cost", "Tax", "Gift"], 0, "Variable costs change with each item."),
  ("Honest pricing means:", ["Clear prices with no hidden fees", "Charging unaware customers more", "Bait and switch", "Secret charges"], 0, "Proverbs 20:10 condemns dishonest measures."),
  ]),
- dict(t="2.4 Marketing, Branding and a Good Name", std="BE.912",
+ dict(t="2.4 Marketing, Branding and a Good Name", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Marketing is everything you do to let customers know about your business and to build relationships with them. Proverbs 22:1 says, A good name is rather to be chosen than great riches, and loving favour rather than silver and gold. Your name is your brand, and your brand is your promise.
 
 Branding includes your business name, logo, colors, voice and the experience customers have. Choose a name that is clear, easy to say and not already used by someone else. Be consistent. A good brand tells people who you are and what to expect.

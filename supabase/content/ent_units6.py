@@ -3,9 +3,9 @@ from ent_units1 import CLOSE
 
 UNIT6 = dict(
  title="Unit 6: The Business Plan, Pitch and Launch",
- std="BE.912",
+ std="Florida Entrepreneurship course standards (course 8812100)",
  topics=[
- dict(t="6.1 Writing a Business Plan", std="BE.912",
+ dict(t="6.1 Writing a Business Plan", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""A business plan is a written guide that describes your business and how it will succeed. Habakkuk 2:2 says, Write the vision, and make it plain upon tables, that he may run that readeth it. A plan helps you think clearly and helps others understand and support you.
 
 A standard business plan has these parts. The executive summary is a short overview written last but placed first. The company description gives the name, structure, mission and values. The market analysis describes the target market, customer needs and competitors. The products or services section explains what you offer and the value proposition. The marketing and sales plan covers the four Ps and how you will reach customers. The operations plan covers location, suppliers, equipment, people and daily process. The management and team section describes who is responsible. The financial plan includes startup costs, a budget, a break even analysis, a sales forecast and a cash flow plan. The risks and giving plan covers what could go wrong, how you will respond and how you will bless others.
@@ -30,7 +30,7 @@ Your task is to list the parts, write two sections and explain honest numbers. T
  ("A forecast is:", ["A reasoned estimate, not a promise", "A guarantee", "A tax", "A loan"], 0, "Forecasts estimate the future."),
  ("A financial plan includes:", ["Startup costs, budget and break even analysis", "Only a logo", "Only a slogan", "Only a name"], 0, "Numbers prove the plan is realistic."),
  ]),
- dict(t="6.2 Building the Financial Plan", std="BE.912",
+ dict(t="6.2 Building the Financial Plan", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""The financial section turns your ideas into numbers. Proverbs 24:27 says, Prepare thy work without, and make it fit for thyself in the field; and afterwards build thine house. Count first, then build.
 
 Begin with startup costs: list every one time cost and add a cushion of ten to twenty percent. Next, create a sales forecast. Estimate how many units you expect to sell each month and at what price. Use research, such as your customer interviews and competitor prices, not hopes alone. Multiply units by price to find expected revenue. Then list monthly costs: variable costs per unit, fixed costs and taxes set aside.
@@ -59,7 +59,7 @@ Your task is to complete a break even example, a forecast and a sensitivity chec
  ("A sensitivity check asks:", ["What happens if sales or costs change", "What your name is", "Who your friends are", "Where you live"], 0, "It tests assumptions."),
  ("In a shared plan you should not include:", ["Real bank account numbers", "Sample figures", "Your mission", "Your price list"], 0, "Keep private details out."),
  ]),
- dict(t="6.3 Pitching Your Business", std="BE.912",
+ dict(t="6.3 Pitching Your Business", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""A pitch is a short, clear presentation that explains your business and invites support. Proverbs 25:11 says, A word fitly spoken is like apples of gold in pictures of silver. Prepare what you will say.
 
 A good pitch answers six questions. What problem do you solve? Who is the customer? What is your solution and value proposition? How will you make money? What do you need, such as advice, a customer, a partner or funding? Why are you the right person or team? Start with a hook, a sentence or story that captures attention. Keep it to two or three minutes, use simple words and speak with confidence and humility.
@@ -88,7 +88,7 @@ Your task is to write a pitch, answer three questions and name two warning signs
  ("A hook is:", ["A sentence or story that captures attention", "A tax form", "A price", "A loan"], 0, "Hooks open the pitch."),
  ("When you do not know an answer in a pitch, you should:", ["Say you will find out", "Invent one", "Leave the room", "Argue"], 0, "Honesty protects trust."),
  ]),
- dict(t="6.4 Launch, Review and Lifelong Stewardship", std="BE.912",
+ dict(t="6.4 Launch, Review and Lifelong Stewardship", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Launching is the moment a plan becomes action. Proverbs 16:9 says, A man's heart deviseth his way: but the LORD directeth his steps. Plan carefully, pray and then take faithful steps.
 
 A launch checklist includes confirming that you have adult support and approval, registering and licensing where required, setting up a safe way to take payments, preparing your price list and policies, testing your product or service with a few trusted customers, preparing your marketing, and organizing records and a budget. Start small. A pilot is a small scale test that lets you learn before you invest more. Collect feedback, fix problems and improve.

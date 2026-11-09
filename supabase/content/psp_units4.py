@@ -3,9 +3,9 @@ from psp_units1 import CLOSE
 
 UNIT4 = dict(
  title="Unit 4: Types of Speeches",
- std="SPC.912.C",
+ std="Florida speech and communication course standards",
  topics=[
- dict(t="4.1 The Informative Speech", std="SPC.912.C",
+ dict(t="4.1 The Informative Speech", std="Florida speech and communication course standards",
  body="""An informative speech teaches. It helps listeners understand something new or see something familiar in a fresh way. Nehemiah 8:8 describes a great public teaching: So they read in the book in the law of God distinctly, and gave the sense, and caused them to understand the reading. Reading clearly, giving the sense and causing understanding are the goals of every informative speaker.
 
 Informative speeches fall into several kinds. A speech about objects describes things, such as a telescope or a hurricane shelter. A speech about people tells the life and work of a person, such as a nurse, a missionary or a scientist. A speech about events explains what happened, such as a historic storm or a school festival. A speech about processes explains how something is done or how it works, such as how to change a tire or how a bill becomes a law. A speech about concepts explains ideas, such as freedom, honesty or supply and demand.
@@ -30,7 +30,7 @@ Your task is to name the kinds of informative speeches, list principles and plan
  ("A speech explaining how a bill becomes a law is about a:", ["Process", "Person", "Object", "Place"], 0, "It explains steps in a process."),
  ("Before a demonstration that uses heat or sharp tools, a student should:", ["Get adult approval and plan for safety", "Skip the plan", "Invite the audience to try it", "Rush through"], 0, "Safety comes first."),
  ]),
- dict(t="4.2 The Persuasive Speech", std="SPC.912.C",
+ dict(t="4.2 The Persuasive Speech", std="Florida speech and communication course standards",
  body="""A persuasive speech seeks to change what listeners believe or do. The Apostle Paul gave a model when he stood before King Agrippa. Acts 26:25 records his words, I am not mad, most noble Festus; but speak forth the words of truth and soberness. At the end of the speech, Agrippa said in verse 28, Almost thou persuadest me to be a Christian. Paul spoke with courtesy, truth and conviction.
 
 Persuasive speeches address three kinds of questions. A question of fact asks whether something is true, such as, Is the local water supply safe? A question of value asks whether something is good or bad, right or wrong, such as, Is service to others more important than personal comfort? A question of policy asks what should be done, such as, Should our school start a tutoring program? A persuasive speech needs a clear claim, called a thesis, such as, Our school should start a peer tutoring program.
@@ -59,7 +59,7 @@ Your task is to tell the types of questions apart, write a thesis and list the f
  ("When facing a hostile audience, a speaker should:", ["Find common ground and show respect", "Insult them", "Avoid eye contact", "Shout"], 0, "Respect and common ground open minds."),
  ("In Monroe's Motivated Sequence, the last step is:", ["Action", "Attention", "Need", "Visualization"], 0, "The speech ends with a specific call to action."),
  ]),
- dict(t="4.3 Ceremonial and Special Occasion Speeches", std="SPC.912.C",
+ dict(t="4.3 Ceremonial and Special Occasion Speeches", std="Florida speech and communication course standards",
  body="""Not every speech informs or argues. Many speeches mark an occasion and bring people together. Romans 12:15 says, Rejoice with them that do rejoice, and weep with them that weep. Special occasion speeches help communities celebrate, honor and grieve.
 
 Several types are common. A speech of introduction presents a speaker to an audience. It should be short, usually under a minute or two. State the speaker's name and topic correctly, tell why the speaker is qualified, build interest, and then step aside. Ask for the correct pronunciation and the latest title ahead of time. A speech of welcome greets guests and makes them feel at home. A speech of tribute honors a person or group, such as a retiring teacher, a pastor or a team. A toast is a very short statement to honor a person or an event, often at a banquet, and it is given with a nonalcoholic drink at school and church events. A speech of presentation gives an award, telling what the award is and why the winner earned it. A speech of acceptance receives an award with gratitude and humility, thanking those who helped. A commemorative speech celebrates an anniversary, an event or a historic person. A eulogy honors someone who has died, with comfort, memory and hope, and is shared with tenderness and care. A graduation or commencement address inspires those moving into a new season. A devotional or a brief inspirational message encourages a group.
@@ -84,7 +84,7 @@ Your task is to name types, give principles and outline a one minute tribute. Ta
  ("In a tribute, the focus should be on:", ["The honoree", "The speaker", "The weather", "The sound system"], 0, "A tribute honors someone else."),
  ("A speech that honors someone who has died is a:", ["Eulogy", "Toast", "Presentation", "Commencement address"], 0, "A eulogy offers comfort and remembrance."),
  ]),
- dict(t="4.4 Storytelling and Narrative", std="SPC.912.C",
+ dict(t="4.4 Storytelling and Narrative", std="Florida speech and communication course standards",
  body="""Stories are one of the oldest and strongest ways to communicate. Jesus used stories again and again. In Luke 15:4 He asked, What man of you, having an hundred sheep, if he lose one of them, doth not leave the ninety and nine in the wilderness, and go after that which is lost, until he find it? His parables made truth easy to see and remember. A well chosen story can open a speech, illustrate a point or close with power.
 
 A good story has certain parts. The setting tells who, where and when. The characters are the people the audience can care about. The conflict is the problem or struggle that creates tension. The rising action builds through events that increase interest. The climax is the turning point. The resolution shows how it ends and what changed. A story also has a point. Ask, what do I want the audience to take away? If a story does not support the message, leave it out.

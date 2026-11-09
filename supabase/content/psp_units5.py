@@ -3,9 +3,9 @@ from psp_units1 import CLOSE
 
 UNIT5 = dict(
  title="Unit 5: Conversation, Groups, Interviews and Digital Communication",
- std="SPC.912.C",
+ std="Florida speech and communication course standards",
  topics=[
- dict(t="5.1 Conversation and Conflict", std="SPC.912.C",
+ dict(t="5.1 Conversation and Conflict", std="Florida speech and communication course standards",
  body="""Most of our communication happens in ordinary conversation, and it shapes our friendships, families and futures. Matthew 18:15 gives a pattern for handling conflict: Moreover if thy brother shall trespass against thee, go and tell him his fault between thee and him alone: if he shall hear thee, thou hast gained thy brother. The goal of hard conversation is to win a person, not to win an argument.
 
 Good conversation has a few habits. Start with a greeting and use the person's name. Ask open questions, which need more than a yes or no, such as, What did you enjoy most about the trip? Listen to the answer and ask a follow up. Share something of yourself in return. Take turns, so that the talk is not a monologue. Keep your phone out of sight. Use a friendly tone and appropriate humor. End kindly.
@@ -30,7 +30,7 @@ Your task is to list conversation habits, write an I statement and describe the 
  ("The goal of a hard conversation, according to Matthew 18:15, is to:", ["Gain your brother", "Win the argument", "Embarrass him", "Avoid him"], 0, "The aim is restoration of the relationship."),
  ("When should a student bring in a trusted adult?", ["When there is bullying or a threat to safety", "Never", "Only after a fight", "Only on holidays"], 0, "Safety and serious problems need adult help."),
  ]),
- dict(t="5.2 Group Discussion, Leadership and Meetings", std="SPC.912.C",
+ dict(t="5.2 Group Discussion, Leadership and Meetings", std="Florida speech and communication course standards",
  body="""Much of life's important work is done in groups, such as committees, teams, clubs, church boards and families. Proverbs 11:14 says, Where no counsel is, the people fall: but in the multitude of counsellors there is safety. Groups can make better decisions than one person when members listen, share and respect each other.
 
 A small group discussion works best with clear roles. A leader keeps the group on the task and the time, invites everyone to speak and helps summarize. A recorder takes notes of ideas and decisions. A timekeeper watches the clock. Members come prepared, share ideas, listen and support the group's goal. Good members avoid dominating the talk, side conversations and put downs.
@@ -63,7 +63,7 @@ Your task is to name group roles, list problem solving steps and describe a moti
  ("The written record of a meeting is the:", ["Minutes", "Agenda", "Motion", "Second"], 0, "Minutes record the decisions."),
  ("According to Mark 10:43, greatness in a group comes through:", ["Serving others", "Controlling others", "Talking the most", "Avoiding work"], 0, "Jesus taught that the great serve."),
  ]),
- dict(t="5.3 Interviews and Professional Communication", std="SPC.912.C",
+ dict(t="5.3 Interviews and Professional Communication", std="Florida speech and communication course standards",
  body="""A job or college interview is a speaking skill that can shape your future. Proverbs 22:29 says, Seest thou a man diligent in his business? he shall stand before kings; he shall not stand before mean men. Diligence and preparation make a person ready to stand before others with confidence.
 
 Before an interview, research the organization. Learn what it does, its mission and the job or program. Review your own strengths, experiences and goals. Prepare answers to common questions, such as, Tell me about yourself, Why do you want this job, What are your strengths and weaknesses, and Tell me about a time you solved a problem. A helpful tool for describing an experience is the STAR method: Situation, Task, Action and Result. Describe the situation, your task, the action you took and the result you achieved. Prepare two or three questions of your own, such as, What does a successful first month look like? Practice aloud with a parent or mentor.
@@ -90,7 +90,7 @@ Your task is to write a STAR answer, list interview day steps and write a profes
  ("A professional email should have:", ["A clear subject line and polite greeting", "All capital letters", "Slang", "No name"], 0, "Clear and courteous messages show respect."),
  ("After an interview, a candidate should:", ["Send a short thank you note within a day", "Do nothing", "Argue the decision", "Post about the interviewer"], 0, "A thank you note leaves a good impression."),
  ]),
- dict(t="5.4 Digital and Media Communication", std="SPC.912.C",
+ dict(t="5.4 Digital and Media Communication", std="Florida speech and communication course standards",
  body="""Much of our communication now travels through screens. Philippians 4:8 says, Finally, brethren, whatsoever things are true, whatsoever things are honest, whatsoever things are just, whatsoever things are pure, whatsoever things are lovely, whatsoever things are of good report; if there be any virtue, and if there be any praise, think on these things. This verse gives a filter for what we read, share and post.
 
 Digital communication includes text messages, email, social media, video calls, online posts and comments. These channels are fast and reach far, but they also remove tone of voice and facial expression, so messages are easily misunderstood. Before sending, reread and ask whether the message is true, kind and necessary. Emojis and clear wording can help, but sarcasm often fails in text. Do not send messages in anger. Wait before you post or reply.

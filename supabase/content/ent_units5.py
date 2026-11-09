@@ -3,9 +3,9 @@ from ent_units1 import CLOSE
 
 UNIT5 = dict(
  title="Unit 5: Leadership, Employment, Growth and Generosity",
- std="BE.912",
+ std="Florida Entrepreneurship course standards (course 8812100)",
  topics=[
- dict(t="5.1 Leadership and Teamwork", std="BE.912",
+ dict(t="5.1 Leadership and Teamwork", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Leadership is influencing people toward a good goal. Mark 10:43 and 44 says, whosoever will be great among you, shall be your minister: And whosoever of you will be the chiefest, shall be servant of all. Christian leadership begins with service.
 
 Good leaders have a clear vision, communicate well, set an example, listen, make wise decisions, admit mistakes and develop others. A vision is a picture of what the business is working toward. A mission is a short statement of why the business exists and whom it serves. Values are the principles that guide behavior, such as honesty, excellence and compassion. Write them down and live them.
@@ -57,7 +57,7 @@ Your task is to compare two worker types, list five employer duties and explain 
  ("Child labor laws:", ["Limit hours and tasks for people under eighteen", "Do not exist", "Apply only to adults", "Allow dangerous work"], 0, "Young workers are protected."),
  ("An employer should:", ["Keep payroll records and provide a safe workplace", "Hide wages", "Ignore insurance", "Skip taxes"], 0, "Employer duties protect everyone."),
  ]),
- dict(t="5.3 Growth, Risk and Wise Decisions", std="BE.912",
+ dict(t="5.3 Growth, Risk and Wise Decisions", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""Growth can be good, but it must be wise. Proverbs 21:5 says, The thoughts of the diligent tend only to plenty; but of every one that is hasty only to want. Many businesses fail not because the idea is bad but because they grow faster than their systems, cash or character can handle.
 
 Growth paths include selling more to current customers, finding new customers, adding new products or services, opening a new location, selling online, forming partnerships and franchising, which is licensing your business model to others. Each path has costs and risks. Before you grow, ask: Is the current business profitable? Do I have the cash, people and systems? What is the worst that can happen? Can I recover from it?
@@ -86,7 +86,7 @@ Your task is to define three terms, plan for three risks and name five measures.
  ("Diversification means:", ["Not depending on only one customer or product", "Selling one item only", "Avoiding customers", "Raising prices"], 0, "Spreading risk helps stability."),
  ("Proverbs 24:16 says a just man falleth seven times and:", ["Riseth up again", "Stays down", "Gives up", "Hides"], 0, "Resilience is a virtue."),
  ]),
- dict(t="5.4 Generosity, Ministry and Social Impact", std="BE.912",
+ dict(t="5.4 Generosity, Ministry and Social Impact", std="Florida Entrepreneurship course standards (course 8812100)",
  body="""A business can bless more than its owner. Second Corinthians 9:7 says, God loveth a cheerful giver. Malachi 3:10 invites God's people to bring tithes into the storehouse, and Proverbs 3:9 says, Honour the LORD with thy substance, and with the firstfruits of all thine increase. Stewardship means managing what God entrusts to us, including money, time, talent and influence.
 
 Ways a business can give include tithes and offerings, sponsoring a church or school event, donating products or services, paying fair wages, hiring people who need opportunity, mentoring young people and serving the community. Giving should be honest and planned. Set a percentage, keep records of donations, and learn the rules. A gift to a qualified nonprofit may be tax deductible, but a business owner should ask a tax professional how it works. Do not give in order to be praised by people. Matthew 6:3 and 4 teaches that giving should be done in secret.
