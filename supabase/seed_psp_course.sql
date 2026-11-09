@@ -1,0 +1,6 @@
+-- Public Speaking and Communication course record. Safe to run more than once.
+alter table public.courses add column if not exists video_url text;
+
+insert into public.courses (slug, title, subject, credits, focus)
+values ('public-speaking', 'Public Speaking and Communication', 'Electives', 1.0, $j$Public Speaking and Communication is a one credit elective that teaches students to think clearly, speak with confidence and listen with care. Students study the communication process, overcoming fear, listening, honesty and respect, choosing topics, research and credible sources, organizing and outlining speeches, voice and body language, practice and visual aids, informative, persuasive, ceremonial and storytelling speeches, conversation, conflict, group discussion, interviews, digital and media communication, rhetoric and logic, speaking about faith with grace, public leadership and evaluating speeches. Every lesson is taught by Dr. Alex L. Jenkins Sr. with Scripture from the King James Version, and every unit includes a Focus, Topics, Assessments, Discussions and Quizzes, with a final speech project and a final exam. The course is aligned at the strand level to Florida Speech standards.$j$)
+on conflict (slug) do nothing;
