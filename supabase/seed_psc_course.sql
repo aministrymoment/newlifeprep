@@ -1,0 +1,6 @@
+-- Physical Science course record. Safe to run more than once.
+alter table public.courses add column if not exists video_url text;
+
+insert into public.courses (slug, title, subject, credits, focus)
+values ('physical-science', 'Physical Science', 'Science', 1.0, $j$Physical Science is a one credit science course that introduces students to the matter and energy of the physical world. Students study the nature of science, measurement and lab safety, properties and states of matter, atomic structure and the periodic table, electron arrangement, elements, compounds and mixtures, ionic and covalent bonds, balanced chemical equations and reaction types, rates, acids and bases, speed, velocity and acceleration, Newton's laws, gravity and momentum, energy, work and power, simple machines, heat and temperature, energy resources, waves and sound, light and the electromagnetic spectrum, electric circuits and Ohm's law, and magnetism and electromagnetism. Throughout the course students apply Scripture on God's order in creation, honest measurement and careful stewardship. The course aligns to the Florida science standards for the nature of science and physical science and ends with a final investigation report and a final exam. Excellence, Faith, Purpose.$j$)
+on conflict (slug) do nothing;
