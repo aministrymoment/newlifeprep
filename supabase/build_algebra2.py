@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.join(HERE, 'content'))
 UNIT_MODULES = [('a2_units1', 'UNIT1'), ('a2_units2', 'UNIT2'), ('a2_units3', 'UNIT3'), ('a2_units4', 'UNIT4'), ('a2_units5', 'UNIT5'), ('a2_units6', 'UNIT6')]
 PRESENTER = "Dr. Alex L. Jenkins Sr."
 SLUG, TITLE = 'algebra-2', 'Algebra 2'
-FOCUS = ("Algebra 2 extends the algebra of Algebra 1 and Geometry to functions of every major family. Students study function operations, transformations and inverses, quadratic and complex numbers, polynomial and rational functions, radicals and absolute value, exponential and logarithmic functions with financial applications, and systems of equations and inequalities. Students model real situations, fit functions to data, and justify solutions. The course aligns to the Florida B.E.S.T. Mathematics standards for Algebra 2 and ends with a final project and a final exam. Excellence, Faith, Purpose.")
+FOCUS = ("Algebra 2 extends the algebra of Algebra 1 and Geometry to functions of every major family. Students study function operations, transformations and inverses, quadratic and complex numbers, polynomial and rational functions, radicals and absolute value, exponential and logarithmic functions with financial applications, and systems of equations and inequalities. Students model real situations, fit functions to data, and justify solutions. The course aligns to the Florida B.E.S.T. Mathematics standards for Algebra 2 and ends with a final assessment and a final exam. Excellence, Faith, Purpose.")
 def kjv(ref):
     book, ch = ref.rsplit(' ', 1)
     return {"title": ref.replace("Psalms ", "Psalm ") + " (King James Version)", "url": "/portal/bible/" + book.replace(' ', '') + "/" + ch}
