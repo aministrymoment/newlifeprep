@@ -36,3 +36,19 @@ from (values
  ('Economics with Financial Literacy','2102335',0.5,'terminated_after_2023_2024_do_not_use_as_current'),
  ('Personal Finance and Stewardship',NULL,0.5,'candidate_2102372_pending_verification')
 ) v(t,c,m,s) where courses.title = v.t;
+
+-- Packages 5 and 6: electives, supporting courses, Biblical Studies, Entrepreneurship. No codes assigned without verification.
+update public.courses set fl_directory_year = '2026-2027', standards_status = v.s
+from (values
+ ('Physical Education with Personal Fitness','provisional_match_HOPE_pending'),
+ ('Health Education','provisional_match_pending'),
+ ('Spanish 1','provisional_match_pending'),
+ ('Spanish 2','provisional_match_pending'),
+ ('Personal Finance and Stewardship','candidates_2102372_or_8500120_pending'),
+ ('Music Appreciation and Worship Arts','provisional_match_pending'),
+ ('Public Speaking and Communication','provisional_match_pending'),
+ ('Digital Technology and Computer Applications','provisional_match_pending'),
+ ('Entrepreneurship and Business Stewardship','pending_cte_course_level_verification')
+) v(t,s) where courses.title = v.t;
+update public.courses set standards_status = 'school_designed', fl_course_code = null, fl_max_credit = null, fl_directory_year = null
+where title in ('Christian Ethics') or title like 'BIB 101%' or title like 'BIB 102%';
