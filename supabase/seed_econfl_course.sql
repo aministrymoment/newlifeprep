@@ -1,0 +1,6 @@
+-- Economics with Financial Literacy course record. Safe to run more than once.
+alter table public.courses add column if not exists video_url text;
+
+insert into public.courses (slug, title, subject, credits, focus)
+values ('economics-financial-literacy', 'Economics with Financial Literacy', 'Social Studies', 0.5, $j$Economics with Financial Literacy is a one semester course that meets the Florida requirement for economics with financial literacy. Students learn how scarcity, choice, incentives, supply and demand, and prices work, how economic systems, money, banking and the Federal Reserve shape daily life, and how GDP, inflation, unemployment and the business cycle describe the economy. Students then study taxes, trade, careers, paychecks, and wise consumer choices. The financial literacy unit covers budgeting, saving, emergency funds, banking, credit, debt, credit scores, compound interest, investing, risk, insurance, taxes, fraud protection and giving. Students practice the biblical principles of honesty, diligence, planning and stewardship from the King James Version. The course ends with a final personal finance plan and a final exam. Excellence, Faith, Purpose.$j$)
+on conflict (slug) do nothing;
