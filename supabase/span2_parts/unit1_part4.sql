@@ -1,0 +1,9 @@
+do $seed$
+declare cid uuid;
+begin
+  select id into cid from public.courses where slug = 'spanish-2';
+  if cid is null then raise exception 'Run the course file first'; end if;
+  insert into public.course_items (course_id, kind, position, title, content) select cid, 'quiz', 5, $j$Unit Quiz 1: Daily Life, Reflexive Verbs and Irregular Verbs$j$, $j${"questions": [{"q": "The yo form of salir is:", "options": ["Sale", "Salí", "Salo", "Salgo"]}, {"q": "Me visto means:", "options": ["I see", "I wear nothing", "I live", "I get dressed"]}, {"q": "Ellos viven is the present tense of:", "options": ["Vivir", "Ver", "Venir", "Vender"]}, {"q": "Sé la respuesta uses saber because:", "options": ["It is a person", "It is a place", "It is a fact", "It is a time"]}, {"q": "Which sentence needs the personal a?", "options": ["Veo ___ mi hermano", "Veo ___ la mesa", "Leo ___ la Biblia", "Tengo ___ un libro"]}, {"q": "Nos acostamos means:", "options": ["We wake up", "We go to bed", "We sit", "We wash"]}, {"q": "The tú form of hacer is:", "options": ["Haces", "Hagas", "Hago", "Hacen"]}, {"q": "Question words need:", "options": ["A capital letter", "No special mark", "A hyphen", "An accent mark"]}]}$j$::jsonb where not exists (select 1 from public.course_items where course_id = cid and kind = 'quiz' and title = $j$Unit Quiz 1: Daily Life, Reflexive Verbs and Irregular Verbs$j$);
+  insert into public.quiz_keys (item_id, answers, explains) select id, '{3,3,0,2,0,1,0,3}'::int[], array[$j$Salir is salgo.$j$,$j$Vestirse changes e to i.$j$,$j$Viven comes from vivir.$j$,$j$Saber is for facts.$j$,$j$A goes before a specific person.$j$,$j$Acostarse is to go to bed.$j$,$j$Only yo is irregular in hacer.$j$,$j$Qué, dónde and cómo carry accents.$j$] from public.course_items where course_id = cid and kind = 'quiz' and title = $j$Unit Quiz 1: Daily Life, Reflexive Verbs and Irregular Verbs$j$ on conflict (item_id) do nothing;
+end
+$seed$;
