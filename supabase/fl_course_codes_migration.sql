@@ -25,3 +25,14 @@ from (values ('Algebra 1','1200310','code_verified_benchmarks_pending'),('Geomet
 -- Package 3: Science.
 update public.courses set fl_course_code = v.c, fl_max_credit = 1.0, fl_directory_year = '2026-2027', standards_status = 'code_verified_benchmarks_pending'
 from (values ('Biology 1','2000310'),('Chemistry','2003340'),('Physical Science','2003310'),('Earth and Space Science','2001310')) v(t,c) where courses.title = v.t;
+
+-- Package 4: Social Studies. Economics with Financial Literacy (2102335) is terminated after 2023-2024 and must not be treated as current.
+update public.courses set fl_course_code = v.c, fl_max_credit = v.m, fl_directory_year = '2026-2027', standards_status = v.s
+from (values
+ ('World History 1','2109310',1.0,'code_pending_current_version_check'),
+ ('United States History 1','2100310',1.0,'code_pending_current_version_check'),
+ ('United States Government','2106310',0.5,'code_pending_current_version_check'),
+ ('Economics','2102310',0.5,'code_pending_current_status_check'),
+ ('Economics with Financial Literacy','2102335',0.5,'terminated_after_2023_2024_do_not_use_as_current'),
+ ('Personal Finance and Stewardship',NULL,0.5,'candidate_2102372_pending_verification')
+) v(t,c,m,s) where courses.title = v.t;
