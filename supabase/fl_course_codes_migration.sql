@@ -52,3 +52,8 @@ from (values
 ) v(t,s) where courses.title = v.t;
 update public.courses set standards_status = 'school_designed', fl_course_code = null, fl_max_credit = null, fl_directory_year = null
 where title in ('Christian Ethics') or title like 'BIB 101%' or title like 'BIB 102%';
+
+-- Corrections (Nov 10): 2102372 terminated 2024; current standard course is Personal Finance and Money Management 2102371 (0.5), Honors 2102373.
+-- Economics and Personal Finance 2102300 (1.0) is a separate combined option, not a substitute. Economics with Financial Literacy deactivated for new enrollment; records preserved.
+update public.courses set standards_status = 'candidates_2102371_or_honors_2102373_or_8500120_pending' where title = 'Personal Finance and Stewardship';
+update public.courses set active = false where title = 'Economics with Financial Literacy';

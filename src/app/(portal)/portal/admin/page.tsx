@@ -5,7 +5,7 @@ import PortalFrame from '@/components/portal/PortalFrame';
 import { AVERY_NUMBERS } from '@/lib/avery';
 
 type P = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level?: number | null; role: string };
-type C = { id: string; title: string; slug: string };
+type C = { id: string; title: string; slug: string; active?: boolean };
 type Q = { id: string; created_at: string; name: string; email: string; phone: string | null; program: string | null; message: string; status: string; emailed: boolean; street: string | null; city: string | null; state: string | null; zip: string | null };
 type Pay = { id: string; created_at: string; receipt_no: string | null; label: string | null; item: string; amount_cents: number; payer_name: string | null; payer_email: string | null; reference: string | null; status: string; refunded_cents: number };
 type S = { id: string; body: string; created_at: string; user_id: string; item_id: string; score: number | null; feedback: string | null; status: string };
@@ -28,7 +28,7 @@ function Admin() {
     const sb = supabase();
     const [p, c, s, e, it, qa, iq, py] = await Promise.all([
       sb.from('profiles').select('*').order('created_at', { ascending: false }),
-      sb.from('courses').select('id,title,slug').order('title'),
+      sb.from('courses').select('id,title,slug,active').order('title'),
       sb.from('submissions').select('*').eq('status', 'submitted').order('created_at'),
       sb.from('enrollments').select('user_id, course_id').neq('status', 'withdrawn'),
       sb.from('course_items').select('id,title'),
@@ -232,7 +232,7 @@ function Person({ p, courses, enrolled, onSave, onEnroll, onDelete }: { p: P; co
       <p className="p-small">{p.email} · {p.role}</p>
       <div className="p-row"><input placeholder="Full name" value={n} onChange={(e) => setN(e.target.value)} /><input placeholder="NLPA-2026-001" value={sid} onChange={(e) => setSid(e.target.value)} /><select value={g} onChange={(e) => setG(e.target.value)}><option value="">Grade level</option><option value="9">9th Grade</option><option value="10">10th Grade</option><option value="11">11th Grade</option><option value="12">12th Grade</option></select><button className="p-btn" onClick={() => onSave(p, n, sid, g)}>Save</button></div>
       <div className="p-row">
-        <select value={c} onChange={(e) => setC(e.target.value)}><option value="">Enroll in a course</option>{courses.map((x) => <option key={x.id} value={x.id}>{x.title}</option>)}</select>
+        <select value={c} onChange={(e) => setC(e.target.value)}><option value="">Enroll in a course</option>{courses.filter((x) => x.active !== false).map((x) => <option key={x.id} value={x.id}>{x.title}</option>)}</select>
         <button className="p-btn" onClick={() => onEnroll(p.id, c)} disabled={!c}>Enroll</button>
       </div>
       {p.role !== 'admin' && <div className="p-row"><button className="p-danger" onClick={() => onDelete(p)}>Delete student</button></div>}

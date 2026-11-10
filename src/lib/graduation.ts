@@ -14,17 +14,16 @@ export const PLAN: Record<number, string[]> = {
   9: ['English 1', 'Algebra 1', 'Physical Science', 'Physical Education with Personal Fitness', 'BIB 101 Old Testament Survey', 'Digital Technology and Computer Applications', 'Public Speaking and Communication'],
   10: ['English 2', 'Geometry', 'Biology 1', 'World History 1', 'BIB 102 New Testament Survey', 'Health Education', 'Spanish 1'],
   11: ['English 3', 'Algebra 2', 'Chemistry', 'United States History 1', 'Music Appreciation and Worship Arts', 'Personal Finance and Stewardship'],
-  12: ['English 4', 'Probability and Statistics', 'United States Government', 'Economics with Financial Literacy', 'Christian Ethics', 'Entrepreneurship and Business Stewardship', 'Spanish 2'],
+  12: ['English 4', 'Probability and Statistics', 'United States Government', 'Economics', 'Christian Ethics', 'Entrepreneurship and Business Stewardship', 'Spanish 2'],
 };
 export const ALTERNATES: { title: string; use: string }[] = [
   { title: 'Earth and Space Science', use: 'Swap for Physical Science, or add as a fourth science for college bound students.' },
-  { title: 'Economics', use: 'Extra elective only. Economics with Financial Literacy meets the requirement.' },
 ];
 export const AREA: Record<string, Area> = {
   'English 1': 'English', 'English 2': 'English', 'English 3': 'English', 'English 4': 'English',
   'Algebra 1': 'Mathematics', 'Geometry': 'Mathematics', 'Algebra 2': 'Mathematics', 'Probability and Statistics': 'Mathematics',
   'Physical Science': 'Science', 'Biology 1': 'Science', 'Chemistry': 'Science', 'Earth and Space Science': 'Science',
-  'World History 1': 'Social Studies', 'United States History 1': 'Social Studies', 'United States Government': 'Social Studies', 'Economics with Financial Literacy': 'Social Studies',
+  'World History 1': 'Social Studies', 'United States History 1': 'Social Studies', 'United States Government': 'Social Studies', 'Economics': 'Social Studies',
   'Physical Education with Personal Fitness': 'Physical Education',
   'Music Appreciation and Worship Arts': 'Fine Arts',
 };
@@ -36,18 +35,18 @@ const planGradeOf = (t: string) => { for (const g of [9, 10, 11, 12]) if (PLAN[g
 const MANDATORY: Partial<Record<Area, string[]>> = {
   Mathematics: ['Algebra 1', 'Geometry'],
   Science: ['Biology 1'],
-  'Social Studies': ['World History 1', 'United States History 1', 'United States Government', 'Economics with Financial Literacy'],
+  'Social Studies': ['World History 1', 'United States History 1', 'United States Government', 'Economics'],
 };
 // Order in which NLPA courses are offered to fill an area.
 const SEQ: Record<Exclude<Area, 'Electives'>, string[]> = {
   English: ['English 1', 'English 2', 'English 3', 'English 4'],
   Mathematics: ['Algebra 1', 'Geometry', 'Algebra 2', 'Probability and Statistics'],
   Science: ['Biology 1', 'Physical Science', 'Chemistry', 'Earth and Space Science'],
-  'Social Studies': ['World History 1', 'United States History 1', 'United States Government', 'Economics with Financial Literacy'],
+  'Social Studies': ['World History 1', 'United States History 1', 'United States Government', 'Economics'],
   'Physical Education': ['Physical Education with Personal Fitness'],
   'Fine Arts': ['Music Appreciation and Worship Arts'],
 };
-const ELECTIVE_ORDER = ['BIB 101 Old Testament Survey', 'BIB 102 New Testament Survey', 'Christian Ethics', 'Health Education', 'Digital Technology and Computer Applications', 'Public Speaking and Communication', 'Spanish 1', 'Spanish 2', 'Personal Finance and Stewardship', 'Entrepreneurship and Business Stewardship', 'Economics', 'Earth and Space Science'];
+const ELECTIVE_ORDER = ['BIB 101 Old Testament Survey', 'BIB 102 New Testament Survey', 'Christian Ethics', 'Health Education', 'Digital Technology and Computer Applications', 'Public Speaking and Communication', 'Spanish 1', 'Spanish 2', 'Personal Finance and Stewardship', 'Entrepreneurship and Business Stewardship', 'Earth and Space Science'];
 // A course in a chain must come in a later year than the one before it, when both are still needed.
 const CHAINS: string[][] = [
   ['English 1', 'English 2', 'English 3', 'English 4'],
