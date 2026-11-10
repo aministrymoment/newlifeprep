@@ -2,35 +2,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import PortalFrame from '@/components/portal/PortalFrame';
+import TranscriptPlanner from '@/components/portal/TranscriptPlanner';
+import { PLAN, ALTERNATES, REQUIRED, areaOf } from '@/lib/graduation';
 
 type Course = { id: string; title: string; slug: string; subject: string | null; credits: number | string | null };
 type Person = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level: number | null; role: string };
-
-// Recommended four year plan. Titles match the course titles in the database.
-const PLAN: Record<number, string[]> = {
-  9: ['English 1', 'Algebra 1', 'Physical Science', 'Physical Education with Personal Fitness', 'BIB 101 Old Testament Survey', 'Digital Technology and Computer Applications', 'Public Speaking and Communication'],
-  10: ['English 2', 'Geometry', 'Biology 1', 'World History 1', 'BIB 102 New Testament Survey', 'Health Education', 'Spanish 1'],
-  11: ['English 3', 'Algebra 2', 'Chemistry', 'United States History 1', 'Music Appreciation and Worship Arts', 'Personal Finance and Stewardship'],
-  12: ['English 4', 'Probability and Statistics', 'United States Government', 'Economics with Financial Literacy', 'Christian Ethics', 'Entrepreneurship and Business Stewardship', 'Spanish 2'],
-};
-const ALTERNATES: { title: string; use: string }[] = [
-  { title: 'Earth and Space Science', use: 'Swap for Physical Science, or add as a fourth science for college bound students.' },
-  { title: 'Economics', use: 'Extra elective only. Economics with Financial Literacy meets the requirement.' },
-];
-// Subject area each course counts toward.
-const AREA: Record<string, string> = {
-  'English 1': 'English', 'English 2': 'English', 'English 3': 'English', 'English 4': 'English',
-  'Algebra 1': 'Mathematics', 'Geometry': 'Mathematics', 'Algebra 2': 'Mathematics', 'Probability and Statistics': 'Mathematics',
-  'Physical Science': 'Science', 'Biology 1': 'Science', 'Chemistry': 'Science', 'Earth and Space Science': 'Science',
-  'World History 1': 'Social Studies', 'United States History 1': 'Social Studies', 'United States Government': 'Social Studies', 'Economics with Financial Literacy': 'Social Studies',
-  'Physical Education with Personal Fitness': 'Physical Education',
-  'Music Appreciation and Worship Arts': 'Fine Arts',
-};
-const REQUIRED: { area: string; need: number }[] = [
-  { area: 'English', need: 4 }, { area: 'Mathematics', need: 4 }, { area: 'Science', need: 3 }, { area: 'Social Studies', need: 3 },
-  { area: 'Physical Education', need: 1 }, { area: 'Fine Arts', need: 1 }, { area: 'Electives', need: 8 },
-];
-const areaOf = (t: string) => AREA[t] || 'Electives';
 
 function Counselor() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -84,6 +60,9 @@ function Counselor() {
         {student && <p className="p-small">{student.full_name || student.email}{student.student_id ? ` · ${student.student_id}` : ''} · {student.grade_level ? `Grade ${student.grade_level}` : 'No grade level set. Set it in Administration.'} · Courses marked Enrolled are ones the student is currently enrolled in.</p>}
       </div>
 
+      <TranscriptPlanner people={people} credit={credit} />
+
+      <div className="no-print">
       <h2 className="p-h2">Graduation requirements</h2>
       <div className="p-card">
         <table className="p-table">
@@ -132,6 +111,7 @@ function Counselor() {
           </tbody>
         </table>
         <p className="p-small">Transfer students: review the transcript first, then give priority to required courses still missing in English, math, science, social studies, PE and fine arts. Placements are recommendations. Dr. Jenkins decides each student's schedule.</p>
+      </div>
       </div>
     </>
   );
