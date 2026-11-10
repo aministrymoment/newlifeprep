@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import PortalFrame from '@/components/portal/PortalFrame';
 import TranscriptPlanner from '@/components/portal/TranscriptPlanner';
-import { PLAN, ALTERNATES, REQUIRED, areaOf } from '@/lib/graduation';
+import { PLAN, ALTERNATES, REQUIRED, areaOf, PFL_STATE_CREDIT } from '@/lib/graduation';
 
 type Course = { id: string; title: string; slug: string; subject: string | null; credits: number | string | null };
 type Person = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level: number | null; role: string };
@@ -38,8 +38,16 @@ function Counselor() {
   const planTotal = (g: number) => PLAN[g].reduce((a, t) => a + credit(t), 0);
   const grandTotal = [9, 10, 11, 12].reduce((a, g) => a + planTotal(g), 0);
   const allPlanned = [9, 10, 11, 12].flatMap((g) => PLAN[g]);
-  const areaPlanned = (area: string) => allPlanned.filter((t) => areaOf(t) === area).reduce((a, t) => a + credit(t), 0);
-  const areaEnrolled = (area: string) => allPlanned.concat(ALTERNATES.map((x) => x.title)).filter((t) => areaOf(t) === area && isEnrolled(t)).reduce((a, t) => a + credit(t), 0);
+  // Personal Finance and Stewardship is 1.0 here. Only 0.5 is reserved for the Florida requirement; the other 0.5 counts toward electives, provisionally.
+  const sumArea = (titles: string[], area: string) => titles.filter((t) => areaOf(t) === area).reduce((a, t) => a + credit(t), 0);
+  const byArea = (titles: string[], area: string) => {
+    const pfl = sumArea(titles, 'Personal Financial Literacy');
+    if (area === 'Personal Financial Literacy') return Math.min(pfl, PFL_STATE_CREDIT);
+    if (area === 'Electives') return sumArea(titles, 'Electives') + Math.max(0, pfl - PFL_STATE_CREDIT);
+    return sumArea(titles, area);
+  };
+  const areaPlanned = (area: string) => byArea(allPlanned, area);
+  const areaEnrolled = (area: string) => byArea(allPlanned.concat(ALTERNATES.map((x) => x.title)).filter((t) => isEnrolled(t)), area);
   const missing = allPlanned.filter((t) => !byTitle.has(t));
 
   return (
@@ -74,6 +82,7 @@ function Counselor() {
             <tr><td><b>Total</b></td><td><b>24.0</b></td><td><b>{grandTotal.toFixed(1)}</b></td>{student && <td><b>{REQUIRED.reduce((a, r) => a + areaEnrolled(r.area), 0).toFixed(1)}</b></td>}</tr>
           </tbody>
         </table>
+        <p className="p-small">Social Studies includes 0.5 Economics. Personal Financial Literacy reserves 0.5 credit for Personal Finance and Money Management (2102371). Personal Finance and Stewardship carries 1.0 credit here, so its other 0.5 is counted toward electives provisionally until it is classified.</p>
       </div>
 
       {[9, 10, 11, 12].map((g) => (

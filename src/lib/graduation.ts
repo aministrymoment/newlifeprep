@@ -1,22 +1,26 @@
 // Graduation plan data and the planner used by Administration, Virtual Counselor.
 // Follows the Florida 24 credit diploma structure. Dr. Jenkins confirms NLPA's own requirements.
-export type Area = 'English' | 'Mathematics' | 'Science' | 'Social Studies' | 'Physical Education' | 'Fine Arts' | 'Electives';
-export const AREAS: Area[] = ['English', 'Mathematics', 'Science', 'Social Studies', 'Physical Education', 'Fine Arts', 'Electives'];
+export type Area = 'English' | 'Mathematics' | 'Science' | 'Social Studies' | 'Physical Education' | 'Fine Arts' | 'Personal Financial Literacy' | 'Electives';
+export const AREAS: Area[] = ['English', 'Mathematics', 'Science', 'Social Studies', 'Physical Education', 'Fine Arts', 'Personal Financial Literacy', 'Electives'];
 export const REQUIRED: { area: Area; need: number }[] = [
   { area: 'English', need: 4 }, { area: 'Mathematics', need: 4 }, { area: 'Science', need: 3 }, { area: 'Social Studies', need: 3 },
-  { area: 'Physical Education', need: 1 }, { area: 'Fine Arts', need: 1 }, { area: 'Electives', need: 8 },
+  { area: 'Physical Education', need: 1 }, { area: 'Fine Arts', need: 1 }, { area: 'Personal Financial Literacy', need: 0.5 }, { area: 'Electives', need: 7.5 },
 ];
 export const TOTAL_NEEDED = 24;
 export const MAX_PER_YEAR = 7;
+const ELECTIVE_NEED = 7.5;
+// Personal Finance and Stewardship carries 1.0 credit here. Only 0.5 is reserved for the Florida Personal Finance and Money Management requirement (2102371). The other 0.5 is counted as an elective, provisionally, until its classification is decided.
+export const PFL_STATE_CREDIT = 0.5;
 
 // Recommended four year plan. Titles match the course titles in the database.
 export const PLAN: Record<number, string[]> = {
   9: ['English 1', 'Algebra 1', 'Physical Science', 'Physical Education with Personal Fitness', 'BIB 101 Old Testament Survey', 'Digital Technology and Computer Applications', 'Public Speaking and Communication'],
   10: ['English 2', 'Geometry', 'Biology 1', 'World History 1', 'BIB 102 New Testament Survey', 'Health Education', 'Spanish 1'],
   11: ['English 3', 'Algebra 2', 'Chemistry', 'United States History 1', 'Music Appreciation and Worship Arts', 'Personal Finance and Stewardship'],
-  12: ['English 4', 'Probability and Statistics', 'United States Government', 'Economics', 'Christian Ethics', 'Entrepreneurship and Business Stewardship', 'Spanish 2'],
+  12: ['English 4', 'Probability and Statistics', 'United States Government', 'Economics', 'Christian Ethics', 'Spanish 2'],
 };
 export const ALTERNATES: { title: string; use: string }[] = [
+  { title: 'Entrepreneurship and Business Stewardship', use: 'Elective option. Moved out of the default plan so the plan totals exactly 24.0 credits. Florida course match still pending.' },
   { title: 'Earth and Space Science', use: 'Swap for Physical Science, or add as a fourth science for college bound students.' },
 ];
 export const AREA: Record<string, Area> = {
@@ -26,6 +30,7 @@ export const AREA: Record<string, Area> = {
   'World History 1': 'Social Studies', 'United States History 1': 'Social Studies', 'United States Government': 'Social Studies', 'Economics': 'Social Studies',
   'Physical Education with Personal Fitness': 'Physical Education',
   'Music Appreciation and Worship Arts': 'Fine Arts',
+  'Personal Finance and Stewardship': 'Personal Financial Literacy',
 };
 export const areaOf = (t: string): Area => AREA[t] || 'Electives';
 export const ALL_NLPA_TITLES: string[] = [...Object.values(PLAN).flat(), ...ALTERNATES.map((a) => a.title)];
@@ -36,6 +41,7 @@ const MANDATORY: Partial<Record<Area, string[]>> = {
   Mathematics: ['Algebra 1', 'Geometry'],
   Science: ['Biology 1'],
   'Social Studies': ['World History 1', 'United States History 1', 'United States Government', 'Economics'],
+  'Personal Financial Literacy': ['Personal Finance and Stewardship'],
 };
 // Order in which NLPA courses are offered to fill an area.
 const SEQ: Record<Exclude<Area, 'Electives'>, string[]> = {
@@ -45,8 +51,9 @@ const SEQ: Record<Exclude<Area, 'Electives'>, string[]> = {
   'Social Studies': ['World History 1', 'United States History 1', 'United States Government', 'Economics'],
   'Physical Education': ['Physical Education with Personal Fitness'],
   'Fine Arts': ['Music Appreciation and Worship Arts'],
+  'Personal Financial Literacy': ['Personal Finance and Stewardship'],
 };
-const ELECTIVE_ORDER = ['BIB 101 Old Testament Survey', 'BIB 102 New Testament Survey', 'Christian Ethics', 'Health Education', 'Digital Technology and Computer Applications', 'Public Speaking and Communication', 'Spanish 1', 'Spanish 2', 'Personal Finance and Stewardship', 'Entrepreneurship and Business Stewardship', 'Earth and Space Science'];
+const ELECTIVE_ORDER = ['BIB 101 Old Testament Survey', 'BIB 102 New Testament Survey', 'Christian Ethics', 'Health Education', 'Digital Technology and Computer Applications', 'Public Speaking and Communication', 'Spanish 1', 'Spanish 2', 'Entrepreneurship and Business Stewardship', 'Earth and Space Science'];
 // A course in a chain must come in a later year than the one before it, when both are still needed.
 const CHAINS: string[][] = [
   ['English 1', 'English 2', 'English 3', 'English 4'],
@@ -92,13 +99,14 @@ export function buildPlan(courses: TCourse[], enteringGrade: number, countInProg
     } else {
       for (const t of SEQ[area]) { if (need <= eps) break; if (!have(t)) { add(t, area, 'Credit still needed'); need -= credits(t); } }
     }
+    if (need < -eps) surplus += -need;
     if (need > eps) flags.push(`${area} is short by ${need.toFixed(1)} credit even after every NLPA course in that area. Review the transcript or consider transfer credit.`);
   });
 
-  let elecNeed = 8 - earned.Electives - surplus;
+  let elecNeed = ELECTIVE_NEED - earned.Electives - surplus;
   const reasonE = 'Elective credit still needed';
   for (const t of ELECTIVE_ORDER) { if (elecNeed <= eps) break; if (!have(t)) { add(t, 'Electives', reasonE); elecNeed -= credits(t); } }
-  const spill = Math.max(0, earned.Electives + surplus - 8);
+  const spill = Math.max(0, earned.Electives + surplus - ELECTIVE_NEED);
 
   // Place the remaining courses into the years left.
   const first = Math.min(12, Math.max(9, enteringGrade));
@@ -127,7 +135,8 @@ export function buildPlan(courses: TCourse[], enteringGrade: number, countInProg
   if (courses.some((c) => c.status === 'failed')) flags.push('Failed courses are not counted. The student may repeat them at NLPA.');
   const unmatchedCore = counted.filter((c) => c.area !== 'Electives' && !c.match);
   if (unmatchedCore.length) flags.push(`Check the mapping for: ${unmatchedCore.map((c) => c.title).join(', ')}. They count toward credits but not toward a specific NLPA course, so the plan may ask for a course the student already has.`);
-  if (spill > eps) flags.push(`${spill.toFixed(1)} extra elective credit is already earned beyond the 8.0 needed.`);
+  if (spill > eps) flags.push(`${spill.toFixed(1)} extra elective credit is already earned beyond the 7.5 needed.`);
+  if (have('Personal Finance and Stewardship') || earned['Personal Financial Literacy'] > PFL_STATE_CREDIT + eps) flags.push('Personal Finance and Stewardship carries 1.0 credit. Only 0.5 is reserved for the Florida Personal Finance and Money Management requirement. The other 0.5 is counted toward electives provisionally until Dr. Jenkins classifies it.');
   if (courses.some((c) => c.status === 'in_progress') && countInProgress) flags.push('Courses in progress are counted as earned. Update the plan when final grades arrive.');
 
   const counted2 = {} as Record<Area, number>;

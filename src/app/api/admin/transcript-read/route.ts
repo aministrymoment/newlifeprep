@@ -57,7 +57,7 @@ export async function POST(req: Request) {
               grade: { type: 'string', description: 'Final grade as printed, or empty.' },
               year: { type: 'string', description: 'School year or term as printed, or empty.' },
               status: { type: 'string', enum: ['completed', 'in_progress', 'failed'], description: 'failed for F or no credit earned; in_progress only when the transcript shows the course is currently being taken.' },
-              area: { type: 'string', enum: AREAS, description: 'Graduation area. Art, music, band, chorus, drama, theater and dance are Fine Arts. Health, foreign language, JROTC, technology, business and everything else not core are Electives.' },
+              area: { type: 'string', enum: AREAS, description: 'Graduation area. Art, music, band, chorus, drama, theater and dance are Fine Arts. Personal finance, financial literacy and money management courses are Personal Financial Literacy. Health, foreign language, JROTC, technology, business and everything else not core are Electives.' },
               nlpa_match: { type: ['string', 'null'], enum: [...ALL_NLPA_TITLES, null], description: 'The single NLPA course that this course clearly covers at the same level, or null. Honors and AP versions match the standard course. Do not guess when unsure.' },
             },
             required: ['title', 'credits', 'status', 'area', 'nlpa_match'],
