@@ -17,3 +17,7 @@ drop policy if exists "benchmarks admin" on public.course_benchmarks;
 create policy "benchmarks admin" on public.course_benchmarks for all using (public.is_admin()) with check (public.is_admin());
 update public.courses set fl_course_code = v.c, fl_max_credit = 1.0, fl_directory_year = '2026-2027', standards_status = 'code_verified_benchmarks_pending'
 from (values ('English 1','1001310'),('English 2','1001340'),('English 3','1001370'),('English 4','1001400')) v(t,c) where courses.title = v.t;
+
+-- Package 2: Mathematics. Probability and Statistics is provisional: 1210300 is Probability and Statistics Honors in the directory; Mathematics for College Statistics (1210305) is under evaluation.
+update public.courses set fl_course_code = v.c, fl_max_credit = 1.0, fl_directory_year = '2026-2027', standards_status = v.s
+from (values ('Algebra 1','1200310','code_verified_benchmarks_pending'),('Geometry','1206310','code_verified_benchmarks_pending'),('Algebra 2','1200330','code_verified_benchmarks_pending'),('Probability and Statistics','1210300','provisional_course_selection_pending')) v(t,c,s) where courses.title = v.t;
