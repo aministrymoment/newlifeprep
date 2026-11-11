@@ -9,19 +9,18 @@ export const REQUIRED: { area: Area; need: number }[] = [
 export const TOTAL_NEEDED = 24;
 export const MAX_PER_YEAR = 7;
 const ELECTIVE_NEED = 7.5;
-// Personal Finance and Stewardship carries 1.0 credit here. Only 0.5 is reserved for the Florida Personal Finance and Money Management requirement (2102371). The other 0.5 is counted as an elective, provisionally, until its classification is decided.
+// Personal Finance and Stewardship carries 0.5 credit and matches the Florida Personal Finance and Money Management course (2102371), the Personal Financial Literacy requirement.
 export const PFL_STATE_CREDIT = 0.5;
 
 // Recommended four year plan. Titles match the course titles in the database.
 export const PLAN: Record<number, string[]> = {
   9: ['English 1', 'Algebra 1', 'Physical Science', 'Physical Education with Personal Fitness', 'BIB 101 Old Testament Survey', 'Digital Technology and Computer Applications', 'Public Speaking and Communication'],
   10: ['English 2', 'Geometry', 'Biology 1', 'World History 1', 'BIB 102 New Testament Survey', 'Health Education', 'Spanish 1'],
-  11: ['English 3', 'Algebra 2', 'Chemistry', 'United States History 1', 'Music Appreciation and Worship Arts', 'Personal Finance and Stewardship'],
+  11: ['English 3', 'Algebra 2', 'Chemistry', 'United States History 1', 'Music Appreciation and Worship Arts', 'Personal Finance and Stewardship', 'Entrepreneurship and Business Stewardship'],
   12: ['English 4', 'Probability and Statistics', 'United States Government', 'Economics', 'Christian Ethics', 'Spanish 2'],
 };
 export const ALTERNATES: { title: string; use: string }[] = [
-  { title: 'Entrepreneurship and Business Stewardship', use: 'Elective option. Moved out of the default plan so the plan totals exactly 24.0 credits. Florida course match still pending.' },
-  { title: 'Earth and Space Science', use: 'Swap for Physical Science, or add as a fourth science for college bound students.' },
+    { title: 'Earth and Space Science', use: 'Swap for Physical Science, or add as a fourth science for college bound students.' },
 ];
 export const AREA: Record<string, Area> = {
   'English 1': 'English', 'English 2': 'English', 'English 3': 'English', 'English 4': 'English',
@@ -136,7 +135,6 @@ export function buildPlan(courses: TCourse[], enteringGrade: number, countInProg
   const unmatchedCore = counted.filter((c) => c.area !== 'Electives' && !c.match);
   if (unmatchedCore.length) flags.push(`Check the mapping for: ${unmatchedCore.map((c) => c.title).join(', ')}. They count toward credits but not toward a specific NLPA course, so the plan may ask for a course the student already has.`);
   if (spill > eps) flags.push(`${spill.toFixed(1)} extra elective credit is already earned beyond the 7.5 needed.`);
-  if (have('Personal Finance and Stewardship') || earned['Personal Financial Literacy'] > PFL_STATE_CREDIT + eps) flags.push('Personal Finance and Stewardship carries 1.0 credit. Only 0.5 is reserved for the Florida Personal Finance and Money Management requirement. The other 0.5 is counted toward electives provisionally until Dr. Jenkins classifies it.');
   if (courses.some((c) => c.status === 'in_progress') && countInProgress) flags.push('Courses in progress are counted as earned. Update the plan when final grades arrive.');
 
   const counted2 = {} as Record<Area, number>;
