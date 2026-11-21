@@ -28,6 +28,9 @@ export async function POST(req: Request) {
   const message = String(b.message || '').trim().slice(0, 2000);
   if (!/^[0-9a-f-]{36}$/i.test(id)) return NextResponse.json({ error: 'Choose a transcript.' }, { status: 400 });
   if (!EMAIL_RE.test(to)) return NextResponse.json({ error: 'Enter a valid email address for the recipient.' }, { status: 400 });
+  const list = (v: any) => String(v || '').split(/[,;\s]+/).map((x) => x.trim()).filter(Boolean).slice(0, 10);
+  const cc = list(b.cc), bcc = list(b.bcc);
+  if ([...cc, ...bcc].some((x) => !EMAIL_RE.test(x))) return NextResponse.json({ error: 'One of the CC or BCC addresses is not a valid email address.' }, { status: 400 });
   if (!authorizedBy) return NextResponse.json({ error: 'Confirm the release authorization and say who gave it.' }, { status: 400 });
 
   const svc = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -69,6 +72,8 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         from: process.env.TRANSCRIPT_FROM || process.env.INQUIRY_FROM || 'NLPA Registrar <onboarding@resend.dev>',
         to: [to],
+        ...(cc.length ? { cc } : {}),
+        ...(bcc.length ? { bcc } : {}),
         reply_to: process.env.TRANSCRIPT_REPLY_TO || 'newlifeprep@gmail.com',
         subject, html, attachments,
       }),
@@ -80,7 +85,7 @@ export async function POST(req: Request) {
   await fetch(`${URL_}/rest/v1/transcript_sends`, {
     method: 'POST',
     headers: { ...sh, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-    body: JSON.stringify({ transcript_id: id, to_email: to, to_name: toName || null, subject, message: body, authorized_by: authorizedBy, sent_by: uid, status: ok ? 'sent' : 'failed', error: ok ? null : err || 'Send failed' }),
+    body: JSON.stringify({ transcript_id: id, to_email: to, cc: cc.join(', ') || null, bcc: bcc.join(', ') || null, to_name: toName || null, subject, message: body, authorized_by: authorizedBy, sent_by: uid, status: ok ? 'sent' : 'failed', error: ok ? null : err || 'Send failed' }),
   }).catch(() => {});
 
   if (!ok) return NextResponse.json({ error: 'The email could not be sent. The school office can check the sending address setup. Nothing was delivered.' }, { status: 502 });

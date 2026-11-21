@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase';
 import PortalFrame from '@/components/portal/PortalFrame';
 
 type Rec = { id: string; student_name: string; student_id: string | null; kind: string; school_from: string | null; docx_path: string | null; pdf_path: string | null; original_path: string | null; original_name: string | null; created_at: string; updated_at: string };
-type Send = { id: string; transcript_id: string; to_email: string; to_name: string | null; authorized_by: string; sent_at: string; status: string };
+type Send = { id: string; transcript_id: string; to_email: string; cc: string | null; bcc: string | null; to_name: string | null; authorized_by: string; sent_at: string; status: string };
 
 function Library() {
   const [recs, setRecs] = useState<Rec[]>([]);
@@ -13,6 +13,7 @@ function Library() {
   const [msg, setMsg] = useState('');
   const [open, setOpen] = useState<string | null>(null);
   const [to, setTo] = useState(''); const [toName, setToName] = useState(''); const [subject, setSubject] = useState('');
+  const [cc, setCc] = useState(''); const [bcc, setBcc] = useState(''); const [copyMe, setCopyMe] = useState(true);
   const [note, setNote] = useState(''); const [by, setBy] = useState(''); const [ok, setOk] = useState(false); const [word, setWord] = useState(false);
   const [busy, setBusy] = useState(false);
 
@@ -20,7 +21,7 @@ function Library() {
     const sb = supabase();
     const [r, s] = await Promise.all([
       sb.from('transcripts').select('id,student_name,student_id,kind,school_from,docx_path,pdf_path,original_path,original_name,created_at,updated_at').order('updated_at', { ascending: false }),
-      sb.from('transcript_sends').select('id,transcript_id,to_email,to_name,authorized_by,sent_at,status').order('sent_at', { ascending: false }),
+      sb.from('transcript_sends').select('id,transcript_id,to_email,cc,bcc,to_name,authorized_by,sent_at,status').order('sent_at', { ascending: false }),
     ]);
     setRecs((r.data || []) as Rec[]); setSends((s.data || []) as Send[]);
   }, []);
@@ -44,10 +45,10 @@ function Library() {
     setBusy(true);
     try {
       const { data: s } = await supabase().auth.getSession();
-      const res = await fetch('/api/admin/transcript-send', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${s.session?.access_token}` }, body: JSON.stringify({ transcriptId: r.id, to, toName, subject, message: note, authorizedBy: by, includeWord: word }) });
+      const res = await fetch('/api/admin/transcript-send', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${s.session?.access_token}` }, body: JSON.stringify({ transcriptId: r.id, to, toName, subject, cc, bcc: [bcc, copyMe ? 'newlifeprep@gmail.com' : ''].filter(Boolean).join(','), message: note, authorizedBy: by, includeWord: word }) });
       const j = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(j.error || 'The email could not be sent.');
-      setMsg(j.message || 'Sent.'); setOpen(null); setTo(''); setToName(''); setSubject(''); setNote(''); setBy(''); setOk(false); setWord(false); load();
+      setMsg(j.message || 'Sent.'); setOpen(null); setTo(''); setToName(''); setSubject(''); setCc(''); setBcc(''); setNote(''); setBy(''); setOk(false); setWord(false); load();
     } catch (e: any) { setMsg(e.message || 'The email could not be sent.'); }
     setBusy(false);
   }
@@ -80,6 +81,9 @@ function Library() {
               <div style={{ marginTop: 12, display: 'grid', gap: 8, maxWidth: 560 }}>
                 <input className="p-input" placeholder="Recipient email" value={to} onChange={(e) => setTo(e.target.value)} />
                 <input className="p-input" placeholder="Recipient name or office (optional)" value={toName} onChange={(e) => setToName(e.target.value)} />
+                <input className="p-input" placeholder="CC (optional, separate several with commas)" value={cc} onChange={(e) => setCc(e.target.value)} />
+                <input className="p-input" placeholder="BCC (optional, hidden from the recipient)" value={bcc} onChange={(e) => setBcc(e.target.value)} />
+                <label><input type="checkbox" checked={copyMe} onChange={(e) => setCopyMe(e.target.checked)} /> Send a copy to the school office (newlifeprep@gmail.com, hidden)</label>
                 <input className="p-input" placeholder="Subject (optional)" value={subject} onChange={(e) => setSubject(e.target.value)} />
                 <textarea className="p-input" rows={3} placeholder="Message (optional)" value={note} onChange={(e) => setNote(e.target.value)} />
                 {r.docx_path && <label><input type="checkbox" checked={word} onChange={(e) => setWord(e.target.checked)} /> Also attach the Word copy</label>}
@@ -91,7 +95,7 @@ function Library() {
             {mine.length > 0 && (
               <details style={{ marginTop: 10 }}>
                 <summary>Sent {mine.length} time{mine.length === 1 ? '' : 's'}</summary>
-                <ul>{mine.map((x) => <li key={x.id} className="p-small">{fmt(x.sent_at)}: {x.to_name ? `${x.to_name}, ` : ''}{x.to_email} ({x.status}). Authorized by {x.authorized_by}.</li>)}</ul>
+                <ul>{mine.map((x) => <li key={x.id} className="p-small">{fmt(x.sent_at)}: {x.to_name ? `${x.to_name}, ` : ''}{x.to_email}{x.cc ? `, CC ${x.cc}` : ''}{x.bcc ? `, BCC ${x.bcc}` : ''} ({x.status}). Authorized by {x.authorized_by}.</li>)}</ul>
               </details>
             )}
           </div>
