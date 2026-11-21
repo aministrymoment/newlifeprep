@@ -36,7 +36,7 @@ export async function POST(req: Request) {
   }
   if (text) content.push({ type: 'text', text: `Transcript text:\n\n${text}` });
   if (!content.length) return NextResponse.json({ error: 'Add a transcript file or paste its text.' }, { status: 400 });
-  content.push({ type: 'text', text: 'Read this transcript and record every high school course using the record_transcript tool.' });
+  content.push({ type: 'text', text: 'Read this transcript and record every high school course by calling the record_transcript tool. Do not reply with text; call the tool.' });
 
   const tool = {
     name: 'record_transcript',
@@ -72,7 +72,7 @@ export async function POST(req: Request) {
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-    body: JSON.stringify({ model: process.env.ANTHROPIC_MODEL || 'claude-sonnet-5-5', max_tokens: 6000, system, tools: [tool], tool_choice: { type: 'tool', name: 'record_transcript' }, messages: [{ role: 'user', content }] }),
+    body: JSON.stringify({ model: process.env.ANTHROPIC_MODEL || 'claude-sonnet-5-5', max_tokens: 6000, system, tools: [tool], tool_choice: { type: 'auto' }, messages: [{ role: 'user', content }] }),
   });
   if (!r.ok) {
     // Administrators only reach this route, so the reason from the reader is shown to help fix a setting.
