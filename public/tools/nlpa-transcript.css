@@ -98,3 +98,4 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-vis
 .s-sig{border-top:1px solid #000;margin:14px 62px 0;text-align:center;font-weight:700;font-size:10.5px;padding-top:2px}
 .s-foot{text-align:center;font-style:italic;font-size:9px;margin-top:8px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.s-signimg{text-align:center;margin:6px 0 -12px;position:relative}.s-signimg img{width:150px;height:auto}
