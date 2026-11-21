@@ -336,7 +336,8 @@ function defaults(){return {
      g("PHYSICAL EDUCATION","Physical Education","1",[["Physical Education with Personal Fitness"]])],
     [g("SOCIAL STUDIES","Social Studies","3",[["World History 1"],["United States History 1"],["United States Government","0.5"],["Economics","0.5"]]),
      g("FINE, PERFORMING OR PRACTICAL ARTS","Arts","1",[[""]]),
-     g("ELECTIVES, INCLUDING BIBLE SURVEYS","Electives","8",[["Old Testament Survey (BIB 101)"],["New Testament Survey (BIB 102)"],[""],[""],[""],[""],[""],[""]])]
+     g("PERSONAL FINANCIAL LITERACY","Personal Financial Literacy","0.5",[["Personal Finance and Stewardship","0.5"]]),
+     g("ELECTIVES, INCLUDING BIBLE SURVEYS","Electives","7.5",[["Old Testament Survey (BIB 101)"],["New Testament Survey (BIB 102)"],[""],[""],[""],[""],[""],[""]])]
   ],
   years:[],
   rank:"",size:"",rankDate:"",grad:"",printed:today(),diploma:""};}
@@ -348,7 +349,7 @@ function $(id){return document.getElementById(id);}
 $("hlogo").src="data:image/png;base64,"+IMG.seal;
 $("s-track").innerHTML=TRACKS.map(function(t){return '<option>'+t+'</option>';}).join("");
 
-function getP(path){var o=S,k=path.split(".");for(var i=0;i<k.length;i++)o=o[k[i]];return o;}
+function getP(path){var o=S,k=path.split(".");for(var i=0;i<k.length;i++){if(o==null)return "";o=o[k[i]];}return o;}
 function setP(path,v){var o=S,k=path.split(".");for(var i=0;i<k.length-1;i++)o=o[k[i]];o[k[k.length-1]]=v;}
 function fillStatic(){document.querySelectorAll("[data-p]").forEach(function(el){var v=getP(el.getAttribute("data-p"));el.value=v==null?"":v;});}
 
@@ -516,8 +517,12 @@ function mapLetter(g){
   return "";
 }
 function groupFor(area){
-  var map={"English":[0,0],"Mathematics":[0,1],"Science":[0,2],"Physical Education":[0,3],"Social Studies":[1,0],"Fine Arts":[1,1],"Personal Financial Literacy":[1,2],"Electives":[1,2]};
-  return map[area]||[1,2];
+  /* find the subject group by its short name so older saved records still work */
+  var want={"English":"English","Mathematics":"Mathematics","Science":"Science","Physical Education":"Physical Education","Social Studies":"Social Studies","Fine Arts":"Arts","Personal Financial Literacy":"Personal Financial Literacy","Electives":"Electives"}[area]||"Electives";
+  for(var c=0;c<S.cols.length;c++)for(var g=0;g<S.cols[c].length;g++)if((S.cols[c][g].abbr||"")===want)return [c,g];
+  var last=S.cols.length-1;
+  for(var c2=0;c2<S.cols.length;c2++)for(var g2=0;g2<S.cols[c2].length;g2++)if((S.cols[c2][g2].abbr||"")==="Electives")return [c2,g2];
+  return [last,S.cols[last].length-1];
 }
 function placeCourses(list){
   /* clear the empty template rows that a new course will take, keep NLPA names the old transcript did not cover */
@@ -567,7 +572,7 @@ $("old-read").addEventListener("click",async function(){
     var out=placeCourses(j.courses);
     if(j.studentName&&!(S.student.name||"").trim())S.student.name=j.studentName;
     RECORD.schoolFrom=j.school||"";RECORD.notes=j.notes||"";
-    fillStatic();renderCourses();renderYears();refresh();
+    renderCourses();renderYears();fillStatic();refresh();
     var m="Read "+j.courses.length+" courses and placed "+out.placed+" as transferred credit (T)."+(out.removed?" Removed "+out.removed+" NLPA course rows that had no grade.":"");
     if(out.skipped.length)m+=" Not placed: "+out.skipped.join("; ")+".";
     if(j.school)m+=" Previous school: "+j.school+".";
