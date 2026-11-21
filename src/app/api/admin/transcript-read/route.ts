@@ -74,7 +74,19 @@ export async function POST(req: Request) {
     headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
     body: JSON.stringify({ model: process.env.ANTHROPIC_MODEL || 'claude-sonnet-5-5', max_tokens: 6000, system, tools: [tool], tool_choice: { type: 'tool', name: 'record_transcript' }, messages: [{ role: 'user', content }] }),
   });
-  if (!r.ok) return NextResponse.json({ error: 'The transcript could not be read right now. Please try again, or paste the text instead.' }, { status: 502 });
+  if (!r.ok) {
+    // Administrators only reach this route, so the reason from the reader is shown to help fix a setting.
+    const raw = await r.text().catch(() => '');
+    let why = ''; try { why = JSON.parse(raw)?.error?.message || ''; } catch { why = raw.slice(0, 200); }
+    console.error('transcript-read upstream', r.status, why);
+    const hint = r.status === 401 ? 'The ANTHROPIC_API_KEY setting was refused. Check that the key is correct.'
+      : r.status === 402 || /credit|billing/i.test(why) ? 'The Anthropic account may be out of credit. Check billing.'
+      : r.status === 404 ? 'The reading model name was not found. Check the ANTHROPIC_MODEL setting or remove it.'
+      : r.status === 429 ? 'The reader is busy. Wait a minute and try again.'
+      : r.status === 400 ? 'The reader could not use that file. Try a smaller or clearer image, a PDF, or paste the text.'
+      : 'Please try again, or paste the text instead.';
+    return NextResponse.json({ error: `The transcript could not be read (code ${r.status}). ${hint}${why ? ` Detail: ${why.slice(0, 160)}` : ''}` }, { status: 502 });
+  }
   const j = await r.json();
   const out = (j.content || []).find((c: any) => c.type === 'tool_use')?.input;
   if (!out || !Array.isArray(out.courses)) return NextResponse.json({ error: 'No courses were found. Try a clearer file or paste the text.' }, { status: 422 });
