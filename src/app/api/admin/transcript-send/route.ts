@@ -74,7 +74,7 @@ export async function POST(req: Request) {
         to: [to],
         ...(cc.length ? { cc } : {}),
         ...(bcc.length ? { bcc } : {}),
-        reply_to: process.env.TRANSCRIPT_REPLY_TO || 'newlifeprep@gmail.com',
+        reply_to: process.env.TRANSCRIPT_REPLY_TO || 'registrar@newlifeprep.org',
         subject, html, attachments,
       }),
     });
