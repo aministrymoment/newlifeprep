@@ -9,6 +9,20 @@
 
   <div class="grid">
     <main id="form">
+      <section class="panel" id="old-panel">
+        <h2>Start from a previous transcript <small>Optional</small></h2>
+        <p class="note">Upload a transcript from a former school (PDF, PNG or JPG, up to 3 MB) or paste its text. Claude reads the courses into the form below as transferred credit (source T). Check every line, then add the student details.</p>
+        <div class="f">
+          <div class="wide"><label for="old-file">Transcript file</label><input id="old-file" type="file" accept=".pdf,.png,.jpg,.jpeg,image/*,application/pdf"></div>
+          <div class="wide"><label for="old-text">Or paste the transcript text</label><textarea id="old-text" rows="3" style="width:100%"></textarea></div>
+          <div class="wide"><label><input id="old-keep" type="checkbox" checked style="width:auto"> Keep the original file in the transcript library</label></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="button" id="old-read">Read the old transcript</button>
+          <button class="btn" type="button" id="old-store">Store the original only</button>
+        </div>
+        <div id="old-msg" role="status" aria-live="polite"></div>
+      </section>
       <section class="panel">
         <h2>Student</h2>
         <div class="f">
@@ -55,6 +69,9 @@
       <section class="panel">
         <div class="actions">
           <button class="btn primary" type="button" id="dl">Download Word transcript</button>
+          <button class="btn" type="button" id="dlpdf">Download PDF</button>
+          <button class="btn primary" type="button" id="savelib">Save to transcript library</button>
+          <a class="btn link" href="/portal/admin/transcript-records">Open the transcript library</a>
           <button class="btn link" type="button" id="reset">Clear the form</button>
         </div>
         <div id="msg" role="status" aria-live="polite"></div>

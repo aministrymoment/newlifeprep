@@ -1,8 +1,9 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/components/portal/useAuth';
+import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '@/lib/supabase';
 
-declare global { interface Window { __nlpaTranscriptLoaded?: boolean } }
+declare global { interface Window { __nlpaTranscriptLoaded?: boolean; NLPA_PORTAL?: { url: string; anon: string; token: () => Promise<string> } } }
 
 function loadScript(src: string) {
   return new Promise<void>((resolve, reject) => {
@@ -31,7 +32,10 @@ export default function TranscriptGenerator() {
         const html = await (await fetch('/tools/nlpa-transcript.html')).text();
         if (cancelled || !host.current) return;
         host.current.innerHTML = html;
+        window.NLPA_PORTAL = { url: SUPABASE_URL, anon: SUPABASE_ANON_KEY, token: async () => (await supabase().auth.getSession()).data.session?.access_token || '' };
         await loadScript('/tools/jszip.min.js');
+        await loadScript('/tools/html2canvas.min.js');
+        await loadScript('/tools/jspdf.umd.min.js');
         await loadScript('/tools/nlpa-transcript.js');
         window.__nlpaTranscriptLoaded = true;
       } catch (e) { setErr('The generator could not load. Please refresh the page.'); }

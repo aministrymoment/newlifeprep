@@ -495,4 +495,157 @@ $("dl").addEventListener("click",async function(){
 });
 
 fillStatic();renderCourses();renderYears();refresh();
+
+/* ===== Portal library: read an old transcript, make a PDF, store, reopen ===== */
+var PORTAL=window.NLPA_PORTAL||null,RECORD={id:null,original:null};
+function pmsg(id,t,cls){var m=$(id);if(m){m.textContent=t;m.className=cls||"";}}
+async function pHeaders(extra){var t=PORTAL?await PORTAL.token():"";return Object.assign({apikey:PORTAL.anon,Authorization:"Bearer "+t},extra||{});}
+function slug(s){return String(s||"").trim().replace(/[^A-Za-z0-9]+/g,"_")||"Student";}
+function newId(){return (window.crypto&&crypto.randomUUID)?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(c){var r=Math.random()*16|0;return (c==="x"?r:(r&3|8)).toString(16);});}
+function fileToB64(file){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(String(r.result).split(",")[1]||"");};r.onerror=rej;r.readAsDataURL(file);});}
+
+/* map an old letter grade onto the NLPA scale; anything else stays blank for a person to set */
+function mapLetter(g){
+  g=String(g||"").trim().toUpperCase();
+  if(/^A[+-]?$/.test(g))return "A";
+  if(g==="B+")return "B+";
+  if(g==="B"||g==="B-")return "B";
+  if(g==="C+")return "C+";
+  if(g==="C"||g==="C-")return "C";
+  if(g==="F"||g==="NC")return "F";
+  return "";
+}
+function groupFor(area){
+  var map={"English":[0,0],"Mathematics":[0,1],"Science":[0,2],"Physical Education":[0,3],"Social Studies":[1,0],"Fine Arts":[1,1],"Personal Financial Literacy":[1,2],"Electives":[1,2]};
+  return map[area]||[1,2];
+}
+function placeCourses(list){
+  /* clear the empty template rows that a new course will take, keep NLPA names the old transcript did not cover */
+  var placed=0,skipped=[];
+  list.forEach(function(c){
+    if(c.status==="in_progress"){skipped.push(c.title+" (in progress)");return;}
+    var gi=groupFor(c.area),grp=S.cols[gi[0]]&&S.cols[gi[0]][gi[1]];
+    if(!grp){grp=S.cols[1][S.cols[1].length-1];}
+    var slot=null;
+    for(var i=0;i<grp.courses.length;i++){if(!String(grp.courses[i].title||"").trim()){slot=grp.courses[i];break;}}
+    if(!slot){slot={title:"",pct:"",letter:"",credit:"1.0",src:"T",level:"regular"};grp.courses.push(slot);}
+    slot.title=c.title;slot.src="T";slot.pct="";slot.letter=c.status==="failed"?"F":mapLetter(c.grade);
+    slot.credit=String(c.credits);slot.level=/\bAP\b/i.test(c.title)?"ap":(/honors|\bhon\b/i.test(c.title)?"honors":"regular");
+    placed++;
+  });
+  return {placed:placed,skipped:skipped};
+}
+$("old-read").addEventListener("click",async function(){
+  if(!PORTAL){pmsg("old-msg","Open this page from the portal administration to read a transcript.","warn");return;}
+  var file=$("old-file").files[0],text=$("old-text").value.trim();
+  if(!file&&!text){pmsg("old-msg","Choose a transcript file or paste its text first.","warn");return;}
+  var b=$("old-read");b.disabled=true;pmsg("old-msg","Reading, please wait...","");
+  try{
+    var body={text:text};
+    if(file){
+      if(file.size>3*1024*1024)throw new Error("That file is larger than 3 MB. Use a smaller file or paste the text.");
+      body.data=await fileToB64(file);
+      body.mime=file.type||(/\.pdf$/i.test(file.name)?"application/pdf":"");
+      RECORD.original=file;
+    }
+    var r=await fetch("/api/admin/transcript-read",{method:"POST",headers:{"content-type":"application/json",authorization:"Bearer "+await PORTAL.token()},body:JSON.stringify(body)});
+    var j=await r.json().catch(function(){return {};});
+    if(!r.ok)throw new Error(j.error||"The transcript could not be read.");
+    var out=placeCourses(j.courses);
+    if(j.studentName&&!(S.student.name||"").trim())S.student.name=j.studentName;
+    RECORD.schoolFrom=j.school||"";RECORD.notes=j.notes||"";
+    fillStatic();renderCourses();renderYears();refresh();
+    var m="Read "+j.courses.length+" courses and placed "+out.placed+" as transferred credit (T).";
+    if(out.skipped.length)m+=" Not placed: "+out.skipped.join("; ")+".";
+    if(j.school)m+=" Previous school: "+j.school+".";
+    if(j.notes)m+=" Note: "+j.notes;
+    m+=" Check every line against the original. Grades the old school gave that are not A, B, C or F were left blank for you to set.";
+    pmsg("old-msg",m,"");
+  }catch(e){pmsg("old-msg",e.message||"The transcript could not be read.","warn");}
+  b.disabled=false;
+});
+
+/* PDF of the preview sheet, US Letter */
+async function buildPdfBlob(){
+  var src=$("sheet"),clone=src.cloneNode(true);
+  clone.style.transform="none";clone.style.position="absolute";clone.style.left="0";clone.style.top="0";
+  var wrap=document.createElement("div");wrap.style.cssText="position:fixed;left:-20000px;top:0;width:816px;height:1056px;overflow:hidden";
+  wrap.appendChild(clone);document.body.appendChild(wrap);
+  try{
+    var canvas=await window.html2canvas(clone,{scale:2,backgroundColor:"#ffffff",width:816,height:1056,useCORS:true,logging:false});
+    var J=window.jspdf.jsPDF,pdf=new J({unit:"pt",format:"letter",compress:true});
+    pdf.addImage(canvas.toDataURL("image/jpeg",0.92),"JPEG",0,0,612,792);
+    return pdf.output("blob");
+  }finally{wrap.remove();}
+}
+async function buildDocxBlob(){
+  var bytes=await buildDocx(S,JSZip,IMG);
+  return new Blob([bytes],{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+}
+function saveBlob(blob,fn){var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=fn;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1000);}
+$("dlpdf").addEventListener("click",async function(){
+  if(!(S.student.name||"").trim()){msg("Enter the student's name first.","warn");$("s-name").focus();return;}
+  msg("Making the PDF...","");
+  try{saveBlob(await buildPdfBlob(),"NLPA_Transcript_"+slug(S.student.name)+".pdf");msg("PDF saved.","");}
+  catch(e){msg("Could not make the PDF"+(e&&e.message?": "+e.message:"."),"warn");}
+});
+
+/* storage */
+async function upload(path,blob,mime){
+  var r=await fetch(PORTAL.url+"/storage/v1/object/transcripts/"+path.split("/").map(encodeURIComponent).join("/"),{method:"POST",headers:await pHeaders({"Content-Type":mime||"application/octet-stream","x-upsert":"true"}),body:blob});
+  if(!r.ok)throw new Error("Upload failed ("+r.status+").");
+}
+async function dbWrite(method,url,body){
+  var r=await fetch(PORTAL.url+"/rest/v1/"+url,{method:method,headers:await pHeaders({"Content-Type":"application/json",Prefer:"return=minimal"}),body:JSON.stringify(body)});
+  if(!r.ok){var t=await r.text();throw new Error("Could not save the record. "+t.slice(0,160));}
+}
+async function storeOriginal(id){
+  var f=RECORD.original;if(!f||!$("old-keep").checked)return {};
+  var p=id+"/original_"+slug(f.name.replace(/\.[^.]+$/,""))+"."+(f.name.split(".").pop()||"pdf").toLowerCase();
+  await upload(p,f,f.type);return {original_path:p,original_name:f.name,original_mime:f.type||null};
+}
+$("savelib").addEventListener("click",async function(){
+  if(!PORTAL){msg("Open this page from the portal administration to save.","warn");return;}
+  if(!(S.student.name||"").trim()){msg("Enter the student's name first.","warn");$("s-name").focus();return;}
+  var b=$("savelib");b.disabled=true;msg("Saving to the transcript library...","");
+  try{
+    var isNew=!RECORD.id,id=RECORD.id||newId(),nm=slug(S.student.name);
+    var docx=await buildDocxBlob(),pdf=await buildPdfBlob();
+    var dp=id+"/NLPA_Transcript_"+nm+".docx",pp=id+"/NLPA_Transcript_"+nm+".pdf";
+    await upload(dp,docx,docx.type);await upload(pp,pdf,"application/pdf");
+    var row={student_name:S.student.name.trim(),student_id:S.student.id||null,kind:"nlpa",data:S,docx_path:dp,pdf_path:pp,updated_at:new Date().toISOString()};
+    if(RECORD.schoolFrom)row.school_from=RECORD.schoolFrom;
+    if(RECORD.notes)row.notes=RECORD.notes;
+    Object.assign(row,await storeOriginal(id));
+    if(isNew){row.id=id;await dbWrite("POST","transcripts",row);}
+    else await dbWrite("PATCH","transcripts?id=eq."+id,row);
+    RECORD.id=id;RECORD.original=null;
+    msg("Saved to the transcript library. Open the library to download or email it.","");
+  }catch(e){msg(e.message||"Could not save.","warn");}
+  b.disabled=false;
+});
+$("old-store").addEventListener("click",async function(){
+  if(!PORTAL){pmsg("old-msg","Open this page from the portal administration to store a file.","warn");return;}
+  var f=$("old-file").files[0];
+  if(!f){pmsg("old-msg","Choose the original file first.","warn");return;}
+  var nm=(S.student.name||"").trim()||prompt("Student name for this original transcript?")||"";
+  if(!nm.trim()){pmsg("old-msg","A student name is needed to file it.","warn");return;}
+  try{
+    var id=newId(),p=id+"/original_"+slug(f.name.replace(/\.[^.]+$/,""))+"."+(f.name.split(".").pop()||"pdf").toLowerCase();
+    await upload(p,f,f.type);
+    await dbWrite("POST","transcripts",{id:id,student_name:nm.trim(),student_id:S.student.id&&!/XX/.test(S.student.id)?S.student.id:null,kind:"original",original_path:p,original_name:f.name,original_mime:f.type||null});
+    pmsg("old-msg","The original is stored in the transcript library.","");
+  }catch(e){pmsg("old-msg",e.message||"Could not store it.","warn");}
+});
+
+/* reopen a saved transcript for correction */
+(async function(){
+  var q=new URLSearchParams(location.search).get("record");
+  if(!q||!PORTAL)return;
+  try{
+    var r=await fetch(PORTAL.url+"/rest/v1/transcripts?id=eq."+encodeURIComponent(q)+"&select=id,data",{headers:await pHeaders()});
+    var rows=await r.json();
+    if(rows&&rows[0]&&rows[0].data){S=rows[0].data;RECORD.id=rows[0].id;fillStatic();renderCourses();renderYears();refresh();msg("Opened the saved transcript. Save to the transcript library to update it.","");}
+  }catch(e){}
+})();
 })();
