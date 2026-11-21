@@ -533,7 +533,20 @@ function placeCourses(list){
     slot.credit=String(c.credits);slot.level=/\bAP\b/i.test(c.title)?"ap":(/honors|\bhon\b/i.test(c.title)?"honors":"regular");
     placed++;
   });
-  return {placed:placed,skipped:skipped};
+  var removed=dropUngraded();
+  return {placed:placed,skipped:skipped,removed:removed};
+}
+/* remove NLPA template rows that have a title but no grade, so only graded courses print */
+function dropUngraded(){
+  var n=0;
+  S.cols.forEach(function(col){col.forEach(function(gr){
+    gr.courses=gr.courses.filter(function(k){
+      var titled=String(k.title||"").trim();
+      if(titled&&k.src==="N"&&!gradeOf(k)){n++;return false;}
+      return true;
+    });
+  });});
+  return n;
 }
 $("old-read").addEventListener("click",async function(){
   if(!PORTAL){pmsg("old-msg","Open this page from the portal administration to read a transcript.","warn");return;}
@@ -555,7 +568,7 @@ $("old-read").addEventListener("click",async function(){
     if(j.studentName&&!(S.student.name||"").trim())S.student.name=j.studentName;
     RECORD.schoolFrom=j.school||"";RECORD.notes=j.notes||"";
     fillStatic();renderCourses();renderYears();refresh();
-    var m="Read "+j.courses.length+" courses and placed "+out.placed+" as transferred credit (T).";
+    var m="Read "+j.courses.length+" courses and placed "+out.placed+" as transferred credit (T)."+(out.removed?" Removed "+out.removed+" NLPA course rows that had no grade.":"");
     if(out.skipped.length)m+=" Not placed: "+out.skipped.join("; ")+".";
     if(j.school)m+=" Previous school: "+j.school+".";
     if(j.notes)m+=" Note: "+j.notes;
@@ -563,6 +576,11 @@ $("old-read").addEventListener("click",async function(){
     pmsg("old-msg",m,"");
   }catch(e){pmsg("old-msg",e.message||"The transcript could not be read.","warn");}
   b.disabled=false;
+});
+
+$("old-clean").addEventListener("click",function(){
+  var n=dropUngraded();renderCourses();refresh();
+  pmsg("old-msg",n?"Removed "+n+" NLPA course rows that had no grade.":"No ungraded NLPA rows to remove.","");
 });
 
 /* PDF of the preview sheet, US Letter */
