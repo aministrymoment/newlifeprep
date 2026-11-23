@@ -439,7 +439,21 @@ function renderSheet(){
     '<div class="s-ci">COURSE INFORMATION</div><div class="s-cols">'+cols+'</div>'+
     '<div class="s-leg"><b>SRC:</b>&nbsp; N&nbsp; Earned at New Life Preparatory Academy&nbsp;&nbsp;&nbsp; T&nbsp; Transferred from a former school&nbsp;&nbsp;&nbsp; CA&nbsp; Credit by Assessment</div>'+
     '<div class="s-low"><div>'+lowL+'</div><div>'+lowR+'</div></div><div class="s-foot">This transcript is official only when it bears the signature of the registrar and the school seal.</div></div>';
+  shrinkToPage();
   fit();
+}
+/* Keep the whole transcript on one Letter page. When there are many courses the content is scaled down
+   just enough that the certification line, dates and signature are never cut off. */
+function shrinkToPage(){
+  var inn=document.querySelector("#sheet .in");if(!inn)return;
+  inn.style.transform="";inn.style.width="";inn.style.transformOrigin="";
+  var avail=1056-36-20-2,h=inn.offsetHeight;
+  if(h>avail){
+    var k=avail/h;
+    inn.style.transformOrigin="top left";
+    inn.style.width=(720/k)+"px";
+    inn.style.transform="scale("+k+")";
+  }
 }
 function fit(){
   var stage=$("stage"),sheet=$("sheet");
