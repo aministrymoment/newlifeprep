@@ -59,9 +59,9 @@ export async function POST(req: Request) {
   const subject = String(b.subject || '').trim().slice(0, 160) || `Official transcript for ${t.student_name}, New Life Preparatory Academy`;
   const body = message || `Please find attached the transcript for ${t.student_name}, sent at the request and with the authorization of the student or parent or guardian.`;
   const html = `<div style="font-family:Georgia,serif;color:#0D1F3C;max-width:620px">
-<p>${toName ? `Dear ${esc(toName)},` : 'Hello,'}</p>
+<p>${toName ? (/[,:;.]$/.test(toName) ? `Dear ${esc(toName)}` : `Dear ${esc(toName)},`) : 'Hello,'}</p>
 <p>${esc(body).replace(/\n/g, '<br>')}</p>
-<p>If you have questions or need verification, please contact the school office at (954) 851-6608 or newlifeprep@gmail.com.</p>
+<p>If you have questions or need verification, please contact the school office at (954) 851-6608 or registrar@newlifeprep.org.</p>
 <p>Sincerely,<br><b>New Life Preparatory Academy</b><br>131 NE 9th Street, Pompano Beach, FL 33060<br>Florida DOE Private School ID 06-1840 | NCES ID A1300838<br><i>Excellence · Faith · Purpose</i></p></div>`;
 
   let ok = false, err = '';
