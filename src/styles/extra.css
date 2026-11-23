@@ -91,3 +91,7 @@ main { display: block; }
 .nav-links a.nav-portal { border: 1px solid var(--gold); color: var(--gold); padding: 8px 14px; white-space: nowrap; display: inline-block; }
 .nav-links a.nav-portal:hover { background: var(--gold); color: var(--dark); }
 @media (max-width: 960px) { .nav-links a.nav-portal { text-align: center; margin-top: 10px; } .nav-portal-li { border: 0 !important; } }
+
+/* Request type checkbox on the landing page contact form */
+.contact-form .form-check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #444; }
+.contact-form .form-check input { width: auto; margin-top: 4px; flex: none; }

@@ -6,7 +6,9 @@ import { AVERY_NUMBERS } from '@/lib/avery';
 
 type P = { id: string; email: string | null; full_name: string | null; student_id: string | null; grade_level?: number | null; role: string };
 type C = { id: string; title: string; slug: string; active?: boolean };
-type Q = { id: string; created_at: string; name: string; email: string; phone: string | null; program: string | null; message: string; status: string; emailed: boolean; street: string | null; city: string | null; state: string | null; zip: string | null };
+type Q = { id: string; created_at: string; name: string; email: string; phone: string | null; program: string | null; message: string; status: string; emailed: boolean; street: string | null; city: string | null; state: string | null; zip: string | null; request_type?: string; details?: Record<string, string> | null; fee_cents?: number; paid?: boolean };
+const REQ_LABEL: Record<string, string> = { information: 'School information', verification: 'Student verification', transcript: 'Transcript request', other: 'Other question' };
+const DETAIL_LABEL: Record<string, string> = { student_name: 'Student', student_id: 'Student ID', dob: 'Date of birth', attended: 'Years attended', relationship: 'Requested by', recipient_name: 'Send to', recipient_email: 'Recipient email', recipient_address: 'Recipient address', verify_what: 'Verify', requester_org: 'Organization', auth: 'Release authorization confirmed' };
 type Pay = { id: string; created_at: string; receipt_no: string | null; label: string | null; item: string; amount_cents: number; payer_name: string | null; payer_email: string | null; reference: string | null; status: string; refunded_cents: number };
 type S = { id: string; body: string; created_at: string; user_id: string; item_id: string; score: number | null; feedback: string | null; status: string };
 
@@ -79,8 +81,8 @@ function Admin() {
   function toggle(id: string) { setPick((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id])); }
   function csvCell(v: unknown) { const t = String(v ?? '').replace(/"/g, '""'); return `"${t}"`; }
   function downloadCsv() {
-    const head = ['Date', 'Name', 'Email', 'Phone', 'Program', 'Street', 'City', 'State', 'ZIP', 'Message', 'Status'];
-    const lines = inq.map((q) => [new Date(q.created_at).toLocaleString(), q.name, q.email, q.phone, q.program, q.street, q.city, q.state, q.zip, q.message, q.status].map(csvCell).join(','));
+    const head = ['Date', 'Request', 'Name', 'Email', 'Phone', 'Program', 'Street', 'City', 'State', 'ZIP', 'Message', 'Status', 'Paid'];
+    const lines = inq.map((q) => [new Date(q.created_at).toLocaleString(), REQ_LABEL[q.request_type || 'information'], q.name, q.email, q.phone, q.program, q.street, q.city, q.state, q.zip, q.message, q.status, q.fee_cents ? (q.paid ? 'Paid' : 'Not paid') : ''].map(csvCell).join(','));
     const blob = new Blob(['\uFEFF' + [head.map(csvCell).join(','), ...lines].join('\r\n')], { type: 'text/csv;charset=utf-8' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -147,11 +149,14 @@ function Admin() {
       {inq.map((q) => (
         <div key={q.id} className="p-card" style={q.status === 'handled' ? { opacity: 0.6 } : undefined}>
           <label style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><input type="checkbox" checked={pick.includes(q.id)} onChange={() => toggle(q.id)} disabled={!hasAddr(q)} />{hasAddr(q) ? 'Select for labels' : 'No mailing address'}</label>
-          <p className="p-small"><b>{q.name}</b> · <a href={`mailto:${q.email}`}>{q.email}</a>{q.phone ? ` · ${q.phone}` : ''}{q.program ? ` · ${q.program}` : ''} · {new Date(q.created_at).toLocaleString()} · {q.status === 'new' ? 'New' : 'Handled'}{q.emailed ? '' : ' · Email did not send'}</p>
+          <p className="p-small"><b>{q.name}</b> · <a href={`mailto:${q.email}`}>{q.email}</a>{q.phone ? ` · ${q.phone}` : ''}{q.program ? ` · ${q.program}` : ''} · {new Date(q.created_at).toLocaleString()} · {q.status === 'new' ? 'New' : q.status === 'awaiting_payment' ? 'Waiting for payment' : 'Handled'}{q.emailed ? '' : ' · Email did not send'}</p>
+          {q.request_type && q.request_type !== 'information' && <p className="p-small"><b>{REQ_LABEL[q.request_type] || q.request_type}</b>{q.fee_cents ? ` · ${money(q.fee_cents)} ${q.paid ? 'PAID' : 'NOT PAID'}` : ' · no fee'}</p>}
+          {q.details && <div className="p-small">{Object.entries(q.details).map(([k, v]) => <div key={k}><b>{DETAIL_LABEL[k] || k}:</b> {v === 'yes' && k === 'auth' ? 'Yes' : v}</div>)}</div>}
           {hasAddr(q) && <p className="p-small">Mail to: {q.street}, {q.city} {q.state} {q.zip}</p>}
           <p className="p-pre">{q.message}</p>
           <div className="p-row">
-            {q.status === 'new' ? <button className="p-btn" onClick={() => inquiryStatus(q, 'handled')}>Mark handled</button> : <button className="p-btn" onClick={() => inquiryStatus(q, 'new')}>Mark as new</button>}
+            {q.status === 'new' || q.status === 'awaiting_payment' ? <button className="p-btn" onClick={() => inquiryStatus(q, 'handled')}>Mark handled</button> : <button className="p-btn" onClick={() => inquiryStatus(q, 'new')}>Mark as new</button>}
+            {q.request_type === 'transcript' && <a className="p-btn" href="/portal/admin/transcript-records">Open Transcript Library</a>}
             <button className="p-danger" onClick={() => inquiryDelete(q)}>Delete</button>
           </div>
         </div>

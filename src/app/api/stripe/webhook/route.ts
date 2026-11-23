@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'crypto';
 import { CATALOG } from '@/lib/catalog';
+import { emailOffice } from '@/lib/notify';
 
 export const runtime = 'nodejs';
 
@@ -41,7 +42,7 @@ export async function POST(req: Request) {
           stripe_session_id: obj.id,
           payment_intent: obj.payment_intent || null,
           item: String(obj.metadata?.item || 'unknown').slice(0, 60),
-          label: item?.label || null,
+          label: item?.label || String(obj.metadata?.label || '').slice(0, 120) || null,
           amount_cents: Number(obj.amount_total || 0),
           currency: obj.currency || 'usd',
           payer_name: String(obj.metadata?.payer_name || obj.customer_details?.name || '').slice(0, 120) || null,
@@ -50,6 +51,21 @@ export async function POST(req: Request) {
         }),
       });
       if (!r.ok) return NextResponse.json({ error: 'Could not save.' }, { status: 500 });
+
+      // A paid transcript or verification request from the landing page: mark it paid and email the office.
+      const inqId = String(obj.metadata?.inquiry_id || '');
+      if (/^[0-9a-f-]{36}$/i.test(inqId)) {
+        const up = await fetch(`${sbUrl}/rest/v1/inquiries?id=eq.${inqId}`, {
+          method: 'PATCH',
+          headers: { ...headers, Prefer: 'return=representation' },
+          body: JSON.stringify({ paid: true, paid_at: new Date().toISOString(), status: 'new', stripe_session_id: obj.id }),
+        });
+        const q = up.ok ? (await up.json().catch(() => []))?.[0] : null;
+        if (q) {
+          const sent = await emailOffice({ ...q, paid: true });
+          if (sent) await fetch(`${sbUrl}/rest/v1/inquiries?id=eq.${inqId}`, { method: 'PATCH', headers: { ...headers, Prefer: 'return=minimal' }, body: JSON.stringify({ emailed: true }) }).catch(() => {});
+        }
+      }
     } else if (ev.type === 'charge.refunded') {
       if (!obj.payment_intent) return NextResponse.json({ ok: true });
       const full = Number(obj.amount_refunded || 0) >= Number(obj.amount || 0);
