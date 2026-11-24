@@ -22,6 +22,7 @@ function Admin() {
   const [inq, setInq] = useState<Q[]>([]);
   const [pays, setPays] = useState<Pay[]>([]);
   const [pick, setPick] = useState<string[]>([]);
+  const [showDone, setShowDone] = useState(false);
   const [avery, setAvery] = useState('5160');
   const [startAt, setStartAt] = useState('1');
   const [locked, setLocked] = useState<{ user_id: string; item_id: string; best: number }[]>([]);
@@ -106,7 +107,7 @@ function Admin() {
   }
   async function inquiryStatus(q: Q, status: string) {
     const { error } = await supabase().from('inquiries').update({ status }).eq('id', q.id);
-    setMsg(error ? `Could not update: ${error.message}` : status === 'handled' ? 'Marked as handled.' : 'Marked as new.'); load();
+    setMsg(error ? `Could not update: ${error.message}` : status === 'handled' ? 'Marked handled and moved to the stored messages below.' : 'Moved back to the list.'); load();
   }
   async function inquiryDelete(q: Q) {
     if (!window.confirm(`Delete the message from ${q.name}? This cannot be undone.`)) return;
@@ -135,7 +136,7 @@ function Admin() {
         <div className="p-card">
           <div className="p-row">
             <button className="p-btn" onClick={downloadCsv}>Download spreadsheet</button>
-            <button className="p-link" onClick={() => setPick(inq.filter(hasAddr).map((q) => q.id))}>Select all with an address</button>
+            <button className="p-link" onClick={() => setPick(inq.filter((q) => q.status !== 'handled' && hasAddr(q)).map((q) => q.id))}>Select all with an address</button>
             <button className="p-link" onClick={() => setPick([])}>Clear selection</button>
           </div>
           <div className="p-row">
@@ -146,8 +147,8 @@ function Admin() {
           <p className="p-small">Only messages with a mailing address can be printed. Use Start at label to reuse a sheet that has already been partly used. Print a test on plain paper first.</p>
         </div>
       )}
-      {inq.map((q) => (
-        <div key={q.id} className="p-card" style={q.status === 'handled' ? { opacity: 0.6 } : undefined}>
+      {inq.filter((q) => q.status !== 'handled').map((q) => (
+        <div key={q.id} className="p-card">
           <label style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><input type="checkbox" checked={pick.includes(q.id)} onChange={() => toggle(q.id)} disabled={!hasAddr(q)} />{hasAddr(q) ? 'Select for labels' : 'No mailing address'}</label>
           <p className="p-small"><b>{q.name}</b> · <a href={`mailto:${q.email}`}>{q.email}</a>{q.phone ? ` · ${q.phone}` : ''}{q.program ? ` · ${q.program}` : ''} · {new Date(q.created_at).toLocaleString()} · {q.status === 'new' ? 'New' : q.status === 'awaiting_payment' ? 'Waiting for payment' : 'Handled'}{q.emailed ? '' : ' · Email did not send'}</p>
           {q.request_type && q.request_type !== 'information' && <p className="p-small"><b>{REQ_LABEL[q.request_type] || q.request_type}</b>{q.fee_cents ? ` · ${money(q.fee_cents)} ${q.paid ? 'PAID' : 'NOT PAID'}` : ' · no fee'}</p>}
@@ -155,7 +156,29 @@ function Admin() {
           {hasAddr(q) && <p className="p-small">Mail to: {q.street}, {q.city} {q.state} {q.zip}</p>}
           <p className="p-pre">{q.message}</p>
           <div className="p-row">
-            {q.status === 'new' || q.status === 'awaiting_payment' ? <button className="p-btn" onClick={() => inquiryStatus(q, 'handled')}>Mark handled</button> : <button className="p-btn" onClick={() => inquiryStatus(q, 'new')}>Mark as new</button>}
+            {q.status === 'new' || q.status === 'awaiting_payment' ? <button className="p-btn" onClick={() => inquiryStatus(q, 'handled')}>Mark handled</button> : <button className="p-btn" onClick={() => inquiryStatus(q, 'new')}>Move back to list</button>}
+            {q.request_type === 'transcript' && <a className="p-btn" href="/portal/admin/transcript-records">Open Transcript Library</a>}
+            <button className="p-danger" onClick={() => inquiryDelete(q)}>Delete</button>
+          </div>
+        </div>
+      ))}
+      {inq.length > 0 && inq.every((q) => q.status === 'handled') && <p className="p-muted">Every message has been handled. Nothing is waiting.</p>}
+      {inq.some((q) => q.status === 'handled') && (
+        <div className="p-card">
+          <button className="p-btn" onClick={() => setShowDone((v) => !v)}>{showDone ? 'Hide' : 'Show'} handled messages ({inq.filter((q) => q.status === 'handled').length})</button>
+          <p className="p-small">Handled messages are stored here. They stay in the spreadsheet download and can be moved back to the list.</p>
+        </div>
+      )}
+      {showDone && inq.filter((q) => q.status === 'handled').map((q) => (
+        <div key={q.id} className="p-card" style={{ opacity: 0.75 }}>
+          <label style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><input type="checkbox" checked={pick.includes(q.id)} onChange={() => toggle(q.id)} disabled={!hasAddr(q)} />{hasAddr(q) ? 'Select for labels' : 'No mailing address'}</label>
+          <p className="p-small"><b>{q.name}</b> · <a href={`mailto:${q.email}`}>{q.email}</a>{q.phone ? ` · ${q.phone}` : ''}{q.program ? ` · ${q.program}` : ''} · {new Date(q.created_at).toLocaleString()} · {q.status === 'new' ? 'New' : q.status === 'awaiting_payment' ? 'Waiting for payment' : 'Handled'}{q.emailed ? '' : ' · Email did not send'}</p>
+          {q.request_type && q.request_type !== 'information' && <p className="p-small"><b>{REQ_LABEL[q.request_type] || q.request_type}</b>{q.fee_cents ? ` · ${money(q.fee_cents)} ${q.paid ? 'PAID' : 'NOT PAID'}` : ' · no fee'}</p>}
+          {q.details && <div className="p-small">{Object.entries(q.details).map(([k, v]) => <div key={k}><b>{DETAIL_LABEL[k] || k}:</b> {v === 'yes' && k === 'auth' ? 'Yes' : v}</div>)}</div>}
+          {hasAddr(q) && <p className="p-small">Mail to: {q.street}, {q.city} {q.state} {q.zip}</p>}
+          <p className="p-pre">{q.message}</p>
+          <div className="p-row">
+            {q.status === 'new' || q.status === 'awaiting_payment' ? <button className="p-btn" onClick={() => inquiryStatus(q, 'handled')}>Mark handled</button> : <button className="p-btn" onClick={() => inquiryStatus(q, 'new')}>Move back to list</button>}
             {q.request_type === 'transcript' && <a className="p-btn" href="/portal/admin/transcript-records">Open Transcript Library</a>}
             <button className="p-danger" onClick={() => inquiryDelete(q)}>Delete</button>
           </div>
